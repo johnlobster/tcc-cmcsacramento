@@ -1,17 +1,24 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Tai chi web page</h1>
-        
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-        
-    </div>
-  );
+import Header from "./components/Header/Header";
+import Routing from "./components/Routing/Routing";
+import Footer from "./components/Footer/Footer";
+
+class App extends React.Component {
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Header />
+        <Routing />
+        <Footer />
+      </BrowserRouter>
+    );
+  }
+
+  
+  
 }
 
 export default App;
