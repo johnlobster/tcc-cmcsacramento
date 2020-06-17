@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "author": "John Webster",
+  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,6 +16,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "shelljs": "^0.8.4",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -38,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.6"
   }
 }
