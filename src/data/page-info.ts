@@ -18,6 +18,22 @@ export const data:pageData = [
     name: "Beginners",
     menu: "Beginners",
     title: "Chen man ching Sacramento for beginners"
+  },
+  {
+    name: "Intermediate",
+    menu: "Home alone",
+    title: "Chen man ching Sacramento"
+  },
+  {
+    name: "Advanced",
+    menu: "Learners",
+    title: "Chen man ching Sacramento for beginners"
+  },
+  {
+    name: "Contact",
+    menu: "#5",
+    title: "Chen man ching Sacramento"
   }
+  
 ]
 

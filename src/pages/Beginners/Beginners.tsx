@@ -8,6 +8,7 @@ import React from 'react';
 const Beginners:React.FunctionComponent = (props) => {
   return(
     <div>
+      <h1>Beginners' page</h1>
     </div>
   );
 }

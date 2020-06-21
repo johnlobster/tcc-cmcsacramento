@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import myTheme from "./global/theme";
 import { ThemeProvider, StylesProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+// import { CssBaseline } from '@material-ui/core';
 import {  } from '@material-ui/core/styles';
 
 ReactDOM.render(
   <React.StrictMode>
-    < CssBaseline />
+    {/* < CssBaseline /> */}
     <StylesProvider injectFirst>
       <ThemeProvider theme={myTheme}>
         <App />
