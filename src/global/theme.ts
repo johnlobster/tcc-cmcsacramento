@@ -6,6 +6,7 @@ const myTheme:Theme = createMuiTheme({
   palette: {
     primary: {
       main: 'rgba(84, 24, 83, 0.8)',
+      contrastText: '#FFFFFF'
     },
     secondary: {
       main: 'rgba(34, 33, 153, 0.8)',

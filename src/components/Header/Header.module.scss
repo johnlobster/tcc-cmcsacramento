@@ -1,0 +1,44 @@
+
+@font-face {
+  font-family: RoofRunnersActive;
+  src: url(../../fonts/roof-runners-active.regular.ttf);
+}
+// Font from
+// https://www.1001fonts.com/roof-runners-active-font.html
+// Roof runners active Regular
+// by Press Gang Studios
+// https://www.facebook.com/pressgangstudios
+
+.menuButton {
+  color: white;
+  padding-right: 1rem;
+}
+
+.titleBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+.title {
+  font-family: RoofRunnersActive, serif;
+  font-size: 3rem;
+  letter-spacing: 0.4rem;
+  & .large {
+    font-size: 5rem;
+  }
+  padding: 0.5rem 0.75rem 0 0.75rem;
+  // width: 100%;
+  // margin-left: auto;
+  // margin-right: auto;
+}
+
+.info {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    padding: 0 0.75rem 0.5rem 0.75rem;
+    // margin-left: auto;
+    // margin-right: auto;
+}

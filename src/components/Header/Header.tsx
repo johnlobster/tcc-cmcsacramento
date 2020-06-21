@@ -1,23 +1,44 @@
 import React from 'react';
 
-import {Box} from '@material-ui/core'
+import {AppBar, Toolbar, IconButton, Box} from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu';
 
-// import { createMuiTheme, Theme } from '/styles';
+import MyStyles from './Header.module.scss';
 
-// add more props 
-// add <Header-moreProps> to type
-// interface Header-moreProps {
-// }
+interface MoreProps {
+  desktop: boolean
+}
 
-const Header:React.FunctionComponent = (props) => {
+
+const Header:React.FunctionComponent<MoreProps> = (props) => {
+
+  // const buttonClasses = buttonStyles();
+  // const titleClasses = titleStyles();
+  // classes={{root: buttonClasses.root}}
   return(
     <div>
-      <Box bgcolor="primary.main" color="text.primary" >
-        <h1>Header</h1>
-      </Box>
-      <Box bgcolor="secondary.main" color="text.secondary" >
-        <h1>More</h1>
-      </Box>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={MyStyles.menuButton} aria-label="menu">
+            <MenuIcon fontSize="large"   />
+          </IconButton>
+          <Box className={MyStyles.titleBox}>
+            <Box className={MyStyles.title}>
+              Tai Chi
+            </Box >
+            { props.desktop &&
+              <Box className={MyStyles.info}>
+                <div >Jinbao(Golden Treasure) Tai Chi</div>
+                <div >
+                  Chen man ching Tai chi Sacramento
+                </div>
+              </Box>
+            }
+                        
+          </Box>
+          
+        </Toolbar>
+      </AppBar>
     </div>
     
   );

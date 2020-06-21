@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Header />
+        <Header desktop={true}/>
         <Routing />
         <Footer />
       </BrowserRouter>
