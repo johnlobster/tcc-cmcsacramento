@@ -21,17 +21,32 @@ export const data:pageData = [
   },
   {
     name: "Intermediate",
-    menu: "Home alone",
+    menu: "Intermediate",
     title: "Chen man ching Sacramento"
   },
   {
     name: "Advanced",
-    menu: "Learners",
+    menu: "Advanced",
     title: "Chen man ching Sacramento for beginners"
   },
   {
+    name: "History",
+    menu: "History",
+    title: "Chen man ching Sacramento"
+  },
+  {
+    name: "Articles",
+    menu: "Articles",
+    title: "Chen man ching Sacramento"
+  },
+  {
+    name: "Resources",
+    menu: "Resources",
+    title: "Chen man ching Sacramento"
+  },
+  {
     name: "Contact",
-    menu: "#5",
+    menu: "Contact",
     title: "Chen man ching Sacramento"
   }
   

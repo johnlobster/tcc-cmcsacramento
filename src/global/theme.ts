@@ -10,7 +10,7 @@ const myTheme:Theme = createMuiTheme({
     },
     secondary: {
       main: 'rgba(34, 33, 153, 0.8)',
-      // contrastText: '#ffcc00',
+      contrastText: '#FFFFFF',
     },
     text: {
       primary: 'rgb(245, 245, 226)',
