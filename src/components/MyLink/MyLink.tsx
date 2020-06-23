@@ -9,24 +9,21 @@ const linkStyles = makeStyles((theme: Theme) =>
     root: {
       textDecoration: 'none',
       fontSize: '1.1rem',
-      color: 'inherit',
-      '&:visited': {
-        color: 'green'
-      }
+      
     }
   })
 )
 
 interface LinkMoreProps {
   to: string,
-  color?: number,
+  color?: string, // not sure that this is a good idea
   className?: string
 }
 const MyLink: React.FunctionComponent<LinkMoreProps> = (props) => {
   const linkClasses = linkStyles(); 
 
   return(
-    <span className={props.className}>
+    <span className={props.className} >
       <Link to={props.to} className={linkClasses.root}>
         {props.children}
       </Link> 

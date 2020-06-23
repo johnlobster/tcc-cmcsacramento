@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Card, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  palette,
-  PaletteProps,
-  spacing,
-  SpacingProps,
-  typography,
-  TypographyProps,
-} from '@material-ui/system';
+// import {
+//   palette,
+//   PaletteProps,
+//   spacing,
+//   SpacingProps,
+//   typography,
+//   TypographyProps,
+// } from '@material-ui/system';
 
 import CircleMenu from "../../components/CircleMenu/CircleMenu";
 

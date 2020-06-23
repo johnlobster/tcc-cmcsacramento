@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
-import { Box, Theme, Button } from '@material-ui/core';
+import { Box, Theme, Button,Link as MLink} from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // would be really cool to make this responsive ....
@@ -10,7 +10,6 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // ToDo a11y - this is a menu, needs to be described as a menu
 
-import MyLink from "../../components/MyLink/MyLink";
 import { data as pageData}  from "../../data/page-info"
 import Taijitu from "../../images/Taijitu.svg";
 
@@ -50,11 +49,22 @@ const linkButtonStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       width: `${boxWidth}rem`,
       height: `${boxHeight}rem`,
+      color: theme.palette.text.primaryColor,
+      fontWeight: 'bold',
+      '& a': {
+        color: theme.palette.text.primaryColor,
+      },
+      '& a:visited': {
+          color: theme.palette.text.primaryLinkVisited,
+      },  
       '&:hover': {
         boxShadow: theme.shadows[6]
-      }
+      },
+          
       
-    }
+      
+    },
+    
   })
 )
 
@@ -83,22 +93,21 @@ const xy =  (() => {
   return output;
 })()
 
-
 const CircleMenu: React.FunctionComponent = (props) => {
   const topBoxClasses = topBoxStyles(); 
   const linkButtonClasses = linkButtonStyles(); 
   const tjtClasses= tjtStyles();
   return (
     <div>
-      <Box className={topBoxClasses.root} >
+      <Box className={topBoxClasses.root} aria-label="menu">
         <img src={Taijitu} alt="Yin yang symbol" className={tjtClasses.root}/>
 
           {pageData.map((item, index) => {
             return (
-              <Button color="primary" className={linkButtonClasses.root}
+              <Button className={linkButtonClasses.root}
                 style={{ top: xy[index].top, right: xy[index].right }}
                 key={`${item.name}${index}`}>
-                <MyLink to={item.name}>{item.menu}</MyLink>
+                <MLink href={item.name} >{item.menu}</MLink>
               </Button>
               
             )

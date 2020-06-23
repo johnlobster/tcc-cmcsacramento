@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Button,Theme } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { spacing } from '@material-ui/system';
+// import { spacing } from '@material-ui/system';
 
 import MyLink from "../../components/MyLink/MyLink";
 import dog from "../../images/doggy.jpg";

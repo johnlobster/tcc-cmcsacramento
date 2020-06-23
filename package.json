@@ -2,8 +2,6 @@
   "name": "tcc-cmcsacramento",
   "version": "0.1.0",
   "private": false,
-  "author": "John Webster",
-  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
@@ -16,13 +14,16 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
+    "csxs": "^0.2.0",
     "node-sass": "^4.14.1",
+    "normalize.css": "^8.0.1",
     "npx": "^10.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "serve": "^11.3.2",
     "shelljs": "^0.8.4",
     "typescript": "~3.7.2"
   },
@@ -33,6 +34,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "author": "John Webster",
+  "license": "MIT",
   "eslintConfig": {
     "extends": "react-app"
   },

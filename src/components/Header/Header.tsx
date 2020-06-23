@@ -4,9 +4,29 @@ import { Link } from 'react-router-dom';
 import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, Theme} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 
-import MyStyles from './Header.module.scss';
-
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+const headerStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    iconButton: {
+      color: 'white'
+    },
+    menu: {
+      backgroundColor: 'yellow',
+      '& a': {
+      textDecoration: 'none',
+      color: 'black'
+      }
+    },
+    titleBox: {
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignContent: 'center',
+      alignItems: 'center'
+    }
+  })
+);
 
 const infoStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,7 +43,13 @@ const infoStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('lg')]: {
         fontSize: '2.5rem',
       },
+      fontWeight: 'bold',
+      letterSpacing: '0.15rem',
+      padding: '0 0.75rem 0.5rem 0.75rem'
     },
+    appBar: {
+      backgroundColor: theme.palette.primary.fade
+    }
   }),
 );
 
@@ -39,16 +65,16 @@ const titleStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('lg')]: {
         fontSize: '7rem',
       },
+      fontFamily: 'RoofRunnersActive, serif',
+      letterSpacing: '0.4rem',
+      padding: '0.5rem 0.75rem 0 0.75rem'
+
     },
   }),
 );
 interface MoreProps {
   desktop: boolean
 }
-
-// <MenuItem onClick={menuClose}>Profile</MenuItem>
-//  <MenuItem onClick={menuClose}>My account</MenuItem>
-//  <MenuItem onClick={menuClose}>Logout</MenuItem>
 
 const Header:React.FunctionComponent<MoreProps> = (props) => {
 
@@ -61,6 +87,8 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
 
   const infoClasses = infoStyles();
   const titleClasses = titleStyles();
+  const headerClasses = headerStyles();
+
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -71,18 +99,21 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
   const menuClose = () => {
     setAnchorEl(null);
   };
+
+  //   
+  //  + " "  
   return(
-    <div>
-      <AppBar position="static">
+    <div >
+      <AppBar position="static" className={infoClasses.appBar}>
         <Toolbar>
           <IconButton edge="start" 
-            className={MyStyles.menuButton} 
+            className={headerClasses.iconButton}
             onClick={menuOpen}
             aria-label="menu">
             <MenuIcon fontSize="large"   />
           </IconButton>
 
-          <Menu
+          <Menu className={headerClasses.menu}
             id="simple-menu"
             color="secondary"
             anchorEl={anchorEl}
@@ -94,7 +125,7 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
             open={Boolean(anchorEl)}
             onClose={menuClose}
           >
-            <Box className={MyStyles.menu}>
+            <Box >
               <MenuItem onClick={menuClose}>
               <Link to="/Home" >
                 Home
@@ -108,12 +139,12 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
             </Box>
           </Menu>
 
-          <Box className={MyStyles.titleBox}>
-            <Box className={titleClasses.root + " " + MyStyles.title}>
+          <Box className={headerClasses.titleBox}>
+            <Box className={titleClasses.root}>
               Tai Chi
             </Box >
             { props.desktop &&
-              <Box className={infoClasses.root + " " + MyStyles.info}>
+              <Box className={infoClasses.root}>
                 <div >Jinbao(Golden Treasure) Tai Chi Chuan (taijiquan) </div>
                 <div >
                   Chen man ching Tai chi Sacramento
