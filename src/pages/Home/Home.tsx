@@ -79,7 +79,7 @@ const Home:React.FunctionComponent = (props) => {
               practitioners of other martial arts. Gain strength, balance, poise and resiliency
               while engaging in a modified form of Tai Chi created for busy people. 
             </p><p>
-              You will learn the health benefits and the internal practice (mindfulness) 
+              You will learn health benefits and internal practice (mindfulness) by
               studying the methods developed by one of the best-known students of Yang cheng fu.
               We welcome people of any age or skill level and love to see people try out 
               Tai Chi for the first time. We encourage everyone to learn at their own 
