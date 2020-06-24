@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 
 // utility to pass className down
 export const passClasses: (propsClassName: string | undefined) => string = (propsClassName: string | undefined) => {

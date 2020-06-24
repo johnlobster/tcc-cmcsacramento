@@ -11,12 +11,23 @@ interface MoreProps {
   id: string; 
   className?: string; } 
 
-const EditSpan:React.FunctionComponent = (props) => {
+const EditSpan:React.FunctionComponent<MoreProps> = (props) => {
 
+  const passedClasses: string = passClasses(props.className);
+  
   return(
-    <div className={passClasses(props.className)}>
-      {props.children}
-    </div>
+    <React.Fragment>
+    { (passedClasses.length !== 0) ? 
+      <div className={passedClasses}>
+        {props.children}
+      </div>
+    :
+      <div>
+        {props.children}
+      </div>
+    }
+    </React.Fragment>
+
   );
 }
 
