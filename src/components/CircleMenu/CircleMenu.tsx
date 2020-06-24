@@ -6,7 +6,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // would be really cool to make this responsive ....
 // ToDo how about using em instead of rem and change the font-size in the parent
-// ToDo should allow responsive sizes
+// ToDo should allow responsive sizes. Would have to use calc, which could be ok, but need to have a fallback
 
 // ToDo a11y - this is a menu, needs to be described as a menu
 
@@ -35,8 +35,7 @@ const topBoxStyles = makeStyles((theme: Theme) =>
       maxWidth: '30rem',
       height: `${2*size}rem`,
       maxHeight: '30rem',
-      marginLeft: '5rem',
-      marginBottom: '5rem',
+      margin: '0 auto 1.5rem auto',
 
       position: 'relative',
     }
@@ -51,8 +50,11 @@ const linkButtonStyles = makeStyles((theme: Theme) =>
       height: `${boxHeight}rem`,
       color: theme.palette.text.primaryColor,
       fontWeight: 'bold',
+      fontSize: '1.2rem',
       '& a': {
         color: theme.palette.text.primaryColor,
+        fontWeight: 'bold',
+        fontSize: '1.2rem',
       },
       '& a:visited': {
           color: theme.palette.text.primaryLinkVisited,
@@ -74,8 +76,9 @@ const tjtStyles = makeStyles((theme:Theme) =>
       height: '4rem',
       width: '4rem',
       position: 'absolute',
-      top: '8rem',
-      right: '8rem'
+      top: `${size-2}rem`,
+      right: `${size-2}rem`,
+      margin: '0 auto'
     }
   })
 )

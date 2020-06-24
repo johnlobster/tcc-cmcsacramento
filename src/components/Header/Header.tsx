@@ -1,21 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, Theme} from '@material-ui/core'
+import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Link} 
+  from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
-
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+import {data} from "../../data/page-info";
 
 const headerStyles = makeStyles((theme: Theme) =>
   createStyles({
     iconButton: {
-      color: 'white'
+      color: theme.palette.primary.contrastText
     },
     menu: {
-      backgroundColor: 'yellow',
       '& a': {
       textDecoration: 'none',
-      color: 'black'
+      color: theme.palette.text.primaryColor
       }
     },
     titleBox: {
@@ -24,20 +24,15 @@ const headerStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignContent: 'center',
       alignItems: 'center'
-    }
-  })
-);
-
-const infoStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
+    },
+    info: {
       [theme.breakpoints.down('xs')]: {
         display: 'none',
       },
-      [theme.breakpoints.between('xs','sm')]: {
+      [theme.breakpoints.between('xs', 'sm')]: {
         fontSize: '0.75rem',
       },
-      [theme.breakpoints.between('sm','lg')]: {
+      [theme.breakpoints.between('sm', 'lg')]: {
         fontSize: '1.5rem',
       },
       [theme.breakpoints.up('lg')]: {
@@ -49,13 +44,8 @@ const infoStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       backgroundColor: theme.palette.primary.fade
-    }
-  }),
-);
-
-const titleStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
+    },
+    title: {
       [theme.breakpoints.down('sm')]: {
         fontSize: '3rem',
       },
@@ -70,23 +60,16 @@ const titleStyles = makeStyles((theme: Theme) =>
       padding: '0.5rem 0.75rem 0 0.75rem'
 
     },
-  }),
+  })
 );
+
+
 interface MoreProps {
   desktop: boolean
 }
 
 const Header:React.FunctionComponent<MoreProps> = (props) => {
 
-  // const buttonClasses = buttonStyles();
-  // const titleClasses = titleStyles();
-  // classes={{root: buttonClasses.root}}
-  // className={MyStyles.menuButton}
-
-  // const fake = MyStyles.menuButton;
-
-  const infoClasses = infoStyles();
-  const titleClasses = titleStyles();
   const headerClasses = headerStyles();
 
 
@@ -104,7 +87,7 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
   //  + " "  
   return(
     <div >
-      <AppBar position="static" className={infoClasses.appBar}>
+      <AppBar position="static" className={headerClasses.appBar}>
         <Toolbar>
           <IconButton edge="start" 
             className={headerClasses.iconButton}
@@ -116,38 +99,43 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
           <Menu className={headerClasses.menu}
             id="simple-menu"
             color="secondary"
+            variant="menu"
             anchorEl={anchorEl}
             keepMounted
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
+              vertical: 'bottom',
+              horizontal: 'right',
             }}
             open={Boolean(anchorEl)}
             onClose={menuClose}
           >
-            <Box >
-              <MenuItem onClick={menuClose}>
-              <Link to="/Home" >
-                Home
-              </Link>
-              </MenuItem>
-              <MenuItem onClick={menuClose}>
-                <Link to="/Beginners">
-                  Beginners
-                  </Link>
-              </MenuItem>
+            <Box>
+              Menu items
             </Box>
+            <MenuList>
+              
+              {data.map((item, index) => {
+                return (
+                  <MenuItem onClick={menuClose}>
+                    <Link href={item.name} >
+                      {item.menu}
+                    </Link>
+                  </MenuItem>
+                )
+              })}
+              
+            </MenuList>
           </Menu>
 
           <Box className={headerClasses.titleBox}>
-            <Box className={titleClasses.root}>
+            <Box className={headerClasses.title}>
               Tai Chi
             </Box >
             { props.desktop &&
-              <Box className={infoClasses.root}>
-                <div >Jinbao(Golden Treasure) Tai Chi Chuan (taijiquan) </div>
+              <Box className={headerClasses.info}>
+                <div >Jinbao(Golden Treasure) Tai Chi Chuan</div>
                 <div >
-                  Chen man ching Tai chi Sacramento
+                  Sacramento Cheng Man-ching Tai Chi Group
                 </div>
               </Box>
             }

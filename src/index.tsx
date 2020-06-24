@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// global css, defined before all the other styles are injected
-// import './global/fonts.css';
-
 import App from './App';
 import myTheme from "./global/theme";
 import { ThemeProvider, StylesProvider  } from '@material-ui/core/styles';

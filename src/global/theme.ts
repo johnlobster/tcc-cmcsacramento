@@ -5,10 +5,18 @@ import './fonts.css';
 
 // these colours are pretty dark
 
+
+// import Color from 'color';
+// backgroundColor: Color(color)
+//   .darken(0.3)
+//   .desaturate(0.2)
+//   .toString(),
+
 // Add custom items to theme
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeText {
     primaryColor?: string
+    primaryColorDark?: string
     primaryLinkVisited?: string
   }
   
@@ -21,16 +29,6 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 const myTheme:Theme = createMuiTheme({
-  // overrides: {
-  //   MuiCssBaseline: {
-  //     '@global': {
-  //         '@fontFace': {
-  //         fontFamily: 'RoofRunnersActive',
-  //         src: `url(${font})`,
-  //         }
-  //     },
-  //   },
-  // },
   palette: {
     primary: {
       main: 'rgba(84, 24, 83, 1)',
@@ -45,7 +43,9 @@ const myTheme:Theme = createMuiTheme({
       primary: 'rgb(245, 245, 226)',
       secondary: "rgb(21, 7, 7)",
       primaryColor: 'rgb(172, 53, 170)', // custom
-      primaryLinkVisited: "rgb(47, 25, 47)" // custom, faded primary. Can't set alpha channel on :visited
+      primaryColorDark: 'rgb(84, 24, 83)', // custom
+
+      primaryLinkVisited: "rgb(142, 46, 140)" // custom, faded primary. Can't set alpha channel on :visited
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.

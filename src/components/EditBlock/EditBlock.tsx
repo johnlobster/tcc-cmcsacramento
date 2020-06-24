@@ -1,13 +1,17 @@
 import React from 'react';
 
-// add more props 
-// add <EditBlock-moreProps> to type
-// interface EditBlock-moreProps {
-// }
+import { passClasses} from "../../global/common"
 
-const EditBlock:React.FunctionComponent = (props) => {
+interface MoreProps {
+  id: string;
+  className?: string;
+}
+
+const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
+
   return(
-    <div>
+    <div className={passClasses(props.className)} >
+      {props.children}
     </div>
   );
 }
