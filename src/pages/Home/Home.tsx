@@ -6,15 +6,13 @@ import Typography from '@material-ui/core/Typography';
 
 import theme from "../../global/theme";
 import EditBlock from "../../components/EditBlock/EditBlock"
+import EditSpan from '../../components/EditSpan/EditSpan';
 import CircleMenu from "../../components/CircleMenu/CircleMenu";
 
 import map from "../../images/map2.jpg";
 import cmc from "../../images/cmc1_fade.png";
-
-// add more props 
-// add <Home-moreProps> to type
-// interface Home-moreProps {
-// }
+import facebook from "../../images/f_logo_RGB-Hex-Blue_512.png";
+import meetup from "../../images/meetup.png";
 
 const useStyles = makeStyles({
   container: {
@@ -33,10 +31,10 @@ const useStyles = makeStyles({
   },
   bgImage: {
     position: 'absolute',
-    top: '-1rem',
+    top: '-1.5rem',
     left: '0',
     zIndex: -100,
-    width: '30vw',
+    width: '55vw',
     maxWidth: '50%',
     height: 'auto'
   },
@@ -68,7 +66,42 @@ const useStyles = makeStyles({
       fontSize: '1.3rem',
     },
     
-  }
+  },
+  linkBox: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+  },
+  logoFacebook: {
+    width: '20vw',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '60%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '30%',
+    },
+    padding: '10px 0',
+    '&:hover': {
+      // grow
+    }
+  },
+  logoMeetup: {
+    width: '40vw',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '70%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '50%',
+    },
+    padding: '10px 0'
+  },
+  mapTitle: {
+    '& > *': {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  },
 });
 
 
@@ -111,30 +144,73 @@ const Home:React.FunctionComponent = (props) => {
             <br />
           </EditBlock>
 
+          <div className={classes.welcome}>
+            <h4>Covid-19 update</h4>
+            <p>
+              <EditSpan id="Home_covid19">
+                The Hagan community center is closed, so no classes until further notice
+            </EditSpan>
+            </p>
+            <p>
+              <EditSpan id="Home_covid19_b">
+                We expect that when are able to resume classes, we will be following social distancing protocols. Keep 6' apart,
+                wear masks, and no partner practice
+            </EditSpan>
+            </p>
+            <br />
+          </div>
+          
+          
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Card raised={true} className={classes.customCard + " " + classes.contactCard}>
                 <CardContent>
-                  <Typography variant="h3" component="h2" gutterBottom>
-                    Contact us
+                  <Typography variant="h5" component="h2" gutterBottom>
+                    Contact us through social media
                   </Typography>
+                  <Grid container >
+                    <Grid item xs={6}>
+                      <Grid container justify="center" alignItems="center">
+                        <a href="https://www.facebook.com/chengmanchingtaichi/" className={classes.linkBox}>
+                          <img src={facebook} alt="Click here to visit our facebook page" className={classes.logoFacebook} />
+                        </a>
+                      </Grid>
+                    </Grid>
+                    
+                    <Grid item xs={6}>
+                      <Grid container justify="center" alignItems="center">
+                        <a href="https://www.meetup.com/Cheng-Man-Ching-Tai-Chi-Chuan-Group/" className={classes.linkBox}>
+                          <img src={meetup} alt="Click here to visit our meetup page" className={classes.logoMeetup} />
+                        </a>
+                      </Grid>
+                      
+                    </Grid>
+          
+                  </Grid>
+
+                  <Typography variant="h5" component="h2" gutterBottom>
+                    Contact us through Email
+                  </Typography>
+
                 </CardContent>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6}>
               <Card raised={true} className={classes.customCard}>
-                <CardMedia className={classes.map}
-                  component="img"
-                  alt="Click here to find directions to Tai chi group"
-                  image={map}
-                  title="Click here to find directions to Tai chi group"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Location
-                  </Typography>
-                </CardContent>
+                  <CardMedia className={classes.map}
+                    component="img"
+                    alt="Click here to find directions to Tai chi group"
+                    image={map}
+                    title="Click here to find directions to Tai chi group"
+                  />
+                  <CardContent className={classes.mapTitle}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      <span >
+                        Location and class times
+                      </span>
+                    </Typography>
+                  </CardContent>                
               </Card>
             </Grid>
 
@@ -153,21 +229,3 @@ const Home:React.FunctionComponent = (props) => {
 }
 
 export default Home;
-
-/*
-<Box m={1}>
-  <Grid container spacing={2}>
-    <Grid item xs={12} md={6} lg={4}>
-      <Card raised={true} className={classes.root}>
-        <h4>I am a card</h4>
-      </Card>
-    </Grid>
-
-    <Grid item xs={12} md={6} lg={4}>
-      <Card raised={true} className={classes.root}>
-        <h4>I am a card as well !</h4>
-      </Card>
-    </Grid>
-  </Grid>
-</Box>
-*/
