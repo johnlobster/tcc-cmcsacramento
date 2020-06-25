@@ -25,14 +25,18 @@ const myStyles = makeStyles((theme: Theme) =>
       maxWidth: "1000px"
     },
     doggy: {
-      maxWidth: "70vw"
+      maxWidth: "70vw",
+      boxShadow: theme.shadows[10]
+    },
+    buttonBox: {
+      boxShadow: theme.shadows[8],
+      '&:hover': {
+      boxShadow: theme.shadows[20]
+      }
     },
     button: {
       color: theme.palette.secondary.contrastText,
       fontSize: '1.5rem',
-      '&:hover': {
-        boxShadow: theme.shadows[12]
-      }
     },
   })
 )
@@ -50,8 +54,8 @@ const Tcc404:React.FunctionComponent = (props) => {
         </h1>
       </Box>
       
-      <Box p={2} mx="auto" py={3}>
-        <Button variant="contained" size="large" color="secondary" >
+      <Box p={2} mx="auto" py={3} >
+        <Button variant="contained" size="large" color="secondary" className={myClasses.buttonBox} >
           <Link href="/Home" className={myClasses.button}>
             Take me back to the home page
           </Link>

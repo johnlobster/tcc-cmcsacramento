@@ -9,6 +9,7 @@ import EditBlock from "../../components/EditBlock/EditBlock"
 import CircleMenu from "../../components/CircleMenu/CircleMenu";
 
 import map from "../../images/map2.jpg";
+import cmc from "../../images/cmc1_fade.png";
 
 // add more props 
 // add <Home-moreProps> to type
@@ -29,6 +30,15 @@ const useStyles = makeStyles({
     maxWidth: `${theme.breakpoints.values.md}px`,
     padding: '1rem',
     margin: '1rem auto 2rem auto'
+  },
+  bgImage: {
+    position: 'absolute',
+    top: '-1rem',
+    left: '0',
+    zIndex: -100,
+    width: '30vw',
+    maxWidth: '50%',
+    height: 'auto'
   },
   menuContainer: {
     width: "100%",
@@ -72,6 +82,11 @@ const Home:React.FunctionComponent = (props) => {
           
           <EditBlock id="Home_welcome" className={classes.welcome}>
             <h4>Welcome to Jīnbǎo (Golden treasure) Tai Chi Chuan</h4>
+
+            {/* Background image */}
+            <div style={{position: 'relative'}}>
+              <img src={cmc} alt="Background image of Cheng man ching" className={classes.bgImage} />
+            </div>
             <p>
               Here you’ll find 
               the information you need about our Tai Chi courses, our team, our teaching and our
