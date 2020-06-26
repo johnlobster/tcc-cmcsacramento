@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // import * as pageInfo from "../../data/page-info"; // single source of truth
 import Beginners from "../../pages/Beginners/Beginners";
 import Home from "../../pages/Home/Home";
-import Tcc404 from "../../components/Tcc404/Tcc404";
+import Tcc404 from "../../pages/Tcc404/Tcc404";
 
 // ToDo import and Route using pageInfo instead of hard coding
 
