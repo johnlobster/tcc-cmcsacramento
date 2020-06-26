@@ -40,7 +40,7 @@ const myTheme:Theme = createMuiTheme({
       contrastText: '#FFFFFF',
     },
     text: {
-      primary: 'rgb(245, 245, 226)',
+      primary: '#0F0F0F',
       secondary: "rgb(21, 7, 7)",
       primaryColor: 'rgb(172, 53, 170)', // custom
       primaryColorDark: 'rgb(84, 24, 83)', // custom
