@@ -15,20 +15,7 @@ import facebook from "../../images/f_logo_RGB-Hex-Blue_512.png";
 import meetup from "../../images/meetup.png";
 
 const useStyles = makeStyles({
-  container: {
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-    },
-    [theme.breakpoints.between('sm', 'md')]: {
-      width: '85%',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '75%',
-    },
-    maxWidth: `${theme.breakpoints.values.md}px`,
-    padding: '1rem',
-    margin: '1rem auto 2rem auto'
-  },
+  
   bgImage: {
     position: 'absolute',
     top: '-1.5rem',
@@ -38,7 +25,7 @@ const useStyles = makeStyles({
     maxWidth: '50%',
     height: 'auto'
   },
-  menuContainer: {
+  circularMenuContainer: {
     width: "100%",
     maxWidth: `${theme.breakpoints.values.md}px`,
     overflowX: 'hidden'
@@ -55,44 +42,54 @@ const useStyles = makeStyles({
   customCard: {
     color: theme.palette.text.primaryColorDark
   },
+  // not so useful now I changed the defaults. This doesn't affect headings
+  // because the <h.> style I set is more specific
+
   welcome: {
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.9rem',
+      fontSize: '1rem',
     },
     [theme.breakpoints.between('sm', 'md')]: {
-      fontSize: '1.1rem',
+      fontSize: '1.15rem',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '1.3rem',
     },
     
   },
+  
+  logoBox: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
   linkBox: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px',
+    padding: '1rem 10% 1rem 10%',
   },
   logoFacebook: {
-    width: '20vw',
+    width: '80%',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '60%',
+      maxWidth: '80px',
     },
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '30%',
+      maxWidth: '120px',
     },
-    padding: '10px 0',
     '&:hover': {
       // grow
-    }
+    },
   },
   logoMeetup: {
-    width: '40vw',
+    width: '80%',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '70%',
+      maxWidth: '200px',
     },
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '50%',
+      maxWidth: '400px',
     },
     padding: '10px 0'
   },
@@ -110,7 +107,7 @@ const Home:React.FunctionComponent = (props) => {
 
   return(
     <div>
-      <Grid container spacing={2} className={classes.container}>
+      <Grid container spacing={2} className="responsiveContainer">
         <Grid item xs={12}>
           
           <EditBlock id="Home_welcome" className={classes.welcome}>
@@ -118,7 +115,7 @@ const Home:React.FunctionComponent = (props) => {
 
             {/* Background image */}
             <div style={{position: 'relative'}}>
-              <img src={cmc} alt="Background image of Cheng man ching" className={classes.bgImage} />
+              <img src={cmc} alt="Cheng man ching" className={classes.bgImage} />
             </div>
             <p>
               Here you’ll find 
@@ -149,13 +146,13 @@ const Home:React.FunctionComponent = (props) => {
             <p>
               <EditSpan id="Home_covid19">
                 The Hagan community center is closed, so no classes until further notice
-            </EditSpan>
+              </EditSpan>
             </p>
             <p>
               <EditSpan id="Home_covid19_b">
                 We expect that when are able to resume classes, we will be following social distancing protocols. Keep 6' apart,
                 wear masks, and no partner practice
-            </EditSpan>
+              </EditSpan>
             </p>
             <br />
           </div>
@@ -170,19 +167,19 @@ const Home:React.FunctionComponent = (props) => {
                   </Typography>
                   <Grid container >
                     <Grid item xs={6}>
-                      <Grid container justify="center" alignItems="center">
+                      <div className={classes.logoBox} >
                         <a href="https://www.facebook.com/chengmanchingtaichi/" className={classes.linkBox}>
                           <img src={facebook} alt="Click here to visit our facebook page" className={classes.logoFacebook} />
                         </a>
-                      </Grid>
+                      </div>
                     </Grid>
                     
                     <Grid item xs={6}>
-                      <Grid container justify="center" alignItems="center">
+                      <div className={classes.logoBox}>
                         <a href="https://www.meetup.com/Cheng-Man-Ching-Tai-Chi-Chuan-Group/" className={classes.linkBox}>
                           <img src={meetup} alt="Click here to visit our meetup page" className={classes.logoMeetup} />
                         </a>
-                      </Grid>
+                      </div>
                       
                     </Grid>
           
@@ -218,7 +215,7 @@ const Home:React.FunctionComponent = (props) => {
         </Grid>
       </Grid>
       
-      <Grid container className={classes.container + " " + classes.menuContainer}>
+      <Grid container spacing={2} className={"responsiveContainer " + classes.circularMenuContainer}>
         <Grid item xs={12}>
           <Box><CircleMenu /></Box>
         </Grid>

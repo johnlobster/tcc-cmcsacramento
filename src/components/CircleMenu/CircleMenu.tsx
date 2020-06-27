@@ -21,7 +21,7 @@ import Taijitu from "../../images/Taijitu.svg";
 
 // sets up sizing for the menu items. Each item is in a box boxWidth by boxHeight
 // and size rem from the center
-const size:number = 10; // will be in rem
+const size:number = 8; // will be in rem
 const boxWidth: number = 8;
 const boxHeight: number = 4;
 

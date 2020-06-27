@@ -18,13 +18,13 @@ const EditSpan:React.FunctionComponent<MoreProps> = (props) => {
   return(
     <React.Fragment>
     { (passedClasses.length !== 0) ? 
-      <div className={passedClasses}>
+      <span className={passedClasses}>
         {props.children}
-      </div>
+      </span>
     :
-      <div>
+      <span>
         {props.children}
-      </div>
+      </span>
     }
     </React.Fragment>
 

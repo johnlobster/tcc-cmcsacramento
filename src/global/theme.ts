@@ -1,7 +1,6 @@
 import { createMuiTheme, Theme} from '@material-ui/core/styles';
 
-// global css - source css files are injected before the generated styles
-import './fonts.css';
+import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
 
 // these colours are pretty dark
 
@@ -28,7 +27,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-const myTheme:Theme = createMuiTheme({
+const initialTheme:Theme = createMuiTheme({
   palette: {
     primary: {
       main: 'rgba(84, 24, 83, 1)',
@@ -58,8 +57,71 @@ const myTheme:Theme = createMuiTheme({
       paper: '#f0f0f0',
       default: '#FFFFFF'
     }
+  },
+  // default (Chrome) top/bottom margin is 1em, which makes huge gaps for something like h3
+  // I am changing to rem, with different amounts of spacing for different headers
+  // could make it responsive ...
+  typography: {
+    fontSize: 16,
+    h1: {
+      marginBlockStart: '4rem',
+      marginBlockEnd: '2rem',
+    },
+    h2: {
+      marginBlockStart: '2rem',
+      marginBlockEnd: '1rem',
+    },
+    h3: {
+      marginBlockStart: '1.5rem',
+      marginBlockEnd: '1rem',
+    },
+    h4: {
+      marginBlockStart: '1rem',
+      marginBlockEnd: '1rem',
+    },
+    h5: {
+      marginBlockStart: '1rem',
+      marginBlockEnd: '1rem',
+    },
+    h6: {
+      marginBlockStart: '1rem',
+      marginBlockEnd: '1rem',
+    },
+
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        // material-ui doesn't set any default values for dl dt dd
+        // on the other hand, they don't seem to be common tags and not supported by CKEditor 
+        // without writing a plugin
+        // so might do better to have them as classes applied to <div>
+        dl: { 
+          padding: '0.5rem 0 1rem 1rem',
+        },
+        dt: {
+          paddingTop: '0.75rem',
+          fontSize: '1.25rem'
+        },
+        dd: {
+          paddingTop: '0.35rem',
+        },
+        '@font-face': {
+          fontFamily: `RoofRunnersActive`,
+          src: "url(/fonts/roof-runners-active.regular.ttf)"
+        },        
+      },
+    },
   }
 
 });
 
-export default myTheme;
+// Font from
+// https://www.1001fonts.com/roof-runners-active-font.html
+// Roof runners active Regular
+// by Press Gang Studios
+// https://www.facebook.com/pressgangstudios 
+
+const theme: Theme = makeGlobalsFromTheme(initialTheme, ['h1',  'h2', 'h3', 'h4', 'h5', 'h6']);
+
+export default theme;

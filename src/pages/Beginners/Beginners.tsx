@@ -1,39 +1,28 @@
 import React from 'react';
 
-import { Card, CardContent, Button, Box, Grid, GridSize } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-import theme from "../../global/theme";
 
 import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import tjt from "../../images/Taijitu.svg";
+import cmcForm from "../../images/cmc4_form.jpg";
 
 const useStyles = makeStyles({
-  container: {
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-    },
-    [theme.breakpoints.between('sm', 'md')]: {
-      width: '85%',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '75%',
-    },
-    maxWidth: `${theme.breakpoints.values.md}px`,
-    padding: '1rem',
-    margin: '1rem auto 2rem auto'
+  formImageBox: {
+    display: 'flex',
+    alignContent: 'center',
+    width: '100%',
+    '& img': {
+      marginLeft: 'auto',
+      maxWidth: '90%',
+      paddingTop: '4rem',
+    }
   },
 });
 
-// add more props 
-// add <Beginners-moreProps> to type
-// interface Beginners-moreProps {
-// }
-
-
-const aCard = (
+const formList = (
   <div>
-    <h6>I got passed down !!!</h6>
+    <h6>List of postures for 37 movement Cheng man ching form</h6>
   </div>
 );
 
@@ -56,7 +45,7 @@ const Beginners:React.FunctionComponent = (props) => {
 
   return(
     <div>
-      <Grid container className={classes.container} spacing={1}>
+      <Grid container spacing={2} className="responsiveContainer">
         <Grid item xs={12}>
           <h3 ref={topRef} >Beginners</h3>
 
@@ -67,30 +56,41 @@ const Beginners:React.FunctionComponent = (props) => {
             <li>Warm up exercises and Qigong</li>
           </ul>
 
-          <h5>5 Principles</h5>
-          <p>
-            Professor Chen man ching emphasized 5 principles of Tai chi
-          </p>
-          <ul>
-            <li>Relax</li>
-            <li>Upright body</li>
-            <li>Turn the waist</li>
-            <li>Separate the weight</li>
-            <li>Fair ladies' hand</li>
-          </ul>
+          <Grid container>
+            <Grid item xs={12} sm={7}>
+              <h5>5 Principles</h5>
+              <p>
+                Professor Chen man ching emphasized 5 principles of Tai chi
+              </p>
+              <ul>
+                <li>Relax</li>
+                <li>Upright body</li>
+                <li>Turn the waist</li>
+                <li>Separate the weight</li>
+                <li>Fair ladies' hand</li>
+              </ul>
+            </Grid>
+            <Grid item xs={12} sm={5}>
+              <div className={classes.formImageBox}>
+                <img src={cmcForm} alt="Tai chi form" />
+              </div>
+              
+            </Grid>
+          </Grid>
+          
         </Grid>
         
       </Grid>
 
-      <Grid container className={classes.container} spacing={2}>
+      <Grid container spacing={2} className="responsiveContainer">
         <CardToBlock id="Beginners_principles" cardContent={principlesCard} elementToScrollTo={topRef.current}>
+          <h4>Basic principles of Tai Chi</h4>
+          <p>Intro</p>
+
           <h5>
             Five Basic Principles:<br />
             (Represented with the Acronym BURST)
           </h5>
-
-          
-          <p>Intro</p>
 
           <dl>
             <dt><strong>B</strong>: Beautiful Ladies Hand</dt>
@@ -105,118 +105,71 @@ const Beginners:React.FunctionComponent = (props) => {
             <dd>Lower body is pulled down to the ground with gravity</dd>
             <dd>Upper body floats loose and free as if suspended</dd>
 
+            <dt><strong>R</strong>: Relax</dt>
+            <dd>Be aware of and let go of any tension in the body</dd>
+            <dd>This is the pivotal principle in Tai Chi</dd>
+
+            <dt><strong>S</strong>: Separate the Weight</dt>
+            <dd>Weight is not to be distributed evenly on both legs</dd>
+            <dd>One leg is ‘Substantial’ and the other is ‘Insubstantial’</dd>
+            <dd>(Except for in the Preparation Posture)</dd>
+
+            <dt><strong>T</strong>: Turn the Waist</dt>
+            <dd>Never move the body independently of the hips/waist</dd>
+            <dd>All movements come from the center-hips/waist</dd>
+            <dd>Move from the hips/waist</dd>
+            <dd>Power comes from the legs</dd>
+            <dd>Is controlled by the waist/hips</dd>
+            <dd>Is expressed through the fingers</dd>
+
           </dl>
 
-          
+          <h5>Additional concepts</h5>
 
-                           
+          <dl>
+            <dt>
+              Softness (Yielding)
+            </dt>
+            <dd>Water is the softest element in the universe yet unstoppable. Soft always overcomes the hard</dd>
+            
+            <dt>
+              Smooth Flow
+            </dt>
+            <dd>Momentum from one movement leads into the next</dd>
+            <dd>Movements always flow from the previous movement</dd>
+            <dd>In essence; Only one movement from start to finish</dd>
 
-          
+            <dt>
+              Silk Reeling
+            </dt>
+            <dd>Movements are steady with no break between postures</dd>
+            <dd>Like pulling silk from a cocoon.</dd>
 
-          .
+            <dt>
+              Natural Breathing
+            </dt>
+            <dd>Breathe through the nose</dd>
+            <dd>Tongue lightly touching upper palette</dd>
+            <dd>Breathe like a little child</dd>
+            <dd>Abdomen expands when inhaling</dd>
+            <dd>Abdomen contracts when exhaling</dd>
+            <dd>Additional inhalation into the back of the lungs</dd>
+            <dd>Allow chest to sink-Plucking up the back</dd>
 
-          
+            <dt>
+              Rooting
+            </dt>
+            <dd>Weight falls naturally with gravity to the ground</dd>
+            <dd>Imagine you are being rooted to the ground through feet</dd>          
 
-          
-
-          
-
-
-
-          {/* R: Relax
-
-          Be aware of and let go of any tension in the body
-
-          This is the pivotal principle in Tai Chi
-
-
-
-          S: Separate the Weight
-
-          Weight is not to be distributed evenly on both legs
-
-          One leg is ‘Substantial’ and the other is ‘Insubstantial’
-
-          (Except for in the Preparation Posture)
-
-
-
-          T: Turn the Waist
-
-          Never move the body independently of the hips/waist
-
-          All movements come from the center-hips/waist
-
-          Move from the hips/waist
-
-          Power comes from the legs
-
-          Is controlled by the waist/hips
-
-          Is expressed through the fingers
-
-
-
-          Additional Concepts:
-
-
-
-          Softness (Yielding)
-
-          Water is the softest element in the universe yet
-
-          unstoppable. Soft always overcomes the hard
-
-
-
-          Smooth Flow 
-
-          Momentum from one movement leads into the next
-
-          Movements always flow from the previous movement
-
-          In essence; Only one movement from start to finish
-
-
-
-          Silk Reeling
-
-          Movements are steady with no break between postures
-
-          Like pulling silk from a cocoon. 
-
-
-
-          Natural Breathing
-
-          Breathe through the nose
-
-          Tongue lightly touching upper palette
-
-          Breathe like a little child 
-
-          Abdomen expands when inhaling
-
-          Abdomen contracts when exhaling
-
-          Additional inhalation into the back of the lungs
-
-          Allow chest to sink-Plucking up the back
-
-
-
-          Rooting
-
-          Weight falls naturally with gravity to the ground
-
-             Imagine you are being rooted to the ground through feet */}
+          </dl>
         </CardToBlock>
 
         <CardToBlock id="Beginners_squareTao" cardImage={tjt} imageAlt="test" cardContent={squareTaoCard} elementToScrollTo={topRef.current}>
           <p>A meaningful sentence</p>
         </CardToBlock>
 
-        <CardToBlock id="test3" cardContent={aCard} elementToScrollTo={topRef.current}>
+        <CardToBlock id="Beginners_formList" cardContent={formList} elementToScrollTo={topRef.current}>
           <p>Yet another card</p>
         </CardToBlock>
       </Grid>

@@ -8,9 +8,9 @@ import { CssBaseline } from '@material-ui/core';
 
 ReactDOM.render(
   <React.StrictMode>
-    < CssBaseline />
     <StylesProvider >
       <ThemeProvider theme={myTheme}>
+        < CssBaseline />
         <App />
       </ThemeProvider>
     </StylesProvider>

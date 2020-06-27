@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import theme from "../../global/theme";
 
 // The component is a Grid item that switches between full width and card size on open/close
+// The article content (props.children) displays when open and card displays when closed
 const useStyles = makeStyles({
   container: {
     [theme.breakpoints.down('sm')]: {
@@ -24,13 +25,19 @@ const useStyles = makeStyles({
   buttonBox: {
     display: 'flex',
     justifyContent: 'space-between',
+    paddingBottom: '0.5rem',
+    paddingLeft: '0.5rem'
   },
   closeButton: {
-    color: theme.palette.secondary.contrastText
+    color: theme.palette.secondary.contrastText,
   },
   upButton: {
     color: theme.palette.text.primaryColor
-  }
+  },
+  cardImage: {
+    width: '9vw',
+    padding: '1rem',
+  },
   
 });
 
@@ -64,6 +71,7 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
     }
     
   }
+  // check attributes
   let itemWidth: GridSize = 6; // default size of grid item
   if (props.columnWidth) {
     itemWidth = props.columnWidth as GridSize;
@@ -85,12 +93,12 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
   
   return(
     <React.Fragment>
-      {/* Block  */}
+      {/* Block  (article) */}
       <Grid item xs={12}  style={{display: open ? "block" : "none"}}>
         <Paper elevation={1}>
           <Box p={2}>
             {props.cardImage && (
-              <img src={props.cardImage} alt={altTextBlock} width="200px" />
+              <img src={props.cardImage} alt={altTextBlock} className={classes.cardImage} />
             )}
             {props.children}
           </Box>
@@ -119,7 +127,7 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
         <Card raised={true} >
           <React.Fragment>
             {props.cardImage && (
-              <img src={props.cardImage} alt={altTextCard} width="200px" />
+              <img src={props.cardImage} alt={altTextCard} className={classes.cardImage} />
             )}
             {props.cardContent && (
               <CardContent>
@@ -128,8 +136,10 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
             )}
             
             <CardActions>
-              <Button variant="contained" size="large"
-                color="secondary" className={classes.closeButton} onClick={openBlock}>Read more</Button>
+              <div className={classes.buttonBox}>
+                <Button variant="contained" size="large"
+                  color="secondary" className={classes.closeButton} onClick={openBlock}>Read more</Button>
+              </div>
             </CardActions>
             
           </React.Fragment>

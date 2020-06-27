@@ -116,7 +116,7 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
               
               {data.map((item, index) => {
                 return (
-                  <MenuItem onClick={menuClose}>
+                  <MenuItem onClick={menuClose} key={item.name}>
                     <Link href={item.name} >
                       {item.menu}
                     </Link>
