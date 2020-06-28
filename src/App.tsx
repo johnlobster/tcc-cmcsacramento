@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MuiStyleChanges />
-        <Header desktop={true}/>
+        <Header />
         <Routing />
         <Footer />
       </BrowserRouter>

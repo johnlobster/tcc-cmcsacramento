@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import CardToBlock from "../../components/CardToBlock/CardToBlock";
+import * as DList from "../../components/DescriptionList/DescriptionList"
 import tjt from "../../images/Taijitu.svg";
 import cmcForm from "../../images/cmc4_form.jpg";
 
@@ -92,77 +93,77 @@ const Beginners:React.FunctionComponent = (props) => {
             (Represented with the Acronym BURST)
           </h5>
 
-          <dl>
-            <dt><strong>B</strong>: Beautiful Ladies Hand</dt>
-            <dd>Straight relaxed wrists</dd>
-            <dd>No tension in arms, wrists or fingers</dd>
+          <DList.DL>
+            <DList.DT><strong>B</strong>: Beautiful Ladies Hand</DList.DT>
+            <DList.DD>Straight relaxed wrists</DList.DD>
+            <DList.DD>No tension in arms, wrists or fingers</DList.DD>
             
-            <dt><strong>U</strong>: Upright Body</dt>
-            <dd>Coccyx (Tail Bone) tucks down slightly to straighten lower back</dd>
-            <dd>Imagine that tail bone is if pulled down with weight</dd>
-            <dd>Chin turns slightly down</dd>
-            <dd>Top of head is pulled up as if lifted with a string</dd>
-            <dd>Lower body is pulled down to the ground with gravity</dd>
-            <dd>Upper body floats loose and free as if suspended</dd>
+            <DList.DT><strong>U</strong>: Upright Body</DList.DT>
+            <DList.DD>Coccyx (Tail Bone) tucks down slightly to straighten lower back</DList.DD>
+            <DList.DD>Imagine that tail bone is if pulled down with weight</DList.DD>
+            <DList.DD>Chin turns slightly down</DList.DD>
+            <DList.DD>Top of head is pulled up as if lifted with a string</DList.DD>
+            <DList.DD>Lower body is pulled down to the ground with gravity</DList.DD>
+            <DList.DD>Upper body floats loose and free as if suspended</DList.DD>
 
-            <dt><strong>R</strong>: Relax</dt>
-            <dd>Be aware of and let go of any tension in the body</dd>
-            <dd>This is the pivotal principle in Tai Chi</dd>
+            <DList.DT><strong>R</strong>: Relax</DList.DT>
+            <DList.DD>Be aware of and let go of any tension in the body</DList.DD>
+            <DList.DD>This is the pivotal principle in Tai Chi</DList.DD>
 
-            <dt><strong>S</strong>: Separate the Weight</dt>
-            <dd>Weight is not to be distributed evenly on both legs</dd>
-            <dd>One leg is ‘Substantial’ and the other is ‘Insubstantial’</dd>
-            <dd>(Except for in the Preparation Posture)</dd>
+            <DList.DT><strong>S</strong>: Separate the Weight</DList.DT>
+            <DList.DD>Weight is not to be distributed evenly on both legs</DList.DD>
+            <DList.DD>One leg is ‘Substantial’ and the other is ‘Insubstantial’</DList.DD>
+            <DList.DD>(Except for in the Preparation Posture)</DList.DD>
 
-            <dt><strong>T</strong>: Turn the Waist</dt>
-            <dd>Never move the body independently of the hips/waist</dd>
-            <dd>All movements come from the center-hips/waist</dd>
-            <dd>Move from the hips/waist</dd>
-            <dd>Power comes from the legs</dd>
-            <dd>Is controlled by the waist/hips</dd>
-            <dd>Is expressed through the fingers</dd>
+            <DList.DT><strong>T</strong>: Turn the Waist</DList.DT>
+            <DList.DD>Never move the body independently of the hips/waist</DList.DD>
+            <DList.DD>All movements come from the center-hips/waist</DList.DD>
+            <DList.DD>Move from the hips/waist</DList.DD>
+            <DList.DD>Power comes from the legs</DList.DD>
+            <DList.DD>Is controlled by the waist/hips</DList.DD>
+            <DList.DD>Is expressed through the fingers</DList.DD>
 
-          </dl>
+          </DList.DL>
 
           <h5>Additional concepts</h5>
 
-          <dl>
-            <dt>
+          <DList.DL>
+            <DList.DT>
               Softness (Yielding)
-            </dt>
-            <dd>Water is the softest element in the universe yet unstoppable. Soft always overcomes the hard</dd>
+            </DList.DT>
+            <DList.DD>Water is the softest element in the universe yet unstoppable. Soft always overcomes the hard</DList.DD>
             
-            <dt>
+            <DList.DT>
               Smooth Flow
-            </dt>
-            <dd>Momentum from one movement leads into the next</dd>
-            <dd>Movements always flow from the previous movement</dd>
-            <dd>In essence; Only one movement from start to finish</dd>
+            </DList.DT>
+            <DList.DD>Momentum from one movement leads into the next</DList.DD>
+            <DList.DD>Movements always flow from the previous movement</DList.DD>
+            <DList.DD>In essence; Only one movement from start to finish</DList.DD>
 
-            <dt>
+            <DList.DT>
               Silk Reeling
-            </dt>
-            <dd>Movements are steady with no break between postures</dd>
-            <dd>Like pulling silk from a cocoon.</dd>
+            </DList.DT>
+            <DList.DD>Movements are steady with no break between postures</DList.DD>
+            <DList.DD>Like pulling silk from a cocoon.</DList.DD>
 
-            <dt>
+            <DList.DT>
               Natural Breathing
-            </dt>
-            <dd>Breathe through the nose</dd>
-            <dd>Tongue lightly touching upper palette</dd>
-            <dd>Breathe like a little child</dd>
-            <dd>Abdomen expands when inhaling</dd>
-            <dd>Abdomen contracts when exhaling</dd>
-            <dd>Additional inhalation into the back of the lungs</dd>
-            <dd>Allow chest to sink-Plucking up the back</dd>
+            </DList.DT>
+            <DList.DD>Breathe through the nose</DList.DD>
+            <DList.DD>Tongue lightly touching upper palette</DList.DD>
+            <DList.DD>Breathe like a little child</DList.DD>
+            <DList.DD>Abdomen expands when inhaling</DList.DD>
+            <DList.DD>Abdomen contracts when exhaling</DList.DD>
+            <DList.DD>Additional inhalation into the back of the lungs</DList.DD>
+            <DList.DD>Allow chest to sink-Plucking up the back</DList.DD>
 
-            <dt>
+            <DList.DT>
               Rooting
-            </dt>
-            <dd>Weight falls naturally with gravity to the ground</dd>
-            <dd>Imagine you are being rooted to the ground through feet</dd>          
+            </DList.DT>
+            <DList.DD>Weight falls naturally with gravity to the ground</DList.DD>
+            <DList.DD>Imagine you are being rooted to the ground through feet</DList.DD>          
 
-          </dl>
+          </DList.DL>
         </CardToBlock>
 
         <CardToBlock id="Beginners_squareTao" cardImage={tjt} imageAlt="test" cardContent={squareTaoCard} elementToScrollTo={topRef.current}>

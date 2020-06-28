@@ -7,6 +7,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import {data} from "../../data/page-info";
 
+
+// ToDo - use media hook to disable some of the title
 const headerStyles = makeStyles((theme: Theme) =>
   createStyles({
     iconButton: {
@@ -26,11 +28,8 @@ const headerStyles = makeStyles((theme: Theme) =>
       alignItems: 'center'
     },
     info: {
-      [theme.breakpoints.down('xs')]: {
-        display: 'none',
-      },
-      [theme.breakpoints.between('xs', 'sm')]: {
-        fontSize: '0.75rem',
+      [theme.breakpoints.up('xs')]: {
+        fontSize: '0.5rem',
       },
       [theme.breakpoints.between('sm', 'lg')]: {
         fontSize: '1.5rem',
@@ -42,11 +41,17 @@ const headerStyles = makeStyles((theme: Theme) =>
       letterSpacing: '0.15rem',
       padding: '0 0.75rem 0.5rem 0.75rem'
     },
+    thirdRow: {
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
+      },
+      display: 'none',
+    },
     appBar: {
       backgroundColor: theme.palette.primary.fade
     },
     title: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.up('xs')]: {
         fontSize: '3rem',
       },
       [theme.breakpoints.between('sm', 'lg')]: {
@@ -64,56 +69,68 @@ const headerStyles = makeStyles((theme: Theme) =>
 );
 
 
-interface MoreProps {
-  desktop: boolean
-}
+// interface MoreProps {
+//   desktop: boolean
+// }
 
-const Header:React.FunctionComponent<MoreProps> = (props) => {
+const Header:React.FunctionComponent = (props) => {
 
   const headerClasses = headerStyles();
-
-
+  
+  const [menuOrigin, changeMenuOrigin] = React.useState({ x: 0, y: 0})
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const menuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const iconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if( anchorEl) {
+      menuClose();
+    } else {
+      setAnchorEl(event.currentTarget);
+      let rect = event.currentTarget.getBoundingClientRect() as DOMRect;
+      // this returns the box around the hamburger menu (good thing because increases touch target)
+      // offset menu from origin
+      changeMenuOrigin({ x: rect.x + 15, y: rect.y + rect.height -15});
+    }
+    
   };
 
   const menuClose = () => {
     setAnchorEl(null);
   };
 
-  //   
-  //  + " "  
+  // anchorEl={anchorEl}
   return(
     <div >
       <AppBar position="static" className={headerClasses.appBar}>
         <Toolbar>
-          <IconButton edge="start" 
+          <IconButton 
+            
+            edge="start" 
             className={headerClasses.iconButton}
-            onClick={menuOpen}
+            onClick={iconClick}
             aria-label="menu">
             <MenuIcon fontSize="large"   />
           </IconButton>
 
-          <Menu className={headerClasses.menu}
+          <Menu 
+            
+            className={headerClasses.menu}
             id="simple-menu"
             color="secondary"
             variant="menu"
-            anchorEl={anchorEl}
             keepMounted
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
             open={Boolean(anchorEl)}
             onClose={menuClose}
+            anchorReference="anchorPosition"
+            anchorPosition={
+                { top: menuOrigin.y, left: menuOrigin.x}
+            }
+            
           >
-            <Box>
-              Menu items
-            </Box>
+            
             <MenuList>
-              
+              <MenuItem onClick={menuClose}>
+                Close Menu
+              </MenuItem>
               {data.map((item, index) => {
                 return (
                   <MenuItem onClick={menuClose} key={item.name}>
@@ -131,14 +148,14 @@ const Header:React.FunctionComponent<MoreProps> = (props) => {
             <Box className={headerClasses.title}>
               Tai Chi
             </Box >
-            { props.desktop &&
-              <Box className={headerClasses.info}>
-                <div >Jinbao(Golden Treasure) Tai Chi Chuan</div>
-                <div >
-                  Sacramento Cheng Man-ching Tai Chi Group
-                </div>
-              </Box>
-            }
+            
+            <Box className={headerClasses.info}>
+              <div >Jinbao(Golden Treasure) Tai Chi Chuan</div>
+              <div className={headerClasses.thirdRow}>
+                Sacramento Cheng Man-ching Tai Chi Group
+              </div>
+            </Box>
+          
                         
           </Box>
           

@@ -46,7 +46,7 @@ const useStyles = makeStyles({
   // because the <h.> style I set is more specific
 
   welcome: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       fontSize: '1rem',
     },
     [theme.breakpoints.between('sm', 'md')]: {
@@ -73,7 +73,7 @@ const useStyles = makeStyles({
   },
   logoFacebook: {
     width: '80%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       maxWidth: '80px',
     },
     [theme.breakpoints.up('sm')]: {
@@ -85,7 +85,7 @@ const useStyles = makeStyles({
   },
   logoMeetup: {
     width: '80%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       maxWidth: '200px',
     },
     [theme.breakpoints.up('sm')]: {

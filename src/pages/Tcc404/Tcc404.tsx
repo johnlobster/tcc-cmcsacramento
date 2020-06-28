@@ -13,7 +13,7 @@ const myStyles = makeStyles((theme: Theme) =>
       color: theme.palette.primary.main
     },
     pageBox: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.up('xs')]: {
         width: '100%',
       },
       [theme.breakpoints.between('sm', 'lg')]: {
@@ -49,9 +49,9 @@ const Tcc404:React.FunctionComponent = (props) => {
       flexDirection="column" 
       className={myClasses.pageBox}>
       <Box mx="auto" px={2}>
-        <h1 className={myClasses.title}>
+        <h3 className={myClasses.title}>
           Whoops, that was a 404 ! That page doesn't exist
-        </h1>
+        </h3>
       </Box>
       
       <Box p={2} mx="auto" py={3} >
@@ -62,7 +62,7 @@ const Tcc404:React.FunctionComponent = (props) => {
         </Button>
       </Box>
       
-      <Box px={2} mx="auto">
+      <Box px={2} pb={1} mx="auto">
         <img src={dog} className={myClasses.doggy}
           alt="A meditating dog, just what you need for a 404" />
       </Box>

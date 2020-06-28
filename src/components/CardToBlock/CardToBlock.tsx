@@ -9,7 +9,7 @@ import theme from "../../global/theme";
 // The article content (props.children) displays when open and card displays when closed
 const useStyles = makeStyles({
   container: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       width: '100%',
     },
     [theme.breakpoints.between('sm', 'md')]: {

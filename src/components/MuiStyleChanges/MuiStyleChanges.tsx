@@ -18,7 +18,7 @@ const MuiStyleChanges = withStyles({
     // responsive backdrop
     // Didn't work otherwise because mui drops tags
     '.responsiveContainer': {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.up('xs')]: {
         width: '100%',
         padding: '1rem 0.1rem 1rem 0.1rem',
 
