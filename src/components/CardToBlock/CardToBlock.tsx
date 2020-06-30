@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardActions, CardContent, Button, Box, Grid, GridSize, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import SlideArticle from '../../components/SlideArticle/SlideArticle'
 import theme from "../../global/theme";
 
 // The component is a Grid item that switches between full width and card size on open/close
@@ -41,27 +42,36 @@ const useStyles = makeStyles({
   
 });
 
+
 interface MoreProps { 
-  id: string;
-  elementToScrollTo: HTMLElement | null;
-  columnWidth?: number; 
-  className?: string;
-  cardImage?: string;
-  imageAlt?: string;
-  cardContent?: React.ReactElement; 
+  id: string; // id of block and used for database
+  elementToScrollTo: HTMLElement | null;  // scroll here when article closed
+  columnWidth?: number;                   // number of columns taken up by card. Perhaps should be responsive. Article itself will be 12
+  className?: string;                     // classes to be passed down 
+  cardImage?: string;                     // url of an image used both by card and article
+  imageAlt?: string;                      // alt attribute of image
+  cardContent?: React.ReactElement;       // html for card, other than buttons at the bottom
+  open?: boolean;                         // if set, then article is open on first render. Very useful for creating links directly to the article
+                                          // note - changing this prop will cause a re-render, but will not open the article
 } 
+
+
+
 
 const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
 
   const classes = useStyles();
 
-  let [open, changeOpen] = React.useState(false);
+  // open means that the article is visible and card is hidden, so start off seeing card
+  let [open, changeOpen] = React.useState(false); 
   const openBlock: () => void = () => {
     changeOpen(true);
+    // changeEnableEnterTransition(true)
   }
   const closeBlock: () => void = () => {
     changeOpen(false);
   }
+  
   
   const scroller: () => void = () => {
     if (props.elementToScrollTo) {
@@ -71,7 +81,7 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
     }
     
   }
-  // check attributes
+  // check attributes/props and set defaults
   let itemWidth: GridSize = 6; // default size of grid item
   if (props.columnWidth) {
     itemWidth = props.columnWidth as GridSize;
@@ -90,19 +100,26 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
     altTextBlock = props.imageAlt;
 
   }
+
   
   return(
     <React.Fragment>
       {/* Block  (article) */}
-      <Grid item xs={12}  style={{display: open ? "block" : "none"}}>
+      
+      {/* style={{display: open ? "block" : "none"}} */}
+      <SlideArticle id={props.id} in={open}>
+      <Grid item xs={12} >
         <Paper elevation={1}>
-          <Box p={2}>
-            {props.cardImage && (
-              <img src={props.cardImage} alt={altTextBlock} className={classes.cardImage} />
-            )}
-            {props.children}
-          </Box>
+          <article>
+            <Box p={2}>
+              {props.cardImage && (
+                <img src={props.cardImage} alt={altTextBlock} className={classes.cardImage} />
+              )}
+              {props.children}
+            </Box>
+          </article>
           
+          {/* control buttons for article when open */}
           <Box p={1}>
             <div className={classes.buttonBox}>
               <Button variant="contained" size="large"
@@ -117,13 +134,14 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
             </div>
             
           </Box>
-        </Paper>
-        
-        
+        </Paper>      
       </Grid>
+      </SlideArticle>
 
       {/* Card */}
-      <Grid item xs={12} sm={itemWidth} style={{ display: open ? "none" : "block" }}>
+      <SlideArticle id={props.id + "_card"} in={! open}>
+
+      <Grid item xs={12} sm={itemWidth}>
         <Card raised={true} >
           <React.Fragment>
             {props.cardImage && (
@@ -132,6 +150,8 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
             {props.cardContent && (
               <CardContent>
                 {props.cardContent}
+                
+    
               </CardContent>
             )}
             
@@ -145,7 +165,8 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
           </React.Fragment>
         </Card>
       </Grid>
-        
+      </SlideArticle>
+
     </React.Fragment>
 
   );

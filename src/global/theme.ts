@@ -89,6 +89,13 @@ const initialTheme:Theme = createMuiTheme({
     },
 
   },
+  transitions: {
+    // I like slower transitions ....
+    duration: {
+      enteringScreen: 700,
+      leavingScreen: 700,
+    },
+  },
   overrides: {
     MuiCssBaseline: {
       '@global': {

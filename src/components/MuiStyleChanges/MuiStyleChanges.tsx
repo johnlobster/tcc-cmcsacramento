@@ -5,10 +5,10 @@ import theme from "../../global/theme";
 
 // This component overwrites Mui classes with modified styles
 // and defines some global classes. Can't really put global classes in 'theme'
-// if they refer to values in 'theme'
+// if they refer to values in 'theme'. yes this could be done
 
 
-
+// Note that this is static, any change to the theme will not propagate
 const MuiStyleChanges = withStyles({
   // @global is handled by jss-plugin-global.
   '@global': {
@@ -53,24 +53,3 @@ const MuiStyleChanges = withStyles({
 
 export default MuiStyleChanges;
 
-// const MuiStyleChanges: React.FunctionComponent = () => {
-  
-//   const classes=styleChanges();
-
-//   return (
-//     <div className={classes.changes}></div>
-//   )
-// }
-
-// export default MuiStyleChanges;
-  
-//   // … <GlobalCss />
-
-//   // @global is handled by jss-plugin-global. 
-//   '@global': {
-//     // You should target [class*="MuiButton-root"] instead if you nest themes. 
-//     '.MuiButton-root': {
-//       fontSize: '1rem',
-//     },
-//   },
-// })(() => null); 

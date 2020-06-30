@@ -1,12 +1,11 @@
 import React from 'react';
-
+import {Link as RouterLink} from 'react-router-dom'
 import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Link} 
   from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import {data} from "../../data/page-info";
-
 
 // ToDo - use media hook to disable some of the title
 const headerStyles = makeStyles((theme: Theme) =>
@@ -25,7 +24,10 @@ const headerStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       alignContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+    },
+    routerLink: {
+      textDecoration: 'none',
     },
     info: {
       [theme.breakpoints.up('xs')]: {
@@ -62,7 +64,9 @@ const headerStyles = makeStyles((theme: Theme) =>
       },
       fontFamily: 'RoofRunnersActive, serif',
       letterSpacing: '0.4rem',
-      padding: '0.5rem 0.75rem 0 0.75rem'
+      padding: '0.5rem 0.75rem 0 0.75rem',
+      color: theme.palette.primary.contrastText,
+      
 
     },
   })
@@ -118,7 +122,7 @@ const Header:React.FunctionComponent = (props) => {
             color="secondary"
             variant="menu"
             keepMounted
-            open={Boolean(anchorEl)}
+            open={anchorEl? true : false}
             onClose={menuClose}
             anchorReference="anchorPosition"
             anchorPosition={
@@ -145,10 +149,12 @@ const Header:React.FunctionComponent = (props) => {
           </Menu>
 
           <Box className={headerClasses.titleBox}>
-            <Box className={headerClasses.title}>
-              Tai Chi
-            </Box >
-            
+            <RouterLink to="/Home" className={headerClasses.routerLink}>
+              <div className={headerClasses.title}>
+                Tai Chi
+              </div >
+            </RouterLink>
+
             <Box className={headerClasses.info}>
               <div >Jinbao(Golden Treasure) Tai Chi Chuan</div>
               <div className={headerClasses.thirdRow}>
