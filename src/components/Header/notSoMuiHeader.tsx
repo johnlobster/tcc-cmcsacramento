@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom'
-import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Link, Typography} 
+import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Link} 
   from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -72,20 +72,6 @@ const headerStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const paperStyles= makeStyles(createStyles(
-  {
-    root: {
-      backgroundColor: "green"
-    }
-  }
-))
-
-const listStyles = makeStyles(createStyles({
-  list2: {
-    outline: 'none',
-  }
-}))
-
 
 // interface MoreProps {
 //   desktop: boolean
@@ -94,8 +80,6 @@ const listStyles = makeStyles(createStyles({
 const Header:React.FunctionComponent = (props) => {
 
   const headerClasses = headerStyles();
-  const paperClasses = paperStyles();
-  const listClasses = listStyles();
   
   const [menuOrigin, changeMenuOrigin] = React.useState({ x: 0, y: 0})
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -123,17 +107,17 @@ const Header:React.FunctionComponent = (props) => {
       <AppBar position="static" className={headerClasses.appBar}>
         <Toolbar>
           <IconButton 
-            color= 'inherit'
             
             edge="start" 
-            // className={headerClasses.iconButton}
+            className={headerClasses.iconButton}
             onClick={iconClick}
-            aria-label="menu"
-          >
+            aria-label="menu">
             <MenuIcon fontSize="large"   />
           </IconButton>
 
           <Menu 
+            
+            className={headerClasses.menu}
             id="simple-menu"
             color="secondary"
             variant="menu"
@@ -147,11 +131,9 @@ const Header:React.FunctionComponent = (props) => {
             
           >
             
-            <MenuList className={listClasses.list2}>
+            <MenuList>
               <MenuItem onClick={menuClose}>
-                <Typography color="primary">
-                  Close Menu
-                </Typography>
+                Close Menu
               </MenuItem>
               {data.map((item, index) => {
                 return (
