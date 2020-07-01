@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Theme } from '@material-ui/core';
+// import { Theme } from '@material-ui/core';
 
-const linkStyles = makeStyles((theme: Theme) =>
+const linkStyles = makeStyles(() =>
   createStyles({
     root: {
       textDecoration: 'none',
@@ -15,9 +15,9 @@ const linkStyles = makeStyles((theme: Theme) =>
 )
 
 interface LinkMoreProps {
-  to: string,
-  color?: string, // not sure that this is a good idea
-  className?: string
+  to: string;
+  color?: string; // not sure that this is a good idea
+  className?: string;
 }
 const MyLink: React.FunctionComponent<LinkMoreProps> = (props) => {
   const linkClasses = linkStyles(); 

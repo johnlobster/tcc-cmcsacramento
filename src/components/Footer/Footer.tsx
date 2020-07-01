@@ -40,7 +40,7 @@ const footerStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const Footer:React.FunctionComponent = (props) => {
+const Footer: React.FunctionComponent = (props) => {
   const classes = footerStyles();
   return(
     <div className={classes.root}>

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 // after routing to a new page, this hook checks to see if there was a hash as part of the url
 // if so, and id=hash exists, scroll there, otherwise scroll to top of page
 
-const useHashScrolling = () => {
+const useHashScrolling = (): void => {
   const { hash } = useLocation()
   React.useEffect(() => {
     // run on mount, check for navigation to hash, otherwise scroll to top

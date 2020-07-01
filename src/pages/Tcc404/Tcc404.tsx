@@ -41,7 +41,7 @@ const myStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const Tcc404:React.FunctionComponent = (props) => {
+const Tcc404: React.FunctionComponent = () => {
   const myClasses = myStyles(); 
 
   return(

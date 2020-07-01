@@ -38,7 +38,7 @@ const squareTaoCard = (
     <h6 >The square Tao</h6>
   </div>
 );
-const Beginners:React.FunctionComponent = (props) => {
+const Beginners: React.FunctionComponent = (props) => {
 
   const classes = useStyles();
 

@@ -11,7 +11,7 @@ interface MoreProps {
   id: string; 
   className?: string; } 
 
-const EditSpan:React.FunctionComponent<MoreProps> = (props) => {
+const EditSpan: React.FunctionComponent<MoreProps> = (props) => {
 
   const passedClasses: string = passClasses(props.className);
   

@@ -5,7 +5,7 @@ import React from 'react';
 // interface CCMap-moreProps {
 // }
 
-const CCMap:React.FunctionComponent= (props) => {
+const CCMap: React.FunctionComponent= () => {
   return(
     <div>
     </div>

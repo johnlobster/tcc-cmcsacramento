@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, CardActions, CardContent, Button, Box, Grid, GridSize, Paper } from '@material-ui/core';
+import { Grid, GridSize, Paper, Box, Button, Card, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SlideArticle from '../../components/SlideArticle/SlideArticle'
@@ -58,12 +58,12 @@ interface MoreProps {
 
 
 
-const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
+const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   const classes = useStyles();
 
   // open means that the article is visible and card is hidden, so start off seeing card
-  let [open, changeOpen] = React.useState(false); 
+  const [open, changeOpen] = React.useState(false); 
   const openBlock: () => void = () => {
     changeOpen(true);
     // changeEnableEnterTransition(true)
@@ -87,14 +87,14 @@ const CardToBlock:React.FunctionComponent<MoreProps> = (props) => {
     itemWidth = props.columnWidth as GridSize;
   }
 
-  let altTextCard: string = "card";
+  let altTextCard = "card";
   if ( props.cardImage && props.imageAlt) {
     // altText = `alt="${props.imageAlt}"`;
     altTextCard = props.imageAlt;
 
   }
 
-  let altTextBlock: string = "Illustration for article";
+  let altTextBlock = "Illustration for article";
   if (props.cardImage && props.imageAlt) {
     // altText = `alt="${props.imageAlt}"`;
     altTextBlock = props.imageAlt;

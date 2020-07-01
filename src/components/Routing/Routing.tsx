@@ -14,7 +14,7 @@ import Tcc404 from "../../pages/Tcc404/Tcc404";
 //   pages: pageInfo.pageData
 // }
 
-const Routing: React.FunctionComponent = (props) => {
+const Routing: React.FunctionComponent = () => {
   return(
     <Switch>
       <Route exact path='/' component={Home} />

@@ -5,7 +5,7 @@ import React from 'react'
 
 // can put <p> inside lists - probably the best way to do this
 
-export const DL:React.FunctionComponent = (props) => {
+export const DL: React.FunctionComponent = (props) => {
 
   return (
     <dl>

@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
-import { Box, Theme, Button,Link as MLink} from '@material-ui/core';
+import { Theme, Box, Button, Link as MLink} from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // would be really cool to make this responsive ....
@@ -21,14 +21,17 @@ import Taijitu from "../../images/Taijitu.svg";
 
 // sets up sizing for the menu items. Each item is in a box boxWidth by boxHeight
 // and size rem from the center
-const size:number = 8; // will be in rem
-const boxWidth: number = 8;
-const boxHeight: number = 4;
-
+const size = 8; // will be in rem
+const boxWidth = 8;
+const boxHeight = 4;
+interface XYData {
+  top: string; // string so can be added to style attribute
+  right: string;
+}
 // note that position: absolute doesn't work if the parent is static. So have
 // to create a position:relative box with zero offset
 
-const topBoxStyles = makeStyles((theme: Theme) =>
+const topBoxStyles = makeStyles(() =>
   createStyles({
     root: {
       width: `${2*size}rem`,
@@ -70,7 +73,7 @@ const linkButtonStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const tjtStyles = makeStyles((theme:Theme) =>
+const tjtStyles = makeStyles(() =>
   createStyles({
     root: {
       height: '4rem',
@@ -82,11 +85,13 @@ const tjtStyles = makeStyles((theme:Theme) =>
     }
   })
 )
-const xy =  (() => {
+
+
+const xy: XYData[] =  ((): XYData[] => {
   const arc: number = (2 * Math.PI) / pageData.length; // radians
-  let output: any[] = [];
+  const output: XYData[] = [];
   pageData.forEach((value, index) => {
-    const print = {
+    const print: XYData = {
       top: ((size-(boxHeight/2)) + (size * Math.sin(index * arc))).toString() + 'rem',
       right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toString() + 'rem'
     }

@@ -35,7 +35,8 @@
     "build:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts build",
     "build:author": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --quiet 'src/**/*.ts[x]'"
   },
   "author": "John Webster",
   "license": "MIT",

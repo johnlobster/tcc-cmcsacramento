@@ -77,19 +77,22 @@ const headerStyles = makeStyles((theme: Theme) =>
 //   desktop: boolean
 // }
 
-const Header:React.FunctionComponent = (props) => {
+const Header: React.FunctionComponent = () => {
 
   const headerClasses = headerStyles();
   
   const [menuOrigin, changeMenuOrigin] = React.useState({ x: 0, y: 0})
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const menuClose = (): void => {
+    setAnchorEl(null);
+  };
 
-  const iconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const iconClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if( anchorEl) {
       menuClose();
     } else {
       setAnchorEl(event.currentTarget);
-      let rect = event.currentTarget.getBoundingClientRect() as DOMRect;
+      const rect = event.currentTarget.getBoundingClientRect() as DOMRect;
       // this returns the box around the hamburger menu (good thing because increases touch target)
       // offset menu from origin
       changeMenuOrigin({ x: rect.x + 15, y: rect.y + rect.height -15});
@@ -97,10 +100,7 @@ const Header:React.FunctionComponent = (props) => {
     
   };
 
-  const menuClose = () => {
-    setAnchorEl(null);
-  };
-
+  
   // anchorEl={anchorEl}
   return(
     <div >
@@ -135,7 +135,7 @@ const Header:React.FunctionComponent = (props) => {
               <MenuItem onClick={menuClose}>
                 Close Menu
               </MenuItem>
-              {data.map((item, index) => {
+              {data.map((item) => {
                 return (
                   <MenuItem onClick={menuClose} key={item.name}>
                     <Link href={item.name} >
