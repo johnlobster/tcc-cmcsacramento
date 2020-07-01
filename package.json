@@ -15,7 +15,6 @@
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-transition-group": "^4.4.0",
-    "csxs": "^0.2.0",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "npx": "^10.2.2",
