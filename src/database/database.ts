@@ -2,18 +2,18 @@
 
 // types
 export type entryType = string;
-export interface tableType {
+export interface TableType {
   [entryName: string]: entryType;
 }
-export interface dbType {
-  [tableName: string]: tableType;
+export interface DbType {
+  [tableName: string]: TableType;
 }
 
 export class DatabaseType {
   // All the data in the database
-  private theData: dbType;
+  private theData: DbType;
 
-  constructor(initData: dbType) {
+  constructor(initData: DbType) {
     // check types
     this.theData = Object.assign({}, initData);
 
@@ -21,8 +21,8 @@ export class DatabaseType {
 
   // The data can acquired from an API in JSON format, so need to check
   // for a valid database before creating, even using typescript
-  isDbType = (testMe:dbType):boolean => {
-    let matches:boolean = true;
+  isDbType = (testMe: DbType): boolean => {
+    let matches = true;
     if (typeof(testMe) !== "object") {
       matches=false;
     } else {
@@ -42,40 +42,39 @@ export class DatabaseType {
     return matches;
   }
 
-  static create = (initData : dbType) => {
+  static create = (initData: DbType): DatabaseType => {
     // check incoming data
     return (new DatabaseType(initData));
   }
 
   
   // load new data into the database
-  load = (newData:dbType):void =>  {
+  load = (newData: DbType): void =>  {
     // could check for valid data
     this.theData = Object.assign({}, newData);
   }
 
   // get data from the database, returns object
-  save = ():dbType => {
+  save = (): DbType => {
     return this.theData;
   }
 
   getData = (tableName: string, id: string): string => {
     // check for valid entry exists
     // return `${tableName} ${id}`;
-    let data:string = ""
+    let data = ""
     try {
       data = this.theData[tableName][id];
     }
     catch {
-      // unable to access the value
-      throw new Error(`database: getData(${tableName},${id}) doesn't exist in database`);
+      // unable to access the value, but don't throw exception
+      // throw new Error(`database: getData(${tableName},${id}) doesn't exist in database`);
     }
-    finally {
-      return data;
-    }}
+    return data;
+  }
     
 
-  storeData = (tableName: string, id: string, data:string): void => {
+  storeData = (tableName: string, id: string, data: string): void => {
     // overwrites existing or creates new
     this.theData[tableName][id] = data;
   }

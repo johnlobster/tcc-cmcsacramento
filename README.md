@@ -4,3 +4,8 @@ John Webster
 
 Github <https://github.com/johnlobster/tcc-cmcsacramento>
 
+
+#### Favicon generation
+
+[Real favicon generator](https://realfavicongenerator.net/)
+
