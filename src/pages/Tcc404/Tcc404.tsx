@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { Box, Button,Theme, Link } from '@material-ui/core';
+import {Link} from 'react-router-dom'
+import { Box, Button,Theme} from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 // import { spacing } from '@material-ui/system';
 
@@ -56,7 +56,7 @@ const Tcc404: React.FunctionComponent = () => {
       
       <Box p={2} mx="auto" py={3} >
         <Button variant="contained" size="large" color="secondary" className={myClasses.buttonBox} >
-          <Link href="/Home" className={myClasses.button}>
+          <Link to="/Home" className={myClasses.button}>
             Take me back to the home page
           </Link>
         </Button>
