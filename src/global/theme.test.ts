@@ -1,20 +1,32 @@
-import { createMuiTheme, Theme } from '@material-ui/core/styles';
 
-import theme from "./theme";
+import theme from "./theme"
 
-import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
+it("Loads theme without crashing", () => {
+  expect(theme).toBeDefined()
+})
 
-// run with 'npx ts-node <file>'
-// ts-node gets confused with modules. Modified tsconfig.json to use jscommon
+test.todo("Write some more tests for theme generator")
 
-console.log("This is the test wrapper");
+type Temp = any | undefined
 
-const t1: Theme = createMuiTheme();
 
-const t2 = makeGlobalsFromTheme(t1, ['h1','h2','h3','h4','h5'])
+it("Checks h1 is present in overrides.MuiCssBaseline", () => {
+  expect(theme.overrides).toBeDefined();
+  try {
+    if (theme.overrides && theme.overrides.MuiCssBaseline) {
+      expect(theme.overrides.MuiCssBaseline).toBeDefined();
+      if ( theme.overrides.MuiCssBaseline["@global"] ) {
+        expect(theme.overrides.MuiCssBaseline["@global"]).toBeDefined();
+        expect(theme.overrides.MuiCssBaseline["@global"].h1).toBeDefined();
+      }
+    }
 
-// console.log(t2)
+  }
+  catch {
+    console.log("h1 entry not created")
+    expect(true).toEqual(false)
+    // raising jest error instead of throwing an error
+  }
 
-// console.log(t1);
-
-console.log(theme);
+})
+test.todo("more makeGlobalsFromTheme testing")

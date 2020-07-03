@@ -5,7 +5,7 @@ import React from 'react';
 // interface {{ component }}MoreProps {
 // }
 
-const {{ component }}:React.FunctionComponent = (props) => {
+const {{ component }}: React.FunctionComponent = (props) => {
   return(
     <div>
       <h1>I am a {{ component }}</h1>

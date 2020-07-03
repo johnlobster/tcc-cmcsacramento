@@ -14,20 +14,20 @@ import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
 // Add custom items to theme
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeText {
-    primaryColor?: string
-    primaryColorDark?: string
-    primaryLinkVisited?: string
+    primaryColor?: string;
+    primaryColorDark?: string;
+    primaryLinkVisited?: string;
   }
   
   interface PaletteColor {
-    fade:  string
+    fade:  string;
   }
   interface SimplePaletteColorOptions {
-    fade?:string
+    fade?: string;
   }
 }
 
-const initialTheme:Theme = createMuiTheme({
+const initialTheme: Theme = createMuiTheme({
   palette: {
     primary: {
       main: 'rgba(84, 24, 83, 1)',

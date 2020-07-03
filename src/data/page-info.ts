@@ -1,14 +1,14 @@
 
-export interface pageDataItem {
-  name: string,
-  menu: string,
-  title: string
+export interface PageDataItem {
+  name: string;
+  menu: string;
+  title: string;
 }
 // title is for meta title
 
-export type pageData = pageDataItem[];
+export type PageData = PageDataItem[];
 
-export const data:pageData = [
+export const data: PageData = [
   {
     name: "Home",
     menu: "Home page",

@@ -10,16 +10,16 @@ import { Variant } from '@material-ui/core/styles/createTypography';
 
 const makeGlobalsFromTheme: (inputTheme: Theme, tagsList: string[]) => Theme = ( inputTheme, tagsList) => {
 
-    let allTags:any = {}
+    const allTags: any = {}
   
-    for(  let i in tagsList) {
+    for(  const i in tagsList) {
       // check if exists
       if (inputTheme.typography[tagsList[i] as Variant]) {
         allTags[tagsList[i]] = inputTheme.typography[tagsList[i] as Variant]
       }
     }
     
-    const outputTheme:Theme = createMuiTheme( inputTheme, {
+    const outputTheme: Theme = createMuiTheme( inputTheme, {
       overrides: {
         MuiCssBaseline: {
           '@global': allTags,
