@@ -11,7 +11,7 @@ import CircleMenu from "../../components/CircleMenu/CircleMenu";
 
 import map from "../../images/map2.jpg";
 import cmc from "../../images/cmc1_fade.png";
-import facebook from "../../images/f_logo_RGB-Hex-Blue_512.png";
+import facebook from "../../images/facebook.png";
 import meetup from "../../images/meetup.png";
 
 const useStyles = makeStyles({

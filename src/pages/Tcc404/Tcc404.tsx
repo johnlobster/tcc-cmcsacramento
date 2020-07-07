@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import { Box, Button,Theme} from '@material-ui/core';
+import { Box, Button,Theme, Typography} from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 // import { spacing } from '@material-ui/system';
 
@@ -49,9 +49,9 @@ const Tcc404: React.FunctionComponent = () => {
       flexDirection="column" 
       className={myClasses.pageBox}>
       <Box mx="auto" px={2}>
-        <h3 className={myClasses.title}>
+        <Typography variant="h5" component="h2" className={myClasses.title}>
           Whoops, that was a 404 ! That page doesn't exist
-        </h3>
+        </Typography>
       </Box>
       
       <Box p={2} mx="auto" py={3} >

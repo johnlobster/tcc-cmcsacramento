@@ -101,7 +101,7 @@ const xy: XYData[] =  ((): XYData[] => {
   return output;
 })()
 
-const CircleMenu: React.FunctionComponent = (props) => {
+const CircleMenu: React.FunctionComponent = () => {
   const topBoxClasses = topBoxStyles(); 
   const linkButtonClasses = linkButtonStyles(); 
   const tjtClasses= tjtStyles();

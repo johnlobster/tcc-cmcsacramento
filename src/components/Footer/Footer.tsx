@@ -46,7 +46,7 @@ const Footer: React.FunctionComponent = (props) => {
     <div className={classes.root}>
       <div className={classes.contentBox}>
         <img src={tjt} alt="Yin Yang" className={classes.tjt} />
-        <span className={classes.disclaimer}>This website collects no personal data</span>
+        <span className={classes.disclaimer}>This website collects no data</span>
       </div>
       <div className={classes.copyBox}>
         <span className={classes.copy}><em>© 2020 Jinbao Tai Chi Chuan </em></span>

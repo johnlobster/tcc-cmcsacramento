@@ -6,6 +6,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import SlideArticle from '../../components/SlideArticle/SlideArticle'
 import theme from "../../global/theme";
 
+// import color from 'color'
+
+// const p = color(theme.palette.secondary.main)
+// const s = p.hex()
+// const ls = p.lighten(0.4).hex()
+// const ls2 = p.lighten(0.7).hex()
+// const ds = p.darken(0.4).hex()
+// backgroundImage: `linear-gradient( to bottom right,${ls2}, ${ls} 15%, ${s} 55%, ${ds} 85%)`, 
+//     backgroundImage: `radial-gradient( at top left, ${ls2}, ${s} 25%, ${ds} 85%)`, 
+
+
 // The component is a Grid item that switches between full width and card size on open/close
 // The article content (props.children) displays when open and card displays when closed
 const useStyles = makeStyles({
@@ -25,9 +36,8 @@ const useStyles = makeStyles({
   },
   buttonBox: {
     display: 'flex',
+    width: '100%',
     justifyContent: 'space-between',
-    paddingBottom: '0.5rem',
-    paddingLeft: '0.5rem'
   },
   closeButton: {
     color: theme.palette.secondary.contrastText,
@@ -144,14 +154,9 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
       <Grid item xs={12} sm={itemWidth}>
         <Card raised={true} >
           <React.Fragment>
-            {props.cardImage && (
-              <img src={props.cardImage} alt={altTextCard} className={classes.cardImage} />
-            )}
             {props.cardContent && (
               <CardContent>
                 {props.cardContent}
-                
-    
               </CardContent>
             )}
             
@@ -159,6 +164,7 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
               <div className={classes.buttonBox}>
                 <Button variant="contained" size="large"
                   color="secondary" className={classes.closeButton} onClick={openBlock}>Read more</Button>
+                
               </div>
             </CardActions>
             

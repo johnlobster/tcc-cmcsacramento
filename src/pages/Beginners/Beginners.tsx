@@ -4,28 +4,56 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import CardToBlock from "../../components/CardToBlock/CardToBlock";
+import ContactButton from "../../components/ContactButton/ContactButton";
+
 import * as DList from "../../components/DescriptionList/DescriptionList"
+
 import tjt from "../../images/Taijitu.svg";
 import cmcForm from "../../images/cmc4_form.jpg";
+import birds from "../../images/birds1_fade.jpg";
+
+import theme from '../../global/theme'
+// import classes from '*.module.css';
 
 const useStyles = makeStyles({
   formImageBox: {
     display: 'flex',
     alignContent: 'center',
     width: '100%',
-    '& img': {
-      marginLeft: 'auto',
-      maxWidth: '90%',
+    paddingBottom: '1rem',
+    paddingLeft: '1rem',
+    [theme.breakpoints.up('xs')]: {
+      paddingTop: '0',
+
+    },
+    [theme.breakpoints.up('md')]: {
       paddingTop: '4rem',
+
+    },
+    '& img': {
+      maxWidth: '90%',
     }
+  },
+  squareTaoCardImage: {
+    width: '100px',
+    padding: '0.5rem',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+      maxWidth: '300px',
+
+    },
+  },
+  buttonImageBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    // alignItems: 'space-between',
+    height: '100%',
+    marginLeft: 'auto',
+
   },
 });
 
-const formList = (
-  <div>
-    <h6>List of postures for 37 movement Cheng man ching form</h6>
-  </div>
-);
+
 
 const principlesCard = (
   <div>
@@ -33,16 +61,36 @@ const principlesCard = (
   </div>
 );
 
-const squareTaoCard = (
-  <div>
-    <h6 >The square Tao</h6>
-  </div>
-);
+
 const Beginners: React.FunctionComponent = (props) => {
 
   const classes = useStyles();
 
   const topRef = React.useRef(null);
+
+  // has to be part of component because references a style
+  const squareTaoCard = (
+    <Grid container>
+      <Grid xs={12} sm={9} >
+        <h6 >The square Tao</h6>
+      </Grid>
+      <Grid xs={12} sm={3} >
+        <img src={tjt} alt="Yin yang symbol" className={classes.squareTaoCardImage} />
+      </Grid>
+    </Grid>
+  );
+
+  const formList = (
+    <div >
+      <h6>List of postures for 37 movement Cheng man ching form</h6>
+    </div>
+  );
+
+  const tipsCard = (
+    <div >
+      <h6>10 Essential tips for beginners</h6>
+    </div>
+  );
 
   return(
     <div>
@@ -71,11 +119,11 @@ const Beginners: React.FunctionComponent = (props) => {
                 <li>Fair ladies' hand</li>
               </ul>
             </Grid>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={5} className={classes.buttonImageBox}>
               <div className={classes.formImageBox}>
                 <img src={cmcForm} alt="Tai chi form" />
               </div>
-              
+              <ContactButton />
             </Grid>
           </Grid>
           
@@ -84,6 +132,25 @@ const Beginners: React.FunctionComponent = (props) => {
       </Grid>
 
       <Grid container spacing={2} className="responsiveContainer">
+
+        <CardToBlock id="Beginners_tips" cardContent={tipsCard} elementToScrollTo={topRef.current}>
+          <h4>10 Essential tips for beginners</h4>
+          <ol>
+            <li>
+              Come with an open mind
+            </li>
+            <li>Follow and copy what the instructors do as closely as you can </li>
+            <li>Be Patient with yourself, learning Tai Chi Chuan takes time.</li>
+            <li>Wear comfortable loose clothing and flat bottomed shoes</li>
+            <li>Relax, relax, relax (<em>Sung</em> )</li>
+            <li>Never use external muscular strength (<em>Li</em>)</li>
+            <li>Never lean, the body should always be upright</li>
+            <li>Always breathe naturally through the nose</li>
+            <li>Try to make all movements fluid and smooth</li>
+            <li>and have fun!!!</li>
+          </ol>
+        </CardToBlock>
+
         <CardToBlock id="Beginners_principles" cardContent={principlesCard} elementToScrollTo={topRef.current}>
           <h4>Basic principles of Tai Chi</h4>
           <p>Intro</p>
@@ -118,11 +185,11 @@ const Beginners: React.FunctionComponent = (props) => {
             <DList.DT><strong>T</strong>: Turn the Waist</DList.DT>
             <DList.DD>Never move the body independently of the hips/waist</DList.DD>
             <DList.DD>All movements come from the center-hips/waist</DList.DD>
-            <DList.DD>Move from the hips/waist</DList.DD>
-            <DList.DD>Power comes from the legs</DList.DD>
-            <DList.DD>Is controlled by the waist/hips</DList.DD>
-            <DList.DD>Is expressed through the fingers</DList.DD>
-
+            <DList.DD>
+              Move from the hips/waist, power comes from the legs,
+              is controlled by the waist/hips and expressed through the fingers
+            </DList.DD>
+            
           </DList.DL>
 
           <h5>Additional concepts</h5>
