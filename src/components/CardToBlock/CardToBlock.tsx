@@ -49,6 +49,9 @@ const useStyles = makeStyles({
     width: '9vw',
     padding: '1rem',
   },
+  paper: {
+    backgroundColor: theme.palette.background.articlePaper,
+  },
   
 });
 
@@ -119,7 +122,7 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
       {/* style={{display: open ? "block" : "none"}} */}
       <SlideArticle id={props.id} in={open}>
       <Grid item xs={12} >
-        <Paper elevation={1}>
+        <Paper elevation={1} className={classes.paper}>
           <article>
             <Box p={2}>
               {props.cardImage && (

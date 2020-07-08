@@ -25,6 +25,10 @@ declare module '@material-ui/core/styles/createPalette' {
   interface SimplePaletteColorOptions {
     fade?: string;
   }
+
+  interface TypeBackground {
+    articlePaper?: string;
+  }
 }
 
 const initialTheme: Theme = createMuiTheme({
@@ -55,6 +59,7 @@ const initialTheme: Theme = createMuiTheme({
     tonalOffset: 0.2,
     background: {
       paper: '#f0f0f0',
+      articlePaper: '#e9e5eb',
       default: '#FFFFFF'
     }
   },
