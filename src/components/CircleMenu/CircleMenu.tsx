@@ -38,7 +38,7 @@ const topBoxStyles = makeStyles(() =>
       maxWidth: '30rem',
       height: `${2*size}rem`,
       maxHeight: '30rem',
-      margin: '0 auto 1.5rem auto',
+      margin: '1.5rem auto 1.5rem auto',
 
       position: 'relative',
     }
@@ -85,15 +85,16 @@ const tjtStyles = makeStyles(() =>
     }
   })
 )
-
-
+// top: ((size - (boxHeight / 2)) + (size * Math.sin(index * arc))).toString() + 'rem',
+// right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toString() + 'rem'
+// ToDo only need 2 decimals. I think that there is a toString option or a Math.round option
 const xy: XYData[] =  ((): XYData[] => {
   const arc: number = (2 * Math.PI) / pageData.length; // radians
   const output: XYData[] = [];
   pageData.forEach((value, index) => {
     const print: XYData = {
-      top: ((size - (boxHeight/2)) + (size * Math.sin(index * arc))).toString() + 'rem',
-      right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toString() + 'rem'
+      top: ((size - (boxHeight / 2)) + (size * Math.sin(index * arc))).toFixed(2) + 'rem',
+      right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toFixed(2) + 'rem'
     }
     console.log(`${index} top: ${print.top} right: ${print.right}`);
     console.log(`  ${(index*arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
@@ -111,19 +112,19 @@ const CircleMenu: React.FunctionComponent = () => {
       <Box className={topBoxClasses.root} aria-label="menu">
         <img src={Taijitu} alt="Yin yang symbol" className={tjtClasses.root}/>
 
-          {pageData.map((item, index) => {
-            return (
-              <Button className={linkButtonClasses.root}
-                style={{ top: xy[index].top, right: xy[index].right }}
-                key={`${item.name}${index}`}>
-                <MLink href={item.name} >{item.menu}</MLink>
-              </Button>
-              
+        {pageData.map((item, index) => {
+          return (
+            <Button 
+              className={linkButtonClasses.root}
+              style={{ top: xy[index].top, right: xy[index].right }}
+              key={`${item.name}`}
+            >
+              <MLink href={item.name} >{item.menu}</MLink>
+            </Button>
+            
             )
-            })
-          }
-        
-          
+          })
+        }
         
       </Box>
     </div>

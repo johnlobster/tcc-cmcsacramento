@@ -19,6 +19,15 @@ const headerStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.primaryColor
       }
     },
+    menuText: {
+      paddingLeft: '0.25rem',
+      fontWeight: 'bold',
+      paddingTop: '0.1rem',
+      display: 'none',
+      [theme.breakpoints.up('md')]: { // don't show "Menu" when on small screen
+        display: 'inline',
+      },
+    },
     titleBox: {
       width: '100%',
       display: 'flex',
@@ -72,14 +81,6 @@ const headerStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const paperStyles= makeStyles(createStyles(
-  {
-    root: {
-      backgroundColor: "green"
-    }
-  }
-))
-
 const listStyles = makeStyles(createStyles({
   list2: {
     outline: 'none',
@@ -100,11 +101,11 @@ const Header: React.FunctionComponent = () => {
   const [menuOrigin, changeMenuOrigin] = React.useState({ x: 0, y: 0})
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const menuClose = () => {
+  const menuClose: () => void = () => {
     setAnchorEl(null);
   };
 
-  const iconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const iconClick: (event: React.MouseEvent<HTMLButtonElement>) => void = (event: React.MouseEvent<HTMLButtonElement>) => {
     if( anchorEl) {
       menuClose();
     } else {
@@ -132,6 +133,7 @@ const Header: React.FunctionComponent = () => {
             aria-label="menu"
           >
             <MenuIcon fontSize="large"   />
+            <span className={headerClasses.menuText}>Menu</span>
           </IconButton>
 
           <Menu 
@@ -154,7 +156,7 @@ const Header: React.FunctionComponent = () => {
                   Close Menu
                 </Typography>
               </MenuItem>
-              {data.map((item, index) => {
+              {data.map((item) => {
                 return (
                   <MenuItem onClick={menuClose} key={item.name}>
                     <Link href={item.name} >

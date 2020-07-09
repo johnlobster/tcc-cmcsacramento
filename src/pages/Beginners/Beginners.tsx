@@ -142,8 +142,8 @@ const Beginners: React.FunctionComponent = (props) => {
             <li>Follow and copy what the instructors do as closely as you can </li>
             <li>Be Patient with yourself, learning Tai Chi Chuan takes time.</li>
             <li>Wear comfortable loose clothing and flat bottomed shoes</li>
-            <li>Relax, relax, relax (<em>Sung</em> )</li>
-            <li>Never use external muscular strength (<em>Li</em>)</li>
+            <li>Relax, relax, relax <em>(Sung)</em></li>
+            <li>Never use external muscular strength <em>(Li)</em></li>
             <li>Never lean, the body should always be upright</li>
             <li>Always breathe naturally through the nose</li>
             <li>Try to make all movements fluid and smooth</li>
