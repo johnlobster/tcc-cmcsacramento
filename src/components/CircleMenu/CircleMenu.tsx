@@ -21,9 +21,10 @@ import Taijitu from "../../images/Taijitu.svg";
 
 // sets up sizing for the menu items. Each item is in a box boxWidth by boxHeight
 // and size rem from the center
-const size = 8; // will be in rem
+const size = 6
+; // will be in rem
 const boxWidth = 8;
-const boxHeight = 4;
+const boxHeight = 3;
 interface XYData {
   top: string; // string so can be added to style attribute
   right: string;
@@ -34,13 +35,39 @@ interface XYData {
 const topBoxStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: `${2*size}rem`,
+      
+
+      position: 'absolute',
+      right: `${size}rem`,
+      top: `${size}rem`,
+    },
+    outerBox: {
+      position: 'relative',
+      width: `${2 * size}rem`,
       maxWidth: '30rem',
-      height: `${2*size}rem`,
+      height: `${2 * size}rem`,
       maxHeight: '30rem',
       margin: '1.5rem auto 1.5rem auto',
-
-      position: 'relative',
+    },
+    testLine: {
+      width: `${boxWidth}rem`,
+      height: `${size}rem`,
+      borderStyle: 'solid',
+      borderWidth: '0 0.5px 0 0.5px',
+      color: 'black',
+      position: 'absolute',
+      transformOrigin: 'center top',
+      left: `-${boxWidth/2}rem`,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      alignItems: 'center'
+      // transform: `rotate(45deg) translate(${size}rem, ${size}rem)`,
+      // transformOrigin: `${size}rem ${size}rem`,
+      
+    },
+    spanText: {
+      transformOrigin: 'center bottom',
     }
   })
 )
@@ -52,8 +79,14 @@ const linkButtonStyles = makeStyles((theme: Theme) =>
       width: `${boxWidth}rem`,
       height: `${boxHeight}rem`,
       color: theme.palette.text.primaryColor,
+      borderStyle: 'solid',
+      borderWidth: '0.5px',
       fontWeight: 'bold',
       fontSize: '1.2rem',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '0',
       '& a': {
         color: theme.palette.text.primaryColor,
         fontWeight: 'bold',
@@ -85,6 +118,8 @@ const tjtStyles = makeStyles(() =>
     }
   })
 )
+// if point is below 0y, subtract height/2, if above 0y, add height/2
+// if point is left of x0, add width/2. If right of x0, subtract width/2
 // top: ((size - (boxHeight / 2)) + (size * Math.sin(index * arc))).toString() + 'rem',
 // right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toString() + 'rem'
 // ToDo only need 2 decimals. I think that there is a toString option or a Math.round option
@@ -93,8 +128,8 @@ const xy: XYData[] =  ((): XYData[] => {
   const output: XYData[] = [];
   pageData.forEach((value, index) => {
     const print: XYData = {
-      top: ((size - (boxHeight / 2)) + (size * Math.sin(index * arc))).toFixed(2) + 'rem',
-      right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toFixed(2) + 'rem'
+      top: ((size - (boxHeight / 2)) + ((size)* Math.sin(index * arc))).toFixed(2) + 'rem',
+      right: ((size - (boxWidth / 2)) + ((size)* Math.cos(index * arc))).toFixed(2) + 'rem'
     }
     console.log(`${index} top: ${print.top} right: ${print.right}`);
     console.log(`  ${(index*arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
@@ -103,15 +138,31 @@ const xy: XYData[] =  ((): XYData[] => {
   return output;
 })()
 
+//                 transformOrigin: `${size}rem ${size}rem`,
+
 const CircleMenu: React.FunctionComponent = () => {
   const topBoxClasses = topBoxStyles(); 
   const linkButtonClasses = linkButtonStyles(); 
   const tjtClasses= tjtStyles();
   return (
-    <div>
+    <div className={topBoxClasses.outerBox}>
       <Box className={topBoxClasses.root} aria-label="menu">
         <img src={Taijitu} alt="Yin yang symbol" className={tjtClasses.root}/>
-
+        {pageData.map( (item, index) => {
+          return (
+            <span className={topBoxClasses.testLine} key={`${item.name}`} 
+              style={{ 
+                transform: `rotate(${index * (360 / pageData.length)}deg ) 
+                            
+                `}}
+            >
+              <span className={topBoxClasses.spanText} 
+                style={{transform: `rotate(-${index * (360 / pageData.length)}deg )`}}
+              >{item.menu}
+              </span>
+            </span>
+          )
+        })}
         {pageData.map((item, index) => {
           return (
             <Button 
