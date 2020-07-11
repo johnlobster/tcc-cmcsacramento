@@ -159,9 +159,9 @@ const Header: React.FunctionComponent = () => {
               {data.map((item) => {
                 return (
                   <MenuItem onClick={menuClose} key={item.name}>
-                    <Link href={item.name} >
+                    <RouterLink to={item.name} >
                       {item.menu}
-                    </Link>
+                    </RouterLink>
                   </MenuItem>
                 )
               })}

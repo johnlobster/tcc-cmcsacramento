@@ -131,8 +131,8 @@ const xy: XYData[] =  ((): XYData[] => {
       top: ((size - (boxHeight / 2)) + ((size)* Math.sin(index * arc))).toFixed(2) + 'rem',
       right: ((size - (boxWidth / 2)) + ((size)* Math.cos(index * arc))).toFixed(2) + 'rem'
     }
-    console.log(`${index} top: ${print.top} right: ${print.right}`);
-    console.log(`  ${(index*arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
+    // console.log(`${index} top: ${print.top} right: ${print.right}`);
+    // console.log(`  ${(index*arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
     output.push(print);
   });
   return output;

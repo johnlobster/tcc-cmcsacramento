@@ -1,3 +1,14 @@
+// javascript for author
+
+/*
+  - communicate with iframe
+  - save iframe data
+  - user name selection (save as cookie)
+
+*/
+let iframeElement; 
+
+/***  Functions **********************************************************************************/
 
 const postTest = () => {
   // don't use "*" in production
@@ -41,33 +52,22 @@ const receiveMessage = (event) => {
   }
 }
 
-let iframeElement; 
+/***************************************************** */
+// execution starts after onload event
 
 window.onload = () => {
-      console.log("Author: document loaded");
-      window.addEventListener("message", receiveMessage);
-      // insert iframe, could be done with environment variable
-  const div = document.getElementById("iframeContainer");
-       
-      if (div) {
-        const el = document.createElement("IFRAME");
-        // el.setAttribute("src", "http://localhost:5000")
-        el.setAttribute("src", "file:///build.html")
+  console.log("Author: document loaded");
+  // initialize tooltips
+  $('[data-toggle="tooltip"]').tooltip();
 
-        el.setAttribute("id", "iframeId")
-        el.setAttribute("name", "userIframe")
-        // div.appendChild(el)
-        
-      }
-      else {
-        console.log("Author: Failed to create iframe element")
-      }
+  // listen for messages from author
+  window.addEventListener("message", receiveMessage);
+  // insert iframe, could be done with environment variable
   iframeElement = document.getElementById("iframeId")
-      if (!iframeElement) {
-        console.log("Author: Failed to find iframe element");
-      } else {
-        console.log("Author: found iframe element");
-      }
-
-      // postTest(iframeElement);
-    }
+  if (!iframeElement) {
+    console.log("Author: Failed to find iframe element");
+  } else {
+    console.log("Author: found iframe element");
+  }
+  
+}

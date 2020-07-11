@@ -1,8 +1,7 @@
 const express = require("express");
 
 const fs = require('fs');
-var shell = require('shelljs');
-var uniqid = require('uniqid'); // use for testing
+// var shell = require('shelljs');
 
 const path = require("path");
 require("dotenv").config(); // add variables in .env file to process.env
@@ -16,15 +15,6 @@ console.log(`server: NODE_ENV ${NODE_ENV}`);
 // crashing
 
 const ghToken = process.env.GH_OA_TOKEN || new Error("ENV variable GH_OA_TOKEN not set");
-
-const testData = {
-  id1: "At the top",
-  id2: "The second line",
-  id3: "More padding",
-  id4: "Even more padding"
-}
-console.log("Original test data " + testData);
-
 
 // heroku doesn't leave a git repo, will have to clone
 // -b <branch> checkout just that branch
@@ -100,6 +90,14 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// logging 
+app.use(function (req, res, next) { 
+  const now = new Date()
+  console.log(`Accessed server ${now.toTimeString()} Method: ${req.method} URL : ${req.url}`); 
+  next(); 
+});
+
+// routes
 app.post("/write", (req, res) => {
   console.log(`Object after express`);
   console.log(req.body);
@@ -113,9 +111,12 @@ app.post("/write", (req, res) => {
     console.log(`Type of pageData is ${typeof(pageData)}`)
     const jsonData = JSON.stringify(pageData)
     console.log(`Data typData: ${jsonData}`);
-    try{fs.writeFileSync(fileName, jsonData);}
-    catch {
+    try{
+      fs.writeFileSync(fileName, jsonData);
+    }
+    catch (e) {
       console.log("File write failed");
+      console.log(e)
       writeOk = false;
     }
   }
@@ -127,16 +128,38 @@ app.post("/write", (req, res) => {
   }
   
 })
-// static files (css or js etc.)
-app.use(express.static("."));
 
+/*
+  This server serves both the html within the iframe and any files
+  that are needed by the author html (authorIndex.css, authorServer.js)
+*/
 
-// serve author html (default)
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname,"authorIndex.html"));
+// no url, serve authorIndex
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "authorIndex.html"));
+  console.log(`Serving authorIndex.html`);
+});
+// serve author stuff
+app.get("/author*", (req, res, next) => {
+  // matched one of the author files so serve it
+  const fileName = req.url.replace( /^\//, "") // strip leading '/'
+  if (fs.existsSync(fileName)) {
+    console.log(`Serving author file ${fileName}`);
+    res.sendFile(path.join(__dirname, fileName));
+  } else {
+    console.log(`Couldn't find file ${fileName}`);
+    next()
+  }
 });
 
+// files that the iframe will look for
+app.use(express.static("build"));
+
+// default
+app.get("*", (req, res) => {
+  console.log(`Default: unable to serve file ${req.url}`);
+});
 
 app.listen(PORT, () => {
-  console.log(`🌎 ==> API server listening on port ${PORT}`);
+  console.log(`🌎 ==> Server listening on port ${PORT}`);
 });

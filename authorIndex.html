@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Author web page</title>
+
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="authorIndex.css">
+
+</head>
+<body>
+
+  <div>
+    <div class="w-100">
+
+      <!-- Top border, welcome and so on -->
+      <div class="row mb-1 titleBox" >
+        <div class="col-4 ">
+          <h5 id="userName" class="mb-0 titleMessage">Please log in</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2 authorBox">
+          <!-- Author controls, buttons -->
+          <button id="loginButton" class="btn btn-secondary" onclick="login()"
+            data-toggle="tooltip" data-placement="right" title="Log in - remembers you from last time" 
+          >
+            Login
+          </button>
+          <button id="saveButton" class="btn btn-primary" onclick="saveData()"
+            data-toggle="tooltip" data-placement="right" title="Save to database"
+          >
+            Save
+          </button>
+          <button id="publishButton" class="btn btn-primary" onClick="publish()"
+            data-toggle="tooltip" data-placement="right" title="Send to main web page"
+          >
+            Publish
+          </button>
+          <button id="mobileButton" class="btn btn-primary" onClick="mobile()"
+            data-toggle="tooltip" data-placement="right" title="View as a small screen (mobile)">
+            Mobile/Desktop
+          </button>
+          <button id="revertButton" class="btn btn-danger"
+            data-toggle="tooltip" data-placement="right" title="Erase all edits before last save"
+          >
+            Revert
+          </button>
+        </div>
+        <div class="col-10">
+          <div id="iframeContainer" class="iframeBox">
+            <iframe id="iframeId" src="index.html" name="userIframe">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+  <!-- Other libraries -->
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js></script>
+
+  
+  <script src="author.js"> </script>
+  
+
+</body>
+</html>
+
+<!-- src="https://amazing-lichterman-47cc52.netlify.app/" -->
+<!-- src="http://localhost:5000" -->

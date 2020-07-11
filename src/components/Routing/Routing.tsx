@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Switch, Route, useLocation, useHistory, withRouter } from 'react-router-dom';
 
 import * as pageInfo from "../../data/page-info"; // single source of truth, but not sure how to use it here
 
@@ -28,10 +28,37 @@ const pageList = [ // this doesn't make it any more dry ..., maybe pull path fro
 
 // ToDo import and Route using pageInfo instead of hard coding, but have to be able to pass them all to webpack ...
 
-const Routing: React.FunctionComponent = () => {
+interface MoreProps {
+  match?: any;
+  location?: any;
+  history?: any;
+}
+const R: React.FunctionComponent<MoreProps> = (props) => {
+
+  const { pathname } = useLocation()
+  const history = useHistory()
+
+  // useEffect( () => {
+  //   console.log(`Routing: pathname = ${pathname}`)
+  //   console.log(`Routing: history `)
+  //   console.log(history )
+  // })
+
+  useEffect( () => {
+    console.log(`Routing: pathname (hook) = ${pathname}`)
+    console.log(`Routing: match`)
+    console.log( props.match)
+    console.log(`Routing: location`)
+    console.log(props.location)
+    console.log(`Routing: history`)
+    console.log(props.history)
+  }, [props.match, props.location, props.history])
   return(
     <Switch>
       <Route exact path='/' component={Home} />
+
+      <Route exact path='/index.html' component={Home} />
+
       
       {pageList.map( (item, index) => {
         return <Route path={`/${pageInfo.data[index].name}`} component={item} key={pageInfo.data[index].name} />
@@ -45,4 +72,6 @@ const Routing: React.FunctionComponent = () => {
 
 //  <Route path='/Home' component={pageList[0]} />
 //   <Route path='/Beginners' component={pageList[1]} /> 
-export default Routing;
+
+const Router = withRouter(R);
+export default Router;

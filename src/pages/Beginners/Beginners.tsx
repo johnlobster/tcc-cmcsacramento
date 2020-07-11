@@ -10,7 +10,7 @@ import * as DList from "../../components/DescriptionList/DescriptionList"
 
 import tjt from "../../images/Taijitu.svg";
 import cmcForm from "../../images/cmc4_form.jpg";
-import birds from "../../images/birds1_fade.jpg";
+// import birds from "../../images/birds1_fade.jpg";
 
 import theme from '../../global/theme'
 // import classes from '*.module.css';

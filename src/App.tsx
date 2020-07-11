@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 
 import Header from "./components/Header/Header";
@@ -11,12 +11,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <MuiStyleChanges />
         <Header />
         <Routing />
         <Footer />
-      </BrowserRouter>
+      </Router>
     );
   }
 
