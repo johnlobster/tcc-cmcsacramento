@@ -21,6 +21,16 @@ export class DatabaseType {
 
   // The data can acquired from an API in JSON format, so need to check
   // for a valid database before creating, even using typescript
+  /* 
+    ToDo, this could be replaced using type guards
+    https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types
+
+    For primitive types
+    if (typeof padding === "string") {
+        return padding + value;
+    }
+  */
+
   isDbType = (testMe: DbType): boolean => {
     let matches = true;
     if (typeof(testMe) !== "object") {
