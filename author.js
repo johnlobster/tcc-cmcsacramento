@@ -69,5 +69,15 @@ window.onload = () => {
   } else {
     console.log("Author: found iframe element");
   }
+
+  // what can author do ?
+  let frame = iframeElement.contentDocument
+
+  const allH1 = frame.getElementsByTagName('H1')
+
+  console.log(allH1)
+  console.log(frame)
+
+  allH1[0].style.backgroundColor = 'green'
   
 }

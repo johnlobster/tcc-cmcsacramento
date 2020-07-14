@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom'
-import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Link, Typography} 
+import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Typography} 
   from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, createStyles } from '@material-ui/core/styles';

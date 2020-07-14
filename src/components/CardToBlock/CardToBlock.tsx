@@ -100,12 +100,12 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
     itemWidth = props.columnWidth as GridSize;
   }
 
-  let altTextCard = "card";
-  if ( props.cardImage && props.imageAlt) {
-    // altText = `alt="${props.imageAlt}"`;
-    altTextCard = props.imageAlt;
+  // let altTextCard = "card";
+  // if ( props.cardImage && props.imageAlt) {
+  //   // altText = `alt="${props.imageAlt}"`;
+  //   altTextCard = props.imageAlt;
 
-  }
+  // }
 
   let altTextBlock = "Illustration for article";
   if (props.cardImage && props.imageAlt) {
