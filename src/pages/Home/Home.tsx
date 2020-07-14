@@ -130,7 +130,7 @@ const Home: React.FunctionComponent = (props) => {
               Tai Chi for the first time. We encourage everyone to learn at their own 
               pace.
             </p>
-            <h4>We teach</h4>
+            <h4><EditSpan id= "Home_teach_title">We teach</EditSpan></h4>
             <ul>
               <li>Form</li>
               <li>Tuishu (sensing hands), partner work with fixed foot position</li>
@@ -142,17 +142,13 @@ const Home: React.FunctionComponent = (props) => {
           </EditBlock>
 
           <div className={classes.welcome}>
-            <h4>Covid-19 update</h4>
+            <h4><EditSpan id="Home_covid19_title">Covid-19 update</EditSpan></h4>
             <p>
-              <EditSpan id="Home_covid19">
                 The Hagan community center is closed, so no classes until further notice
-              </EditSpan>
             </p>
             <p>
-              <EditSpan id="Home_covid19_b">
                 We expect that when are able to resume classes, we will be following social distancing protocols. Keep 6' apart,
                 wear masks, and no partner practice
-              </EditSpan>
             </p>
             <br />
           </div>
