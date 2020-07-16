@@ -71,10 +71,10 @@ const Beginners: React.FunctionComponent = (props) => {
   // has to be part of component because references a style
   const squareTaoCard = (
     <Grid container>
-      <Grid xs={12} sm={9} >
+      <Grid item xs={12} sm={9} >
         <h6 >The square Tao</h6>
       </Grid>
-      <Grid xs={12} sm={3} >
+      <Grid item xs={12} sm={3} >
         <img src={tjt} alt="Yin yang symbol" className={classes.squareTaoCardImage} />
       </Grid>
     </Grid>

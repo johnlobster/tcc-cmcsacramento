@@ -66,7 +66,7 @@ const EditSpan: React.FunctionComponent<MoreProps> = (props) => {
   const [editing, updateEditing] = React.useState(false);
 
   React.useEffect( () => {
-    console.log(`State changed editing ${editing} content ${content}`)
+    console.log(`Span: State changed editing ${editing} content ${content}`)
   }, [content, editing])
   const exitCKEditor = (): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
@@ -132,6 +132,7 @@ const EditSpan: React.FunctionComponent<MoreProps> = (props) => {
           .then((ed: any) => {
             editorInstance = ed;
             console.log("Loaded editor, CKEspan");
+            // define focus and lost focus events
             editorInstance.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean) => {
               console.log(`Editor focused: ${isFocused}. `);
               // console.log(evt);

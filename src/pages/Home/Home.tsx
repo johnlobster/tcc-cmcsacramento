@@ -102,55 +102,62 @@ const useStyles = makeStyles({
 });
 
 
-const Home: React.FunctionComponent = (props) => {
+const Home: React.FunctionComponent = () => {
   const classes = useStyles();
 
   return(
     <div>
       <Grid container spacing={2} className="responsiveContainer">
         <Grid item xs={12}>
-          
-          <EditBlock id="Home_welcome" className={classes.welcome}>
-            <h4>Welcome to Jīnbǎo (Golden treasure) Tai Chi Chuan</h4>
-
             {/* Background image */}
             <div style={{position: 'relative'}}>
               <img src={cmc} alt="Cheng man ching" className={classes.bgImage} />
             </div>
-            <p>
+
+          <EditBlock id="Home_welcome1" className={classes.welcome} content={`
+          <h4>Welcome to Jīnbǎo (Golden treasure) Tai Chi Chuan</h4>
+          <p>
               Here you’ll find 
               the information you need about our Tai Chi courses, our team, our teaching and our
               style. Professor Cheng Man Ching’s class is equally suited for beginners and
               practitioners of other martial arts. Gain strength, balance, poise and resiliency
               while engaging in a modified form of Tai Chi created for busy people. 
-            </p><p>
+            </p>
+
+            <p>
               You will learn health benefits and internal practice (mindfulness) by
               studying the methods developed by one of the best-known students of Yang cheng fu.
               We welcome people of any age or skill level and love to see people try out 
               Tai Chi for the first time. We encourage everyone to learn at their own 
               pace.
             </p>
-            <h4><EditSpan id= "Home_teach_title">We teach</EditSpan></h4>
+          `} />
+
+
+          <EditBlock id="Home_welcome2" className={classes.welcome} content={`
+          <h4>We teach</h4>
             <ul>
-              <li>Form</li>
+              <li>Form. Cheng man ching's 37 movement form</li>
               <li>Tuishu (sensing hands), partner work with fixed foot position</li>
               <li>Moving step Tuishu</li>
               <li>Da lu - simple two person form</li>
               <li>San shou - advanced two person form with applications</li>
             </ul>
-            <br />
-          </EditBlock>
+          `} />
+
+            
 
           <div className={classes.welcome}>
             <h4><EditSpan id="Home_covid19_title">Covid-19 update</EditSpan></h4>
-            <p>
+            <EditBlock id="Home_covid19" content={`
+              <p>
                 The Hagan community center is closed, so no classes until further notice
-            </p>
-            <p>
+              </p>
+              <p>
                 We expect that when are able to resume classes, we will be following social distancing protocols. Keep 6' apart,
                 wear masks, and no partner practice
-            </p>
-            <br />
+              </p>
+            `} />
           </div>
           
           

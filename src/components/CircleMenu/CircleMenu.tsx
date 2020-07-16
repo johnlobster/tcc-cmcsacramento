@@ -1,7 +1,7 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { Theme, Box, Button, Link as MLink} from '@material-ui/core';
+import { Theme, Box, Button } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // would be really cool to make this responsive ....
@@ -10,7 +10,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // ToDo a11y - this is a menu, needs to be described as a menu
 
-import { data as pageData}  from "../../data/page-info"
+import { data as pageData } from "../../data/page-info"
 import Taijitu from "../../images/Taijitu.svg";
 
 // Making this component generic would require
@@ -21,8 +21,7 @@ import Taijitu from "../../images/Taijitu.svg";
 
 // sets up sizing for the menu items. Each item is in a box boxWidth by boxHeight
 // and size rem from the center
-const size = 6
-; // will be in rem
+const size = 8; // will be in rem
 const boxWidth = 8;
 const boxHeight = 3;
 interface XYData {
@@ -35,39 +34,13 @@ interface XYData {
 const topBoxStyles = makeStyles(() =>
   createStyles({
     root: {
-      
-
-      position: 'absolute',
-      right: `${size}rem`,
-      top: `${size}rem`,
-    },
-    outerBox: {
-      position: 'relative',
       width: `${2 * size}rem`,
       maxWidth: '30rem',
       height: `${2 * size}rem`,
       maxHeight: '30rem',
       margin: '1.5rem auto 1.5rem auto',
-    },
-    testLine: {
-      width: `${boxWidth}rem`,
-      height: `${size}rem`,
-      borderStyle: 'solid',
-      borderWidth: '0 0.5px 0 0.5px',
-      color: 'black',
-      position: 'absolute',
-      transformOrigin: 'center top',
-      left: `-${boxWidth/2}rem`,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-end',
-      alignItems: 'center'
-      // transform: `rotate(45deg) translate(${size}rem, ${size}rem)`,
-      // transformOrigin: `${size}rem ${size}rem`,
-      
-    },
-    spanText: {
-      transformOrigin: 'center bottom',
+
+      position: 'relative',
     }
   })
 )
@@ -79,30 +52,25 @@ const linkButtonStyles = makeStyles((theme: Theme) =>
       width: `${boxWidth}rem`,
       height: `${boxHeight}rem`,
       color: theme.palette.text.primaryColor,
-      borderStyle: 'solid',
-      borderWidth: '0.5px',
       fontWeight: 'bold',
       fontSize: '1.2rem',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '0',
+      padding: '0.375rem 0.5rem',
       '& a': {
         color: theme.palette.text.primaryColor,
         fontWeight: 'bold',
         fontSize: '1.2rem',
       },
       '& a:visited': {
-          color: theme.palette.text.primaryLinkVisited,
-      },  
+        color: theme.palette.text.primaryLinkVisited,
+      },
       '&:hover': {
         boxShadow: theme.shadows[6]
       },
-          
-      
-      
+
+
+
     },
-    
+
   })
 )
 
@@ -112,71 +80,52 @@ const tjtStyles = makeStyles(() =>
       height: '4rem',
       width: '4rem',
       position: 'absolute',
-      top: `${size-2}rem`,
-      right: `${size-2}rem`,
+      top: `${size - 2}rem`,
+      right: `${size - 2}rem`,
       margin: '0 auto'
     }
   })
 )
-// if point is below 0y, subtract height/2, if above 0y, add height/2
-// if point is left of x0, add width/2. If right of x0, subtract width/2
-// top: ((size - (boxHeight / 2)) + (size * Math.sin(index * arc))).toString() + 'rem',
-// right: ((size - (boxWidth / 2)) + (size * Math.cos(index * arc))).toString() + 'rem'
-// ToDo only need 2 decimals. I think that there is a toString option or a Math.round option
-const xy: XYData[] =  ((): XYData[] => {
+
+// have to account for button padding,  adding to box height and width 
+const xy: XYData[] = ((): XYData[] => {
   const arc: number = (2 * Math.PI) / pageData.length; // radians
   const output: XYData[] = [];
   pageData.forEach((value, index) => {
     const print: XYData = {
-      top: ((size - (boxHeight / 2)) + ((size)* Math.sin(index * arc))).toFixed(2) + 'rem',
-      right: ((size - (boxWidth / 2)) + ((size)* Math.cos(index * arc))).toFixed(2) + 'rem'
+      top: (size - (boxHeight / 2) + (size * Math.sin(index * arc))).toFixed(2) + 'rem',
+      right: (size - (boxWidth/ 2) + (size * Math.cos(index * arc))).toFixed(2) + 'rem'
     }
     // console.log(`${index} top: ${print.top} right: ${print.right}`);
-    // console.log(`  ${(index*arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
+    // console.log(`  ${(index * arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
     output.push(print);
   });
   return output;
 })()
 
-//                 transformOrigin: `${size}rem ${size}rem`,
-
 const CircleMenu: React.FunctionComponent = () => {
-  const topBoxClasses = topBoxStyles(); 
-  const linkButtonClasses = linkButtonStyles(); 
-  const tjtClasses= tjtStyles();
+  const topBoxClasses = topBoxStyles();
+  const linkButtonClasses = linkButtonStyles();
+  const tjtClasses = tjtStyles();
   return (
-    <div className={topBoxClasses.outerBox}>
+    <div>
       <Box className={topBoxClasses.root} aria-label="menu">
-        <img src={Taijitu} alt="Yin yang symbol" className={tjtClasses.root}/>
-        {pageData.map( (item, index) => {
-          return (
-            <span className={topBoxClasses.testLine} key={`${item.name}`} 
-              style={{ 
-                transform: `rotate(${index * (360 / pageData.length)}deg ) 
-                            
-                `}}
-            >
-              <span className={topBoxClasses.spanText} 
-                style={{transform: `rotate(-${index * (360 / pageData.length)}deg )`}}
-              >{item.menu}
-              </span>
-            </span>
-          )
-        })}
+        <img src={Taijitu} alt="Yin yang symbol" className={tjtClasses.root} />
+
         {pageData.map((item, index) => {
           return (
-            <Button 
+            <Button
               className={linkButtonClasses.root}
               style={{ top: xy[index].top, right: xy[index].right }}
               key={`${item.name}`}
             >
-              <MLink href={item.name} >{item.menu}</MLink>
+              <Link to={item.name} >{item.menu}</Link>
             </Button>
-            
-            )
-          })
+
+          )
+        })
         }
-        
+
       </Box>
     </div>
   );
