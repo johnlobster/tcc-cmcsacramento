@@ -1,4 +1,5 @@
 import { createMuiTheme, Theme} from '@material-ui/core/styles';
+// import { CSSProperties } from '@material-ui/core/styles/withStyles'
 
 import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
 
@@ -30,6 +31,24 @@ declare module '@material-ui/core/styles/createPalette' {
     articlePaper?: string;
   }
 }
+
+// Typography constants
+const ratio = 1.333333333333333333;
+const rhythm = 1.5;
+
+// Problems with theme
+// have to explicitly set margin-block-start because in default style sheet
+// using Typography probably gets rid of all these issues
+// use only bottom margins, not top margins
+// line height: 1.5x font-size otherwise wrap doesn't work
+
+
+// not using all headers, start at top for seo
+// h1  once per page 
+// h2  Major heading (ckeditor 1)
+// h3  Section       (2)
+// h4  Minor         (3)
+// 
 
 const initialTheme: Theme = createMuiTheme({
   palette: {
@@ -63,34 +82,53 @@ const initialTheme: Theme = createMuiTheme({
       default: '#FFFFFF'
     }
   },
-  // default (Chrome) top/bottom margin is 1em, which makes huge gaps for something like h3
-  // I am changing to rem, with different amounts of spacing for different headers
-  // could make it responsive ...
+  
+  //       lineHeight: `${Math.round(Math.pow(ratio, 4)/ rhythm)}rem`,
+
   typography: {
     fontSize: 16,
     h1: {
-      marginBlockStart: '4rem',
-      marginBlockEnd: '2rem',
+      fontSize: `${Math.pow(ratio, 4)}rem`,
+      lineHeight: `${Math.pow(ratio , 4) * Math.sqrt(Math.sqrt(Math.sqrt(rhythm))) }rem`,
+      // paddingBottom: '20px',
+      marginBlockStart: 0,
+      marginBlockEnd: `${ + rhythm}rem`,
+      fontWeight: 500,
     },
     h2: {
-      marginBlockStart: '2rem',
-      marginBlockEnd: '1rem',
+      fontSize: `${Math.pow(ratio, 3)}rem`,
+      lineHeight: `${Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))}rem`,
+      marginBlockStart: 0,
+      marginBlockEnd: `${rhythm}rem`,
+      fontWeight: 500,
     },
     h3: {
-      marginBlockStart: '1.5rem',
-      marginBlockEnd: '1rem',
+      fontSize: `${Math.pow(ratio, 2)}rem`,
+      lineHeight: `${Math.pow(ratio, 2) * Math.sqrt(rhythm)}rem`,
+      marginBlockStart: 0,
+      marginBlockEnd: `${((Math.pow(ratio, 2) * Math.sqrt(rhythm)) % rhythm)}rem`,
+      fontWeight: 500,
     },
     h4: {
-      marginBlockStart: '1rem',
-      marginBlockEnd: '1rem',
+      fontSize: `${Math.pow(ratio, 1)}rem`,
+      lineHeight: `${Math.pow(ratio, 1) * Math.sqrt(rhythm)}rem`,
+      marginBlockStart: 0,
+      marginBlockEnd: `${(Math.pow(ratio, 1) * Math.sqrt(rhythm)) % rhythm}rem`,
+      fontWeight: 500,
     },
     h5: {
-      marginBlockStart: '1rem',
-      marginBlockEnd: '1rem',
+      fontSize: `${ratio}rem`,
+      lineHeight: `${ratio * Math.sqrt(rhythm)}rem`,
+      marginBlockStart: 0,
+      marginBlockEnd: `${(ratio * Math.sqrt(rhythm)) % rhythm}rem`,
+      fontWeight: 400,
     },
     h6: {
-      marginBlockStart: '1rem',
-      marginBlockEnd: '1rem',
+      fontSize: `${ratio}rem`,
+      lineHeight: `${ratio * rhythm}rem`,
+      marginBlockStart: 0,
+      marginBlockEnd: `${ratio * rhythm}rem`,
+      fontWeight: 500,
     },
 
   },
@@ -108,6 +146,12 @@ const initialTheme: Theme = createMuiTheme({
         // on the other hand, they don't seem to be common tags and not supported by CKEditor 
         // without writing a plugin
         // so might do better to have them as classes applied to <div>
+        'p, ul, ol': {
+          marginBlockStart: 0,
+          marginBlockEnd: `${rhythm}rem`,
+          lineHeight: '1.5',
+        },
+        
         dl: { 
           padding: '0.5rem 0 1rem 1rem',
         },

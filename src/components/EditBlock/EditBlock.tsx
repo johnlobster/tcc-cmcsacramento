@@ -10,6 +10,7 @@ declare var InlineEditor: any; // loaded from cdn as global
 const myStyles = makeStyles(() =>
   createStyles({
     editorBlock: {
+      outlineStyle: 'none',
     },
     noEditHover: {
       outlineStyle: 'none',
@@ -20,21 +21,17 @@ const myStyles = makeStyles(() =>
         outlineStyle: 'solid',
         outlineColor: 'rgba(77, 96, 228, 0.75)',
         borderStyle: 'none',
+        padding: '0',
       },
-      '&:hover > :first-child': {
-        marginTop: '1rem',
+      // This is overriding ckeditor adding margin at the bottom, more specific selector
+      '&[data-cmc="EditBlock"]:hover > :last-child': {
+        marginBottom: '1.5rem',
       },
-      // ToDo - "Edit block" caption.
-      // No parent to be able to set position:relative on
-      // Transform increases size of block
-      // '& > div:hover:before': {
-      //   content: '"Edit block"',
-      //   color: 'rgba(77, 96, 228, 0.9)',
-      //   fontSize: '1.5rem',
-      //   position: 'absolute',
-      //   left: '-2em',
-      //   top: '-1.5em',
-      // },
+      // This is overriding ckeditor adding margin at the top, more specific selector
+      '&[data-cmc="EditBlock"]:hover > :first-child': {
+        marginTop: '0',
+      },
+      
     },
   },
   )
@@ -303,15 +300,20 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   // }
 
   return(
-    <div 
-      id={props.id}
-      className={editing ? classes.editorBlock : classes.noEditHover}
-      style={{padding: 0}}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      dangerouslySetInnerHTML={{__html: content}}
-    >
-    </div>
+    <React.Fragment>
+      {/* <div className={classes.addMargin}></div> */}
+      <div
+        id={props.id}
+        className={editing ? classes.editorBlock : classes.noEditHover}
+        style={{ padding: 0 }}
+        data-cmc="EditBlock"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        dangerouslySetInnerHTML={{ __html: content }}
+      >
+      </div>
+    </React.Fragment>
+    
   );
 }
 
@@ -322,6 +324,8 @@ export default EditBlock;
 // 2. 1st element extra padding using >:first-child
 // 3. last element reduced margin
 // easiest solution - go back to create editor on click, but can't create a synthetic event to get cursor right
+//       style={{padding: 0}}
+
 /*
   Mouse enter: create editor unless exists
   Focus(listen to editor focus) set editing

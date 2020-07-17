@@ -28,8 +28,10 @@ const myStyles = makeStyles(() =>
       outlineOffset: '3px',
       display: 'inline',
       position: 'relative',
-      '& p': {
+      '& p,div': {
         display: 'inline',
+        lineHeight: 'inherit',
+        marginBottom: 0,
 
       },
       '&:hover': {

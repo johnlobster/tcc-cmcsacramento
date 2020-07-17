@@ -40,21 +40,32 @@ const headerStyles = makeStyles((theme: Theme) =>
     },
     info: {
       [theme.breakpoints.up('xs')]: {
-        fontSize: '0.5rem',
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
       },
       [theme.breakpoints.between('sm', 'lg')]: {
         fontSize: '1.5rem',
+        lineHeight: `2rem`,
       },
       [theme.breakpoints.up('lg')]: {
         fontSize: '2.5rem',
+        lineHeight: `2.5rem`,
+        marginBottom: '1rem',
+        letterSpacing: '0.15rem',
       },
       fontWeight: 'bold',
-      letterSpacing: '0.15rem',
-      padding: '0 0.75rem 0.5rem 0.75rem'
+      padding: '0 0.75rem 0 0.75rem'
+
     },
     thirdRow: {
       [theme.breakpoints.up('sm')]: {
         display: 'block',
+      },
+      [theme.breakpoints.up('lg')]: {
+        display: 'block',
+        fontSize: '2.5rem',
+        marginBottom: '0.5rem',
+
       },
       display: 'none',
     },

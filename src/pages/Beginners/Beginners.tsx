@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import ContactButton from "../../components/ContactButton/ContactButton";
+import VSeparator from '../../components/VSeparator/VSeparator'
 
 import * as DList from "../../components/DescriptionList/DescriptionList"
 
@@ -94,9 +95,10 @@ const Beginners: React.FunctionComponent = (props) => {
 
   return(
     <div>
+      <VSeparator lines={2} />
       <Grid container spacing={2} className="responsiveContainer">
         <Grid item xs={12}>
-          <h3 ref={topRef} >Beginners</h3>
+          <h1 ref={topRef} >Beginners</h1>
 
           <p>As a beginner, you will work on</p>
           <ul>
@@ -107,7 +109,7 @@ const Beginners: React.FunctionComponent = (props) => {
 
           <Grid container>
             <Grid item xs={12} sm={7}>
-              <h5>5 Principles</h5>
+              <h3>5 Principles</h3>
               <p>
                 Professor Chen man ching emphasized 5 principles of Tai chi
               </p>

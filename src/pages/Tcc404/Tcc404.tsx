@@ -22,7 +22,8 @@ const myStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('lg')]: {
         width: '65%',
       },
-      maxWidth: "1000px"
+      maxWidth: "1000px",
+      marginTop: '3rem',
     },
     doggy: {
       maxWidth: "70vw",
@@ -48,11 +49,9 @@ const Tcc404: React.FunctionComponent = () => {
     <Box mx="auto" display="flex" justifyContent="center" 
       flexDirection="column" 
       className={myClasses.pageBox}>
-      <Box mx="auto" px={2}>
-        <Typography variant="h5" component="h2" className={myClasses.title}>
-          Whoops, that was a 404 ! That page doesn't exist
-        </Typography>
-      </Box>
+      <Typography variant="h2" component="h2" className={myClasses.title}>
+        Whoops, that was a 404 ! That page doesn't exist
+      </Typography>
       
       <Box p={2} mx="auto" py={3} >
         <Button variant="contained" size="large" color="secondary" className={myClasses.buttonBox} >
