@@ -34,7 +34,6 @@ const useStyles = makeStyles({
   circularMenuContainer: {
     width: "100%",
     maxWidth: `${theme.breakpoints.values.md}px`,
-    overflowX: 'hidden'
   },
   map: {
     width: 'auto',

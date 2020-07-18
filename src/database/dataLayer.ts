@@ -8,7 +8,7 @@ const getInitialContent: (page: string, id: string, content?: string) => string 
   } else {
     localPage = page.replace( /\//, "")
   }
-
+  console.log(`dataLayer: page = ${localPage} id=${id}`)
   const data = appDb.getData(localPage, id)
   if (data.length === 0) {
     // item did not exist in database

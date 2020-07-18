@@ -125,6 +125,7 @@ test.todo("saveData");
 test.todo("saveData invalid data");
 test.todo("saveData empty data");
 test.todo("saveData data type");
+test.todo("saveData, table doesn't exist")
 
 
 

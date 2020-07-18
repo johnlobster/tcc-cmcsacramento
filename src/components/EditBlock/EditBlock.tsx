@@ -65,19 +65,27 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
       const outData: string = editorInstance.getData();
       
       updateContent(outData);
-      appDb.storeData(routeLocation.pathname, props.id, outData);
-      console.log(`EditBlock: stored ${outData.length} bytes of data page ${routeLocation.pathname} id ${props.id}`)
+      let localPage: string
+      if (routeLocation.pathname === '/') {
+        localPage = 'Home'
+      } else {
+        localPage = routeLocation.pathname.replace(/\//, "")
+      }
+      appDb.storeData(localPage, props.id, outData);
+      console.log(`
+      EditBlock: stored ${outData.length} bytes of data page ${localPage} id ${props.id} data type ${typeof(outData)}
+      `)
       
       updateEditing(false);
       
 
       editorInstance.destroy()
         .then(() => {
-          console.log(`EditBlock: Editor destroyed ${props.id}`);
+          console.log(`EditBlock: Editor destroyed, show editor instance ${props.id}`);
           console.log(editorInstance)
           editorInstance = null
           setTimeout( () => {
-            console.log(`EditBlock: editorInstance after timeout ${props.id}`)
+            console.log(`EditBlock: editorInstance after timeout, should be null ${props.id}`)
             console.log(editorInstance)
           }, 2000)
           // updateContent(fixedOutData);
@@ -115,11 +123,39 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
               '|',
               'indent',
               'outdent',
-              '|',
               'blockQuote',
+              '|',
+              'mediaEmbed',
+              '|',
               'undo',
               'redo'
-            ]
+            ],
+            mediaEmbed: {
+              // don't allow media without preview as it would be harder to integrate into document
+              // following can be used - dailymotion, spotify, youtube, vimeo
+              removeProviders: ['instagram', 'twitter', 'googleMaps', 'flickr', 'facebook']
+            },
+            // ToDo install plugins for image - will want ImageLink
+            // image: {
+            //   // styling toolbar for image
+            //   toolbar: [
+            //     'imageStyle:alignLeft', 
+            //     'imageStyle:full', 
+            //     'imageStyle:alignRight',
+            //     '|',
+            //     'imageTextAlternative'
+            //   ],
+            //   styles: [
+            //     // This option is equal to a situation where no style is applied.
+            //     'full',
+
+            //     // This represents an image aligned to the left.
+            //     'alignLeft',
+
+            //     // This represents an image aligned to the right.
+            //     'alignRight'
+            //   ]
+            // },
 
           })
           .then((ed: any) => {

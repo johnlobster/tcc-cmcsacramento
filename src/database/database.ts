@@ -80,14 +80,24 @@ export class DatabaseType {
       // unable to access the value, but don't throw exception
       // throw new Error(`database: getData(${tableName},${id}) doesn't exist in database`);
     }
-    return data;
+    // even though we stopped the error with try, data may be undefined, so check and return empty string if undefined
+    if( data ) {
+      return data;
+    } else {
+      return ""
+    }
   }
     
 
   storeData = (tableName: string, id: string, data: string): void => {
     // overwrites existing or creates new
-    console.log(`database:storeData table ${tableName} id ${id}`)
+    console.log(`database:storeData table ${tableName} id ${id} data type ${typeof(data)}`)
     console.log(data)
-    this.theData[tableName][id] = data;
+    // can't write directly if tableName hasn't been defined
+    if (!this.theData[tableName]) {
+      this.theData = Object.assign( this.theData, {[tableName]: { [id]: data}})
+    } else {
+      this.theData[tableName][id] = data; // should be faster than object.assign
+    }
   }
 }

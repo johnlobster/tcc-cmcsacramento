@@ -6,6 +6,19 @@ Github <https://github.com/johnlobster/tcc-cmcsacramento>
 
 ## Technical details
 
+### Set up development environment
+
+#### Required environment variables
+
+`GH_OA_TOKEN`
+
+github authorization token, allows server to pull and push from github
+
+`REACT_APP_BUILD_MODE`
+
+Building for web removes most of the code specific to author. Values are `author` and `web`
+If it is not there, then create-create-act won't do tree shaking and the front end may crash
+
 #### Favicon generation
 
 [Real favicon generator](https://realfavicongenerator.net/)
