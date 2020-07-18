@@ -9,6 +9,8 @@ import EditBlock from "../../components/EditBlock/EditBlock"
 import EditSpan from '../../components/EditSpan/EditSpan';
 import CircleMenu from "../../components/CircleMenu/CircleMenu";
 import VSeparator from "../../components/VSeparator/VSeparator"
+import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+
 
 import map from "../../images/map2.jpg";
 import cmc from "../../images/cmc1_fade.png";
@@ -113,13 +115,13 @@ const useStyles = makeStyles({
 
 const Home: React.FunctionComponent = () => {
   const classes = useStyles();
-  //  (Golden treasure) Tai Chi Chuan
+  //   Tai Chi Chuan
   return(
     <div>
-      <VSeparator lines={2} />
-      <Grid container spacing={2} className="responsiveContainer">
+      <ResponsiveContainer>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
-            <h1 className={classes.eSpan}><EditSpan id="Home_welcome_title">Welcome to Jīnbǎo</EditSpan></h1>
+            <h1 className={classes.eSpan}><EditSpan id="Home_welcome_title">Welcome to Jīnbǎo (Golden treasure) Tai Chi Chuan</EditSpan></h1>
 
             {/* Background image */}
             <div style={{position: 'relative'}}>
@@ -174,17 +176,6 @@ const Home: React.FunctionComponent = () => {
           </div>
           <VSeparator lines={1} />
         
-          <VSeparator lines={3} />
-          <h1>I am h1 header that is too long and messes up the rhythm</h1>
-          <p>I am a paragraph Sit sunt id veniam do fugiat sunt reprehenderit quis enim tempor. Fugiat est tempor labore cupidatat adipisicing in amet. Sint laboris nostrud officia velit pariatur commodo culpa esse Lorem fugiat.</p>
-          <h2>I am h2 header that is too long and messes up the rhythm</h2>
-          <p>I am a paragraph Sit sunt id veniam do fugiat sunt reprehenderit quis enim tempor. Fugiat est tempor labore cupidatat adipisicing in amet. Sint laboris nostrud officia velit pariatur commodo culpa esse Lorem fugiat.</p>
-          <h3>I am h3 header that is too long and messes up the rhythm</h3>
-          <p>I am a paragraph In consequat culpa enim eu amet reprehenderit consectetur ad ex est duis aliquip ad. Adipisicing aliqua et aliquip mollit aliquip mollit fugiat mollit aliqua cupidatat aliquip occaecat culpa culpa. Ipsum consectetur et in nostrud.</p>
-          <h4>I am h4 header that is too long and messes up the rhythm</h4>
-          <p>I am a paragraph Quis ex aute ullamco excepteur consectetur do. Sint eiusmod duis aliqua anim duis duis qui excepteur ea Lorem minim amet eiusmod qui. Dolore commodo eu laboris magna tempor deserunt exercitation ex adipisicing voluptate esse occaecat ullamco. Sit ad enim qui veniam adipisicing. Labore exercitation ullamco sit in culpa laborum dolor. Ipsum exercitation ea adipisicing commodo sunt occaecat reprehenderit reprehenderit dolor dolor.</p>
-          <h5>I am h5 header that is too long and messes up the rhythm</h5>
-          <p>I am a paragraph Irure deserunt cupidatat irure enim commodo aliquip. Id pariatur tempor anim quis ea cillum incididunt ullamco pariatur consectetur cupidatat ipsum adipisicing eiusmod. Adipisicing incididunt commodo consectetur veniam fugiat consequat sit. Sint labore labore aute in fugiat veniam.</p>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Card raised={true} className={classes.customCard + " " + classes.contactCard}>
@@ -247,6 +238,7 @@ const Home: React.FunctionComponent = () => {
           <Box><CircleMenu /></Box>
         </Grid>
       </Grid>
+      </ResponsiveContainer>
 
     </div>
   );

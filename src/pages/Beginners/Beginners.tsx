@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import ContactButton from "../../components/ContactButton/ContactButton";
-import VSeparator from '../../components/VSeparator/VSeparator'
+import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+
 
 import * as DList from "../../components/DescriptionList/DescriptionList"
 
@@ -21,19 +22,20 @@ const useStyles = makeStyles({
     display: 'flex',
     alignContent: 'center',
     width: '100%',
-    paddingBottom: '1rem',
-    paddingLeft: '1rem',
+    paddingBottom: '3rem',
+    paddingLeft: '1.5rem',
     [theme.breakpoints.up('xs')]: {
       paddingTop: '0',
-
     },
     [theme.breakpoints.up('md')]: {
-      paddingTop: '4rem',
-
+      paddingTop: '1.5rem',
     },
     '& img': {
-      maxWidth: '90%',
-    }
+      [theme.breakpoints.down('sm')]: {
+        maxWidth: '90%',
+      },
+    },
+    
   },
   squareTaoCardImage: {
     width: '100px',
@@ -95,8 +97,8 @@ const Beginners: React.FunctionComponent = (props) => {
 
   return(
     <div>
-      <VSeparator lines={2} />
-      <Grid container spacing={2} className="responsiveContainer">
+      <ResponsiveContainer>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <h1 ref={topRef} >Beginners</h1>
 
@@ -243,6 +245,7 @@ const Beginners: React.FunctionComponent = (props) => {
           <p>Yet another card</p>
         </CardToBlock>
       </Grid>
+      </ResponsiveContainer>
 
     </div>
 

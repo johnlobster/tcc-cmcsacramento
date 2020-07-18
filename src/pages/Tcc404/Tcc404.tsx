@@ -2,8 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import { Box, Button,Theme, Typography} from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-// import { spacing } from '@material-ui/system';
 
+import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import dog from "../../images/doggy.jpg";
 
 const myStyles = makeStyles((theme: Theme) =>
@@ -23,7 +23,6 @@ const myStyles = makeStyles((theme: Theme) =>
         width: '65%',
       },
       maxWidth: "1000px",
-      marginTop: '3rem',
     },
     doggy: {
       maxWidth: "70vw",
@@ -46,26 +45,28 @@ const Tcc404: React.FunctionComponent = () => {
   const myClasses = myStyles(); 
 
   return(
-    <Box mx="auto" display="flex" justifyContent="center" 
-      flexDirection="column" 
-      className={myClasses.pageBox}>
-      <Typography variant="h2" component="h2" className={myClasses.title}>
-        Whoops, that was a 404 ! That page doesn't exist
-      </Typography>
-      
-      <Box p={2} mx="auto" py={3} >
-        <Button variant="contained" size="large" color="secondary" className={myClasses.buttonBox} >
-          <Link to="/Home" className={myClasses.button}>
-            Take me back to the home page
-          </Link>
-        </Button>
+    <ResponsiveContainer>
+      <Box mx="auto" display="flex" justifyContent="center" 
+        flexDirection="column" 
+        className={myClasses.pageBox}>
+        <Typography variant="h2" component="h2" className={myClasses.title}>
+          Whoops, that was a 404 ! That page doesn't exist
+        </Typography>
+        
+        <Box p={2} mx="auto" py={3} >
+          <Button variant="contained" size="large" color="secondary" className={myClasses.buttonBox} >
+            <Link to="/Home" className={myClasses.button}>
+              Take me back to the home page
+            </Link>
+          </Button>
+        </Box>
+        
+        <Box px={2} pb={1} mx="auto">
+          <img src={dog} className={myClasses.doggy}
+            alt="A meditating dog, just what you need for a 404" />
+        </Box>
       </Box>
-      
-      <Box px={2} pb={1} mx="auto">
-        <img src={dog} className={myClasses.doggy}
-          alt="A meditating dog, just what you need for a 404" />
-      </Box>
-    </Box>
+    </ResponsiveContainer>
   );
 }
 

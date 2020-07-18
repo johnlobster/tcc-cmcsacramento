@@ -33,8 +33,8 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 // Typography constants
-const ratio = 1.333333333333333333;
-const rhythm = 1.5;
+export const ratio = 1.333333333333333333;
+export const rhythm = 1.5;
 
 // Problems with theme
 // have to explicitly set margin-block-start because in default style sheet
@@ -88,41 +88,83 @@ const initialTheme: Theme = createMuiTheme({
   typography: {
     fontSize: 16,
     h1: {
-      fontSize: `${Math.pow(ratio, 4)}rem`,
-      lineHeight: `${Math.pow(ratio , 4) * Math.sqrt(Math.sqrt(Math.sqrt(rhythm))) }rem`,
-      // paddingBottom: '20px',
+      fontSize: `${2.7 * rhythm}rem`,
+      lineHeight: `${3 * rhythm}rem`,
       marginBlockStart: 0,
-      marginBlockEnd: `${ + rhythm}rem`,
+      // reduced padding at top by 1 rhythm
+      paddingTop: `${rhythm * 1}rem`,
+      marginBlockEnd: `${rhythm }rem`,
       fontWeight: 500,
     },
     h2: {
-      fontSize: `${Math.pow(ratio, 3)}rem`,
-      lineHeight: `${Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))}rem`,
+      fontSize: `${rhythm * 2}rem`,
+      lineHeight: `${2.3 * rhythm}rem`,
       marginBlockStart: 0,
-      marginBlockEnd: `${rhythm}rem`,
+      paddingTop: `${rhythm * 1.9}rem`,
+      marginBlockEnd: `${rhythm * 0.6}rem`,
       fontWeight: 500,
     },
     h3: {
-      fontSize: `${Math.pow(ratio, 2)}rem`,
-      lineHeight: `${Math.pow(ratio, 2) * Math.sqrt(rhythm)}rem`,
+      fontSize: `${(1.4 * rhythm)}rem`,
+      lineHeight: `${(2 * rhythm)}rem`,
       marginBlockStart: 0,
-      marginBlockEnd: `${((Math.pow(ratio, 2) * Math.sqrt(rhythm)) % rhythm)}rem`,
+      paddingTop: `${rhythm * 1.6}rem`,
+      marginBlockEnd: `${rhythm * 0.4}rem`,
       fontWeight: 500,
     },
     h4: {
-      fontSize: `${Math.pow(ratio, 1)}rem`,
-      lineHeight: `${Math.pow(ratio, 1) * Math.sqrt(rhythm)}rem`,
+      fontSize: `${0.95 * rhythm }rem`,
+      lineHeight: `${(1.5 * rhythm)}rem`,
       marginBlockStart: 0,
-      marginBlockEnd: `${(Math.pow(ratio, 1) * Math.sqrt(rhythm)) % rhythm}rem`,
+      paddingTop: `${rhythm * 0.6}rem`,
+      marginBlockEnd: `${rhythm * 0.3}rem`,
       fontWeight: 500,
     },
     h5: {
-      fontSize: `${ratio}rem`,
-      lineHeight: `${ratio * Math.sqrt(rhythm)}rem`,
+      fontSize: '1rem',
+      lineHeight: `${rhythm}rem`,
       marginBlockStart: 0,
-      marginBlockEnd: `${(ratio * Math.sqrt(rhythm)) % rhythm}rem`,
-      fontWeight: 400,
+      paddingTop: `${rhythm * 0.7}rem`,
+      marginBlockEnd: `${rhythm * 0.3 }rem`,
+      letterSpacing: '0.005rem',
+      fontWeight: 500,
     },
+    // h1: {
+    //   fontSize: `${Math.pow(ratio, 4)}rem`,
+    //   lineHeight: `${Math.pow(ratio , 4) * Math.sqrt(Math.sqrt(Math.sqrt(rhythm))) }rem`,
+    //   // paddingBottom: '20px',
+    //   marginBlockStart: 0,
+    //   marginBlockEnd: `${((Math.pow(ratio, 4) * Math.sqrt(Math.sqrt(rhythm))) % rhythm)}rem`,
+    //   fontWeight: 500,
+    // },
+    // h2: {
+    //   fontSize: `${Math.pow(ratio, 3)}rem`,
+    //   lineHeight: `${Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))}rem`,
+    //   marginBlockStart: 0,
+    //   marginBlockEnd: `${((Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))) % rhythm)}rem`,
+    //   fontWeight: 500,
+    // },
+    // h3: {
+    //   fontSize: `${Math.pow(ratio, 2)}rem`,
+    //   lineHeight: `${Math.pow(ratio, 2) * Math.sqrt(rhythm)}rem`,
+    //   marginBlockStart: 0,
+    //   marginBlockEnd: `${((Math.pow(ratio, 2) * Math.sqrt(rhythm)) % rhythm)}rem`,
+    //   fontWeight: 500,
+    // },
+    // h4: {
+    //   fontSize: `${Math.pow(ratio, 1)}rem`,
+    //   lineHeight: `${Math.pow(ratio, 1) * Math.sqrt(rhythm)}rem`,
+    //   marginBlockStart: 0,
+    //   marginBlockEnd: `${(Math.pow(ratio, 1) * Math.sqrt(rhythm)) % rhythm}rem`,
+    //   fontWeight: 500,
+    // },
+    // h5: {
+    //   fontSize: `${ratio}rem`,
+    //   lineHeight: `${ratio * Math.sqrt(rhythm)}rem`,
+    //   marginBlockStart: 0,
+    //   marginBlockEnd: `${(ratio * Math.sqrt(rhythm)) % rhythm}rem`,
+    //   fontWeight: 400,
+    // },
     h6: {
       fontSize: `${ratio}rem`,
       lineHeight: `${ratio * rhythm}rem`,
@@ -150,6 +192,9 @@ const initialTheme: Theme = createMuiTheme({
           marginBlockStart: 0,
           marginBlockEnd: `${rhythm}rem`,
           lineHeight: '1.5',
+        },
+        'ul, ol': {
+          paddingLeft: `${rhythm}rem`,
         },
         
         dl: { 
