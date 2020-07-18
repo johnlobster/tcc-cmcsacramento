@@ -29,34 +29,47 @@
         <div class="col-2 authorBox">
           <!-- Author controls, buttons -->
           <button id="loginButton" class="btn btn-secondary" onclick="login()"
-            data-toggle="tooltip" data-placement="right" title="Log in - remembers you from last time" 
+            data-toggle="tooltip" data-placement="right" title="Log in - remembers you from last time"
+            disabled={true}
           >
             Login
           </button>
+
           <button id="saveButton" class="btn btn-primary" onclick="saveData()"
             data-toggle="tooltip" data-placement="right" title="Save to database"
           >
             Save
           </button>
+
           <button id="updateButton" class="btn btn-primary" onclick="updateData()"
-            data-toggle="tooltip" data-placement="right" title="Save to database">
+            data-toggle="tooltip" data-placement="right" title="Load from database"
+            disabled={true}
+          >
             Update
           </button>
+
           <button id="publishButton" class="btn btn-primary" onClick="publish()"
             data-toggle="tooltip" data-placement="right" title="Send to main web page"
+            disabled={true}
           >
             Publish
           </button>
+
           <button id="mobileButton" class="btn btn-primary" onClick="mobile()"
-            data-toggle="tooltip" data-placement="right" title="View as a small screen (mobile)">
+            data-toggle="tooltip" data-placement="right" title="View as a small screen (mobile)"
+            disabled={true}
+          >
             Mobile/Desktop
           </button>
+
           <button id="revertButton" class="btn btn-danger"
             data-toggle="tooltip" data-placement="right" title="Erase all edits before last save"
+            disabled={true}
           >
             Revert
           </button>
         </div>
+        
         <div class="col-10">
           <div id="iframeContainer" class="iframeBox">
             <iframe id="iframeId" src="index.html" name="userIframe">

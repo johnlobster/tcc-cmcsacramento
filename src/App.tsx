@@ -7,42 +7,48 @@ import Routing from "./components/Routing/Routing";
 import Footer from "./components/Footer/Footer";
 import MuiStyleChanges from "./components/MuiStyleChanges/MuiStyleChanges"
 
+import * as db from "./database/database";
+import receiveMessage from "./database/messageLayer"
+
+function inIframe(): boolean { try { return window.self !== window.top; } catch (e) { return true; } }
+
+const tmpData: db.DbType = {
+  page1: {
+    "someId": "First editor data",
+    "someOtherId": "Second editor data",
+
+  }
+}
+
+declare global {
+/* eslint no-var: "off" */
+  var appDb: db.DatabaseType;
+}
+
 const App: React.FunctionComponent = () => {
 
-  // // another check on code shaking
-  // process.env.REACT_APP_BUILD_MODE === "author" && console.log("In author mode")
-
-  // // state will be true (i.e. don't wait for anything to complete) unless in author mode
-  // const [appActive, changeAppActive] = React.useState(process.env.REACT_APP_BUILD_MODE !== "author");
-
-  // // load ck editor
-  // const ckeReady= React.useRef(false)
-  // const onCKELoad: () => void = () => {
-  //   ckeReady.current = true
-  // }
-  // React.useEffect( () => {
-  //   if (process.env.REACT_APP_BUILD_MODE === "author") {
-  //     const ckeScript = document.createElement('SCRIPT') as HTMLScriptElement;
-  //     ckeScript.onload = onCKELoad 
-  //     ckeScript.src = "https://cdn.ckeditor.com/ckeditor5/20.0.0/inline/ckeditor.js";
-
-  //     document.head.appendChild(ckeScript)
-  //   }
-  // })
+  // initialize database
+  window.appDb = db.DatabaseType.create(tmpData);
   
   
-  // // loop (setInterval) until everything is ready
-  // React.useEffect( () => {
-  //   if (process.env.REACT_APP_BUILD_MODE === "author") {
-  //     const thisInterval = setInterval( () => {
-  //       if( ckeReady.current ) {
-  //         changeAppActive(true)
-  //         clearInterval(thisInterval)
-  //       }
-  //     }, 400)
-  //   }
-  // });
-  
+  // on mount, listen to postMessage event
+  React.useEffect(() => {
+    if (process.env.REACT_APP_BUILD_MODE === "author") {
+      if (inIframe()) {
+        console.log("App: start listening for postMessage event");
+        window.addEventListener("message", receiveMessage);
+        return ((): void => {
+          console.log("App: unmount, remove message listener");
+          window.removeEventListener("message", receiveMessage);
+        });
+      } else {
+        console.log("App: not in iframe, don't set up event listener")
+      }
+      
+      
+    } 
+  });
+
   // ToDo add left hand menu for desktop
   return (
     <Router>

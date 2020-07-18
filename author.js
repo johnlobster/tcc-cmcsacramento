@@ -25,50 +25,59 @@ const receiveMessage = (event) => {
   event.preventDefault(); // Probably doesn't bubble up
   console.log(`Author: Message received from ${event.origin}`);
   console.log(event.data);
-  // send to server by api
+  
+  // Author sends a Ping to the iframe to check messaging interface
+  // iframe replies with Pong
   if (event.data === "Pong") {
-    console.log("Author: replied to Ping");
-    return; // from postMessage
+    console.log("Author: Ping response was Pong");
+    return; 
   } else {
+    // returning a database object
     const dataObj = JSON.parse(event.data);
-    console.log(`Author received ${dataObj}`);
-    window.axios.post("http://localhost:3000/write", dataObj)
-    .then((response) => {
-      if (response.status === 200) {
-        // server received data
-        console.log("author.js server data transfer confirmed");
-      } else {
-        console.log(`author.js data transfer failed. http returned ${response.status}`);
+    console.log(`Author received database`)
+    console.log(`${dataObj}`);
 
-      }})
-      .catch((error) => {
-        if (error.response) { 
-          console.log(`author.js http returned error code ${error.response.status}`);
-        } else {
-          // The request was made but no response was received 
-          console.log(`author.js http request timed out`);
-        }
-      });
+    // send database to server
+  //   window.axios.post("http://localhost:3000/write", dataObj)
+  //   .then((response) => {
+  //     if (response.status === 200) {
+  //       // server received data
+  //       console.log("author.js server data transfer confirmed");
+  //     } else {
+  //       console.log(`author.js data transfer failed. http returned ${response.status}`);
+
+  //     }})
+  //     .catch((error) => {
+  //       if (error.response) { 
+  //         console.log(`author.js http returned error code ${error.response.status}`);
+  //       } else {
+  //         // The request was made but no response was received 
+  //         console.log(`author.js http request timed out`);
+  //       }
+  //     });
   }
 }
 
 /***************************************************** */
 // execution starts after onload event
 
+
 window.onload = () => {
   console.log("Author: document loaded");
   // initialize tooltips
   $('[data-toggle="tooltip"]').tooltip();
 
-  // listen for messages from author
+  // listen for messages from iframe
   window.addEventListener("message", receiveMessage);
-  // insert iframe, could be done with environment variable
+  
   iframeElement = document.getElementById("iframeId")
   if (!iframeElement) {
     console.log("Author: Failed to find iframe element");
   } else {
     console.log("Author: found iframe element");
   }
+
+  postTest()
 
   // what can author do ?
   let frame = iframeElement.contentDocument

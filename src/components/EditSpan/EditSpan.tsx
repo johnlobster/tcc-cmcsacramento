@@ -2,7 +2,6 @@ import React from 'react';
 
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-// import { passClasses } from "../../global/common"
 
 /* eslint no-var: "off" */
 declare var InlineEditor: any; // loaded from cdn as global
@@ -67,9 +66,6 @@ const EditSpan: React.FunctionComponent<MoreProps> = (props) => {
   const [content, updateContent] = React.useState(props.children);
   const [editing, updateEditing] = React.useState(false);
 
-  React.useEffect( () => {
-    console.log(`Span: State changed editing ${editing} content ${content}`)
-  }, [content, editing])
   const exitCKEditor = (): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
       console.log("Focus lost, so destroy editor");
@@ -180,6 +176,3 @@ const EditSpan: React.FunctionComponent<MoreProps> = (props) => {
 }
 
 export default EditSpan;
-
-// className = { editing? "editorSpan": "editorSpan editorHover" }
-// dangerouslySetInnerHTML={{__html: content }}

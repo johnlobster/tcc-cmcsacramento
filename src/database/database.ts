@@ -86,6 +86,8 @@ export class DatabaseType {
 
   storeData = (tableName: string, id: string, data: string): void => {
     // overwrites existing or creates new
+    console.log(`database:storeData table ${tableName} id ${id}`)
+    console.log(data)
     this.theData[tableName][id] = data;
   }
 }
