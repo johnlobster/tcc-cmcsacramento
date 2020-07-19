@@ -11,7 +11,8 @@ declare var InlineEditor: any; // loaded from cdn as global
 const myStyles = makeStyles(() =>
   createStyles({
     editorBlock: {
-      outlineStyle: 'none',
+      outlineColor: 'grey',
+      outlineStyle: 'dashed',
     },
     noEditHover: {
       outlineStyle: 'none',
@@ -88,8 +89,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
             console.log(`EditBlock: editorInstance after timeout, should be null ${props.id}`)
             console.log(editorInstance)
           }, 2000)
-          // updateContent(fixedOutData);
-          // updateEditing(false);
+          
         })
         .catch((error: any) => {
           console.error("Editor crashed during destruction");

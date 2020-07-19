@@ -92,16 +92,16 @@ const initialTheme: Theme = createMuiTheme({
       lineHeight: `${3 * rhythm}rem`,
       marginBlockStart: 0,
       // reduced padding at top by 1 rhythm
-      paddingTop: `${rhythm * 1}rem`,
-      marginBlockEnd: `${rhythm }rem`,
+      paddingTop: `${rhythm}rem`,
+      marginBlockEnd: `${rhythm}rem`,
       fontWeight: 500,
     },
     h2: {
       fontSize: `${rhythm * 2}rem`,
-      lineHeight: `${2.3 * rhythm}rem`,
+      lineHeight: `${2.5 * rhythm}rem`,
       marginBlockStart: 0,
-      paddingTop: `${rhythm * 1.9}rem`,
-      marginBlockEnd: `${rhythm * 0.6}rem`,
+      paddingTop: `${rhythm * 1.5}rem`,
+      marginBlockEnd: `${rhythm * 0.5}rem`,
       fontWeight: 500,
     },
     h3: {
@@ -117,7 +117,7 @@ const initialTheme: Theme = createMuiTheme({
       lineHeight: `${(1.5 * rhythm)}rem`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 0.6}rem`,
-      marginBlockEnd: `${rhythm * 0.3}rem`,
+      marginBlockEnd: `${rhythm * 0.4}rem`,
       fontWeight: 500,
     },
     h5: {
@@ -191,7 +191,7 @@ const initialTheme: Theme = createMuiTheme({
         'p, ul, ol': {
           marginBlockStart: 0,
           marginBlockEnd: `${rhythm}rem`,
-          lineHeight: '1.5',
+          lineHeight: `${rhythm}rem`,
         },
         'ul, ol': {
           paddingLeft: `${rhythm}rem`,

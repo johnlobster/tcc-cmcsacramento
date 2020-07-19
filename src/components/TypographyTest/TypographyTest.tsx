@@ -34,7 +34,18 @@ const TypographyTest: React.FunctionComponent = () => {
 
   return(
     <div>
-        <div style={{width: '70%',display: 'flex',justifyContent: 'space-around'}}>
+        <h5> 30 rem line to investigate width of text</h5>
+        <div style={{
+          width: '30rem',
+          height: '4px',
+          backgroundColor: 'green',
+          marginBottom: '1rem',
+        }}></div>
+        <h5>Typography test area</h5>
+        <div 
+          style={{width: '70%',display: 'flex',justifyContent: 'space-around',
+          position: 'sticky', top: 0}}
+        >
           <Button onClick={toggle} variant="contained" color="secondary">
             Grid Toggle
           </Button>
@@ -50,13 +61,13 @@ const TypographyTest: React.FunctionComponent = () => {
         {/* Background grid */}
         <div style={{position:'relative', display: show, width: '100%'}}>
           <div style={{ position: 'absolute', top: `${offset}px`, width: '100%'}}>
-            {genGridArray(40).map((value) => {
+            {genGridArray(150).map((value) => {
               return (
-                <div style={{
+                <div key={value} style={{
                   position: 'absolute',
-                  borderStyle: 'solid', borderColor: 'rgb(162, 162, 162)',
-                  borderWidth: '0', borderBottomWidth: '1px',
-                  height: `${rhythm}rem`, width: '100%',
+                  width: '100%',
+                  height: '1px',
+                  backgroundColor: 'rgba(128, 128, 128, 0.6)',
                   top: `${value * rhythm}rem`
                 }}>
                 </div>
@@ -65,6 +76,9 @@ const TypographyTest: React.FunctionComponent = () => {
           </div>
         </div>
         
+        <p>Warning - browser calculations are slightly out for some reason. A 4 line paragraph is 95px, when it should be 
+          96. Means adjusting grid after every long paragraph
+        </p>
         <h5> h5 Short title</h5>
         <p>One line paragraph</p>
         <p>Ut eiusmod nulla consequat non Lorem et dolore Lorem consectetur commodo adipisicing ut. Sint fugiat laboris quis esse enim non Lorem duis esse nisi adipisicing tempor. Enim sint sint nulla nisi enim est est incididunt exercitation. Aliqua exercitation dolor enim cillum proident ut tempor do. Proident exercitation esse enim consequat nulla ullamco qui aliquip in id magna amet esse nostrud.</p>
