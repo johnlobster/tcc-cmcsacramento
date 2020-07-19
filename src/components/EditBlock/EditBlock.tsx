@@ -4,6 +4,8 @@ import {useLocation} from "react-router-dom";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import getInitialContent from '../../database/dataLayer'
+import * as eContext from "../../global/editContext"
+
 
 /* eslint no-var: "off" */
 declare var InlineEditor: any; // loaded from cdn as global
@@ -11,6 +13,7 @@ declare var InlineEditor: any; // loaded from cdn as global
 const myStyles = makeStyles(() =>
   createStyles({
     editorBlock: {
+      outlineWidth: '2px',
       outlineColor: 'grey',
       outlineStyle: 'dashed',
     },
@@ -49,6 +52,8 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   const classes = myStyles()
 
+  const editContext = React.useContext(eContext.EditContext)
+
   const routeLocation = useLocation()
 
   let editorInstance: any = null;
@@ -78,6 +83,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
       `)
       
       updateEditing(false);
+      editContext.updateEditor("")
       
 
       editorInstance.destroy()
@@ -103,8 +109,11 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
       console.log(`EditBlock: Mouse enter ${props.id}`)
       console.log(editorInstance)
       if (editorInstance) {
-        // editor already exists, don't create new one
+        // editor already exists in this EditBlock instance, don't create new one
       } else {
+        if (editContext.editorInstanceId !== props.id) {
+          // console.log(`EditBlock: another editor exists on`)
+        }
         InlineEditor
           .create(document.querySelector(`#${props.id}`), {
             // ToDo add images and media
@@ -162,6 +171,9 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
             editorInstance = ed;
             console.log(`EditBlock: Loaded editor ${props.id}`);
             console.log(editorInstance)
+            // console.log(`EditBlock context.editorInstanceId ${editContext.editorInstanceId} id = ${props.id}`)
+            // editContext.updateEditor(props.id)
+
             // exit editor when focus lost by watching editor focusEvent
             editorInstance.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean) => {
               if (isFocused) {

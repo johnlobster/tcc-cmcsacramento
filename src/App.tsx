@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Routing from "./components/Routing/Routing";
 import Footer from "./components/Footer/Footer";
 import MuiStyleChanges from "./components/MuiStyleChanges/MuiStyleChanges"
+import * as eContext from "./global/editContext"
 
 import * as db from "./database/database";
 import receiveMessage from "./database/messageLayer"
@@ -49,13 +50,23 @@ const App: React.FunctionComponent = () => {
     } 
   });
 
+  /* eslint no-empty-function: "off" */
+  const editId = React.useRef("") 
+  const updateEditId: eContext.UpdateEditId = (newId) => {
+    console.log(`App: editor context new ${newId} old ${editId.current}`)
+    editId.current = newId
+  }
+
   // ToDo add left hand menu for desktop
   return (
     <Router>
-    <MuiStyleChanges />
-    <Header />
-    <Routing />
-    <Footer />
+      <MuiStyleChanges />
+        <eContext.EditContext.Provider value={{editorInstanceId: editId.current, updateEditor: updateEditId}} >
+          <Header />
+          <Routing />
+          <Footer />
+        </eContext.EditContext.Provider>
+        
     </Router>
     ); 
 }
