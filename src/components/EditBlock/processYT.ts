@@ -47,8 +47,9 @@
           outputData = outputData +
             inputDataModified.substr(0, match.index) +
             "<iframe type=\"text/html\" src=" +
-            `"https://www.youtube.com/embed/${idArray[1]}"></iframe>`
-          inputDataModified = inputDataModified.substr(match.index + match[0].length, (inputDataModified.length - match[0].length))
+            `"https://www.youtube.com/embed/${idArray[1]}"></iframe>`;
+          
+          inputDataModified = inputDataModified.substr(match.index as number + match[0].length, (inputDataModified.length - match[0].length))
         } else {
           // no match
           // console.log("processYT: no match")
