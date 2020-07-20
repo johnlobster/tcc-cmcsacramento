@@ -10,7 +10,7 @@ it("Renders Footer with text present", () => {
   render(<Footer />);
 
   expect(screen.getByAltText("Yin Yang")).toBeInTheDocument()
-  expect(screen.getByText(/This website collects no personal data/i)).toBeInTheDocument()
+  expect(screen.getByText(/This website collects no data/i)).toBeInTheDocument()
   expect(screen.getByText(/Jinbao Tai Chi Chuan/i)).toBeInTheDocument()
 
   cleanup
