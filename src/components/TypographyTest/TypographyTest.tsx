@@ -34,11 +34,17 @@ const TypographyTest: React.FunctionComponent = () => {
 
   return(
     <div>
-        <h5> 30 rem line to investigate width of text</h5>
+        <h5> 30 and 50rem lines to investigate width of text</h5>
         <div style={{
           width: '30rem',
           height: '4px',
           backgroundColor: 'green',
+          marginBottom: '1rem',
+        }}></div>
+        <div style={{
+          width: '50rem',
+          height: '4px',
+          backgroundColor: 'red',
           marginBottom: '1rem',
         }}></div>
         <h5>Typography test area</h5>

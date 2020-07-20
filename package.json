@@ -41,9 +41,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "d": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
-    "dev": "react-scripts start",
-    "dev:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts start",    
+    "dev": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
+    "dev:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts start",
     "build": "react-scripts build",
     "build:web": "npx cross-env REACT_APP_BUILD_MODE='web' CI= react-scripts build",
     "build:author": "npx cross-env REACT_APP_BUILD_MODE='author' CI= react-scripts build",

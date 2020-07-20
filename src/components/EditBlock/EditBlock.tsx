@@ -4,7 +4,6 @@ import {useLocation} from "react-router-dom";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import getInitialContent from '../../database/dataLayer'
-import * as eContext from "../../global/editContext"
 
 
 /* eslint no-var: "off" */
@@ -52,7 +51,6 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   const classes = myStyles()
 
-  const editContext = React.useContext(eContext.EditContext)
 
   const routeLocation = useLocation()
 
@@ -83,7 +81,6 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
       `)
       
       updateEditing(false);
-      editContext.updateEditor("")
       
 
       editorInstance.destroy()
@@ -111,9 +108,6 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
       if (editorInstance) {
         // editor already exists in this EditBlock instance, don't create new one
       } else {
-        if (editContext.editorInstanceId !== props.id) {
-          // console.log(`EditBlock: another editor exists on`)
-        }
         InlineEditor
           .create(document.querySelector(`#${props.id}`), {
             // ToDo add images and media
