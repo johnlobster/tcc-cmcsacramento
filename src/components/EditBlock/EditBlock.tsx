@@ -4,6 +4,9 @@ import {useLocation} from "react-router-dom";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import getInitialContent from '../../database/dataLayer'
+import theme, {rhythm} from "../../global/theme";
+
+import processYT from './processYT'
 
 
 /* eslint no-var: "off" */
@@ -11,16 +14,42 @@ declare var InlineEditor: any; // loaded from cdn as global
 
 const myStyles = makeStyles(() =>
   createStyles({
+    root: {
+      
+    },
     editorBlock: {
       outlineWidth: '2px',
       outlineColor: 'grey',
       outlineStyle: 'dashed',
+      padding: 0,
     },
     noEditHover: {
       outlineStyle: 'none',
       outlineColor: 'transparent',
       outlineWidth: '4px',
       outlineOffset: '3px',
+      // styling embedded media item (YouTube)
+      '& figure.media': {
+        minWidth: '480px',  // Google recommendation
+        maxWidth: '800px',
+        [theme.breakpoints.up('xs')]: {
+          width: '100%',
+          padding: `${rhythm / 2}rem 0`,
+        },
+        [theme.breakpoints.up('md')]: {
+          width: '75%',
+          marginRight: 'auto',
+          padding: `${rhythm / 2}rem 0`,
+        },
+        [theme.breakpoints.up('lg')]: {
+          width: '50%',
+          marginRight: 'auto',
+          padding: `${rhythm}rem 0`,
+        },
+      },
+      '& figure.media > iframe': {
+        width: '100%',
+      },
       '&:hover': {
         outlineStyle: 'solid',
         outlineColor: 'rgba(77, 96, 228, 0.75)',
@@ -54,44 +83,74 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   const routeLocation = useLocation()
 
-  let editorInstance: any = null;
-  const [content, updateContent] = React.useState(getInitialContent(routeLocation.pathname, props.id, props.content));
+  const editorInstance: any = React.useRef(null)
+
+
+  // need to force update because setdangerouslyhtml doesn't force a redraw
+  const [, updateRedraw] = React.useState(0);
+  const forceUpdate = React.useCallback(() => updateRedraw(x => x + 1), []);
+
+  const [content, updateContent] = React.useState("");
   const [editing, updateEditing] = React.useState(false);
 
+  // log state changes
+  React.useEffect(() => {
+    console.log(`EditBlock: STATE CHANGE editing now ${editing} id ${props.id}`)
+    forceUpdate()
+  }, [editing, props.id, forceUpdate])
+  React.useEffect(() => {
+    console.log(`EditBlock: STATE CHANGE content  id ${props.id}`)
+    // forceUpdate() // content state change doesn't force a redraw
+  }, [content, props.id, forceUpdate])
+
+  // on mount, load the correct content from database, if that doesn't exist, load from props.content
+  const initialId = React.useRef(props.id)
+  const initialContent = React.useRef(props.content)
+  React.useEffect( () => {
+    console.log(`EditBlock: mount and update content id ${props.id}`)
+    updateContent(getInitialContent(routeLocation.pathname, initialId.current , initialContent.current))
+  }, [routeLocation.pathname, props.id]) // added pathname because of rules of hooks, shouldn't change without component remount
+
   
-  // React.useEffect(() => {
-  //   console.log(`State changed editing ${editing} content ${content}`)
-  // }, [content, editing])
+  
 
-  const exitCKEditor = (): void => {
+
+  const exitCKEditor = (editingParameter: boolean): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
-      console.log(`EditBlock: begin exitCKEditor ${props.id}`);
-      const outData: string = editorInstance.getData();
-      
-      updateContent(outData);
-      let localPage: string
-      if (routeLocation.pathname === '/') {
-        localPage = 'Home'
-      } else {
-        localPage = routeLocation.pathname.replace(/\//, "")
-      }
-      appDb.storeData(localPage, props.id, outData);
-      console.log(`
-      EditBlock: stored ${outData.length} bytes of data page ${localPage} id ${props.id} data type ${typeof(outData)}
-      `)
-      
-      updateEditing(false);
-      
+      console.log(`EditBlock.exitCKEditor: begin ${props.id} editing ${editingParameter}`);
+      if ( editingParameter) {
+        // was editing so the content probably changed. Save to database and update state 'content'
+        const outData: string = editorInstance.current.getData();
+        const mediaOutData = processYT(outData) // if there was an embedded youtube added, then create the iframe
+        console.log('EditBlock.exitCKEditor: media out data')
+        console.log(mediaOutData)
 
-      editorInstance.destroy()
+        let localPage: string
+        if (routeLocation.pathname === '/') {
+          localPage = 'Home'
+        } else {
+          localPage = routeLocation.pathname.replace(/\//, "")
+        }
+        appDb.storeData(localPage, props.id, mediaOutData);
+        console.log(`EditBlock.exitCKEditor: stored ${mediaOutData.length} bytes of data page ${localPage} id ${props.id} data type ${typeof (mediaOutData)}`)
+        
+        updateContent(mediaOutData);
+
+        updateEditing(false);
+      }
+
+      // turn off focus tracking before destroying editor
+      editorInstance.current.ui.focusTracker.stopListening('change:isFocused')
+      editorInstance.current.destroy()
         .then(() => {
-          console.log(`EditBlock: Editor destroyed, show editor instance ${props.id}`);
-          console.log(editorInstance)
-          editorInstance = null
-          setTimeout( () => {
-            console.log(`EditBlock: editorInstance after timeout, should be null ${props.id}`)
-            console.log(editorInstance)
-          }, 2000)
+          console.log(`EditBlock: Editor destroyed instance ${props.id}, editor =`);
+          editorInstance.current = null
+          console.log(editorInstance.current)
+
+          // setTimeout( () => {
+          //   console.log(`EditBlock: ${props.id} editor after timeout, should be null `)
+          //   console.log(editorInstance.current)
+          // }, 2000)
           
         })
         .catch((error: any) => {
@@ -101,12 +160,24 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
     }
   }
 
+  // const onEditorFocusChange: (evt: any, data: any, isFocused: boolean) => void = (evt: any, data: any, isFocused: boolean) => {
+  //   if (isFocused) {
+  //     console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor focused, set editing true`);
+  //     updateEditing(true)
+  //   } else {
+  //     console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor lost focus editing ${editing}`);
+  //     exitCKEditor();
+
+  //   }
+  // };
+
   const handleMouseEnter = (event: React.MouseEvent): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
-      console.log(`EditBlock: Mouse enter ${props.id}`)
-      console.log(editorInstance)
-      if (editorInstance) {
+      console.log(`EditBlock: Mouse enter ${props.id} editing ${editing}`)
+      console.log(editorInstance.current)
+      if (editorInstance.current) {
         // editor already exists in this EditBlock instance, don't create new one
+        console.log(`EditorBlock.handleMouseEnter: Editor exists id ${props.id}`)
       } else {
         InlineEditor
           .create(document.querySelector(`#${props.id}`), {
@@ -136,7 +207,13 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
             mediaEmbed: {
               // don't allow media without preview as it would be harder to integrate into document
               // following can be used - dailymotion, spotify, youtube, vimeo
-              removeProviders: ['instagram', 'twitter', 'googleMaps', 'flickr', 'facebook']
+              // ToDo only support youtube at the moment
+              removeProviders: [
+                'dailymotion',
+                'spotify',
+                'vimeo',
+                'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook'
+              ]
             },
             // ToDo install plugins for image - will want ImageLink
             // image: {
@@ -162,23 +239,22 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
           })
           .then((ed: any) => {
-            editorInstance = ed;
+            editorInstance.current = ed;
             console.log(`EditBlock: Loaded editor ${props.id}`);
-            console.log(editorInstance)
-            // console.log(`EditBlock context.editorInstanceId ${editContext.editorInstanceId} id = ${props.id}`)
-            // editContext.updateEditor(props.id)
+            console.log(editorInstance.current)
 
             // exit editor when focus lost by watching editor focusEvent
-            editorInstance.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean) => {
+            editorInstance.current.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean, editing: boolean) => {
+              console.log(`EditBlock.onEditorFocusChange: Enter function editing ${editing} ${props.id}`);
               if (isFocused) {
-                console.log(`EditBlock: ${props.id} Editor focused, set editing state`);
+                console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor focused, set editing true`);
                 updateEditing(true)
               } else {
-                console.log(`EditBlock: ${props.id} Editor lost focus`);
-                exitCKEditor();
+                console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor lost focus editing ${editing}`);
+                exitCKEditor(editing);
 
               }
-            });
+            })
           })
       }
     }
@@ -186,13 +262,14 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   const handleMouseLeave = (event: React.MouseEvent): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
-      console.log(`EditBlock: Mouse leave ${props.id} editing ${editing}`)
-      console.log(editorInstance)
-      if (!editing && editorInstance) {
+      console.log(`EditBlock.handleMouseLeave: ${props.id} editing ${editing}`)
+      console.log(editorInstance.current)
+      if (!editing && editorInstance.current) {
         // if didn't start editing, get rid of editor
-        exitCKEditor()
+        console.log(`EditBlock.handleMouseLeave: mouse leave destroy editor ${props.id}`)
+        exitCKEditor(editing)
       } else {
-        console.log(`EditBlock: mouse leave didn't destroy editor {props.id}`)
+        console.log(`EditBlock.handleMouseLeave: mouse leave didn't destroy editor ${props.id}`)
       }
     }
     
@@ -203,8 +280,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
     <React.Fragment>
       <div
         id={props.id}
-        className={editing ? classes.editorBlock : classes.noEditHover}
-        style={{ padding: 0 }}
+        className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
         data-cmc="EditBlock"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

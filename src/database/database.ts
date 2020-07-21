@@ -92,7 +92,7 @@ export class DatabaseType {
   storeData = (tableName: string, id: string, data: string): void => {
     // overwrites existing or creates new
     console.log(`database:storeData table ${tableName} id ${id} data type ${typeof(data)}`)
-    console.log(data)
+    // console.log(data)
     // can't write directly if tableName hasn't been defined
     if (!this.theData[tableName]) {
       this.theData = Object.assign( this.theData, {[tableName]: { [id]: data}})

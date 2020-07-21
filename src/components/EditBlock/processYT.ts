@@ -35,7 +35,7 @@
           // console.log(`processYT: before = ${inputDataModified.substr(0, match.index)} `)
           // console.log(`processTY: after = ${inputDataModified.substr(match.index + match[0].length, (inputDataModified.length - match[0].length))}`)
           // extract url from <oembed>
-          const idArray = match[2].match(/\/([^\/]+)$/)
+          const idArray = match[2].match(/\/([^/]+)$/)
           if (idArray) {
             // console.log(`Youtube id ${idArray[0]} length ${idArray.length}`)
             // console.log(`??? ${idArray[1]}`)
