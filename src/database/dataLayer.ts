@@ -11,13 +11,13 @@ const getInitialContent: (page: string, id: string, propsContent?: string) => st
   } else {
     localPage = page.replace( /\//, "")
   }
-  console.log(`dataLayer.getInitialContact: page = ${localPage} id=${id}`)
   const data = appDb.getData(localPage, id)
+  console.log(`dataLayer.getInitialContact: page = ${localPage} id=${id} content=\n${data}`)
   if (data.length === 0) {
     // item did not exist in database
     if (propsContent) {
       // content may be passed into the edit block, as a short way to initialize database
-      return propsContent;
+      return `<div>${propsContent}</div>`
     } else {
       return ""
     }

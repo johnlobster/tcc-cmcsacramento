@@ -1,6 +1,9 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 
+import CKEditor from '@ckeditor/ckeditor5-react';
+import InlineEditor from '@ckeditor/ckeditor5-build-inline'
+
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import getInitialContent from '../../database/dataLayer'
@@ -8,9 +11,8 @@ import theme, {rhythm} from "../../global/theme";
 
 import processYT from './processYT'
 
-
 /* eslint no-var: "off" */
-declare var InlineEditor: any; // loaded from cdn as global
+// declare var InlineEditor: any; // loaded from cdn as global
 
 const myStyles = makeStyles(() =>
   createStyles({
@@ -32,23 +34,26 @@ const myStyles = makeStyles(() =>
       '& figure.media': {
         minWidth: '480px',  // Google recommendation
         maxWidth: '800px',
+        // height: 'auto',
+        margin: 0,
         [theme.breakpoints.up('xs')]: {
           width: '100%',
           padding: `${rhythm / 2}rem 0`,
         },
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
           width: '75%',
           marginRight: 'auto',
           padding: `${rhythm / 2}rem 0`,
         },
-        [theme.breakpoints.up('lg')]: {
-          width: '50%',
-          marginRight: 'auto',
-          padding: `${rhythm}rem 0`,
-        },
+        
       },
       '& figure.media > iframe': {
-        width: '100%',
+        minWidth: '480px',  // Google recommendation
+        maxWidth: '800px',
+        width: '50vw',
+        height: 'auto',
+        boxShadow: theme.shadows[7],
+        borderStyle: 'none',
       },
       '&:hover': {
         outlineStyle: 'solid',
@@ -81,35 +86,52 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   const classes = myStyles()
 
 
-  const routeLocation = useLocation()
-
+  const {pathname} = useLocation()
+  const initialPathname = React.useRef(pathname)
+  const initialId = React.useRef(props.id)
+  
   const editorInstance: any = React.useRef(null)
 
 
   // need to force update because setdangerouslyhtml doesn't force a redraw
-  const [, updateRedraw] = React.useState(0);
-  const forceUpdate = React.useCallback(() => updateRedraw(x => x + 1), []);
+  // const [, updateRedraw] = React.useState(0);
+  // const forceUpdate = React.useCallback(() => updateRedraw(x => x + 1), []);
 
+  // const test = renderHTML('<div>temp1</div><div>temp2</div>')
+
+  // const someHTML: () => React.ReactElement = () => {
+  //   return(
+  //     <div>
+  //       <p>A paragraph</p>
+  //       <p>Another paragraph</p>
+  //     </div>
+  //   )
+  // }
+  // content is an array of react elements
   const [content, updateContent] = React.useState("");
+  const initialContent = React.useRef(props.content)
+
   const [editing, updateEditing] = React.useState(false);
+  const [editorLoaded, updateEditorLoaded] = React.useState(false)
 
   // log state changes
   React.useEffect(() => {
     console.log(`EditBlock: STATE CHANGE editing now ${editing} id ${props.id}`)
-    forceUpdate()
-  }, [editing, props.id, forceUpdate])
+  }, [editing, props.id])
   React.useEffect(() => {
     console.log(`EditBlock: STATE CHANGE content  id ${props.id}`)
-    // forceUpdate() // content state change doesn't force a redraw
-  }, [content, props.id, forceUpdate])
+    console.log(content)
+  }, [content, props.id])
+
 
   // on mount, load the correct content from database, if that doesn't exist, load from props.content
-  const initialId = React.useRef(props.id)
-  const initialContent = React.useRef(props.content)
   React.useEffect( () => {
-    console.log(`EditBlock: mount and update content id ${props.id}`)
-    updateContent(getInitialContent(routeLocation.pathname, initialId.current , initialContent.current))
-  }, [routeLocation.pathname, props.id]) // added pathname because of rules of hooks, shouldn't change without component remount
+    console.log(`EditBlock: mount and update content id ${initialId.current}`)
+    updateContent(
+      getInitialContent(initialPathname.current, initialId.current , initialContent.current)
+    )
+    
+  }, []) 
 
   
   
@@ -126,17 +148,15 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
         console.log(mediaOutData)
 
         let localPage: string
-        if (routeLocation.pathname === '/') {
+        if (pathname === '/') {
           localPage = 'Home'
         } else {
-          localPage = routeLocation.pathname.replace(/\//, "")
+          localPage = pathname.replace(/\//, "")
         }
         appDb.storeData(localPage, props.id, mediaOutData);
         console.log(`EditBlock.exitCKEditor: stored ${mediaOutData.length} bytes of data page ${localPage} id ${props.id} data type ${typeof (mediaOutData)}`)
-        
-        updateContent(mediaOutData);
 
-        updateEditing(false);
+        updateContent(`<div>${mediaOutData}</div>`);
       }
 
       // turn off focus tracking before destroying editor
@@ -151,7 +171,8 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
           //   console.log(`EditBlock: ${props.id} editor after timeout, should be null `)
           //   console.log(editorInstance.current)
           // }, 2000)
-          
+          updateEditing(false);
+
         })
         .catch((error: any) => {
           console.error("Editor crashed during destruction");
@@ -171,103 +192,185 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   //   }
   // };
 
+  const inlineEditorOptions = {
+    initialData: content,
+    // ToDo add images and media
+    removePlugins: [
+      'CKFinder',
+      'PasteFromOffice', 'Table', 'TableToolbar'
+    ],
+    toolbar: [
+      'heading',
+      '|',
+      'bold',
+      'italic',
+      'link',
+      'bulletedList',
+      'numberedList',
+      '|',
+      'indent',
+      'outdent',
+      'blockQuote',
+      '|',
+      'mediaEmbed',
+      '|',
+      'undo',
+      'redo'
+    ],
+    mediaEmbed: {
+      // don't allow media without preview as it would be harder to integrate into document
+      // following can be used - dailymotion, spotify, youtube, vimeo
+      // ToDo only support youtube at the moment
+      removeProviders: [
+        'dailymotion',
+        'spotify',
+        'vimeo',
+        'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook'
+      ]
+    },
+    // ToDo install plugins for image - will want ImageLink
+    // image: {
+    //   // styling toolbar for image
+    //   toolbar: [
+    //     'imageStyle:alignLeft', 
+    //     'imageStyle:full', 
+    //     'imageStyle:alignRight',
+    //     '|',
+    //     'imageTextAlternative'
+    //   ],
+    //   styles: [
+    //     // This option is equal to a situation where no style is applied.
+    //     'full',
+
+    //     // This represents an image aligned to the left.
+    //     'alignLeft',
+
+    //     // This represents an image aligned to the right.
+    //     'alignRight'
+    //   ]
+    // },
+
+  }
+
+  // const handleMouseEnter = (event: React.MouseEvent): void => {
+  //   if (process.env.REACT_APP_BUILD_MODE === "author") {
+  //     console.log(`EditBlock: Mouse enter ${props.id} editing ${editing}`)
+  //     console.log(editorInstance.current)
+  //     if (editorInstance.current) {
+  //       // editor already exists in this EditBlock instance, don't create new one
+  //       console.log(`EditorBlock.handleMouseEnter: Editor exists id ${props.id}`)
+  //     } else {
+  //       // convert the react elements to a string
+  //       // let editorContent = ""
+  //       // const editorElement  = document.querySelector(`#${props.id}`)
+  //       // if (editorElement) {
+  //       //   editorContent = editorElement.innerHTML
+  //       //   console.log(editorContent)
+  //       // }
+  //       // console.log( `EditBlock.handleMouseEnter editor input \n${editorContent}`)
+
+  //       InlineEditor
+  //         .create(document.querySelector(`#${props.id}`), {
+  //           initialData: content,
+  //           // ToDo add images and media
+  //           removePlugins: [
+  //             'CKFinder',
+  //             'PasteFromOffice', 'Table', 'TableToolbar'
+  //           ],
+  //           toolbar: [
+  //             'heading',
+  //             '|',
+  //             'bold',
+  //             'italic',
+  //             'link',
+  //             'bulletedList',
+  //             'numberedList',
+  //             '|',
+  //             'indent',
+  //             'outdent',
+  //             'blockQuote',
+  //             '|',
+  //             'mediaEmbed',
+  //             '|',
+  //             'undo',
+  //             'redo'
+  //           ],
+  //           mediaEmbed: {
+  //             // don't allow media without preview as it would be harder to integrate into document
+  //             // following can be used - dailymotion, spotify, youtube, vimeo
+  //             // ToDo only support youtube at the moment
+  //             removeProviders: [
+  //               'dailymotion',
+  //               'spotify',
+  //               'vimeo',
+  //               'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook'
+  //             ]
+  //           },
+  //           // ToDo install plugins for image - will want ImageLink
+  //           // image: {
+  //           //   // styling toolbar for image
+  //           //   toolbar: [
+  //           //     'imageStyle:alignLeft', 
+  //           //     'imageStyle:full', 
+  //           //     'imageStyle:alignRight',
+  //           //     '|',
+  //           //     'imageTextAlternative'
+  //           //   ],
+  //           //   styles: [
+  //           //     // This option is equal to a situation where no style is applied.
+  //           //     'full',
+
+  //           //     // This represents an image aligned to the left.
+  //           //     'alignLeft',
+
+  //           //     // This represents an image aligned to the right.
+  //           //     'alignRight'
+  //           //   ]
+  //           // },
+
+  //         })
+  //         .then((ed: any) => {
+  //           editorInstance.current = ed;
+  //           console.log(`EditBlock: Loaded editor ${props.id}`);
+  //           console.log(editorInstance.current)
+
+  //           // exit editor when focus lost by watching editor focusEvent
+  //           editorInstance.current.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean, editing: boolean) => {
+  //             console.log(`EditBlock.onEditorFocusChange: Enter function editing ${editing} ${props.id}`);
+  //             if (isFocused) {
+  //               console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor focused, set editing true`);
+  //               updateEditing(true)
+  //             } else {
+  //               console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor lost focus editing ${editing}`);
+  //               exitCKEditor(editing);
+
+  //             }
+  //           })
+  //         })
+  //     }
+  //   }
+  // }
+
   const handleMouseEnter = (event: React.MouseEvent): void => {
-    if (process.env.REACT_APP_BUILD_MODE === "author") {
-      console.log(`EditBlock: Mouse enter ${props.id} editing ${editing}`)
-      console.log(editorInstance.current)
-      if (editorInstance.current) {
-        // editor already exists in this EditBlock instance, don't create new one
-        console.log(`EditorBlock.handleMouseEnter: Editor exists id ${props.id}`)
-      } else {
-        InlineEditor
-          .create(document.querySelector(`#${props.id}`), {
-            // ToDo add images and media
-            removePlugins: [
-              'CKFinder',
-              'PasteFromOffice', 'Table', 'TableToolbar'
-            ],
-            toolbar: [
-              'heading',
-              '|',
-              'bold',
-              'italic',
-              'link',
-              'bulletedList',
-              'numberedList',
-              '|',
-              'indent',
-              'outdent',
-              'blockQuote',
-              '|',
-              'mediaEmbed',
-              '|',
-              'undo',
-              'redo'
-            ],
-            mediaEmbed: {
-              // don't allow media without preview as it would be harder to integrate into document
-              // following can be used - dailymotion, spotify, youtube, vimeo
-              // ToDo only support youtube at the moment
-              removeProviders: [
-                'dailymotion',
-                'spotify',
-                'vimeo',
-                'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook'
-              ]
-            },
-            // ToDo install plugins for image - will want ImageLink
-            // image: {
-            //   // styling toolbar for image
-            //   toolbar: [
-            //     'imageStyle:alignLeft', 
-            //     'imageStyle:full', 
-            //     'imageStyle:alignRight',
-            //     '|',
-            //     'imageTextAlternative'
-            //   ],
-            //   styles: [
-            //     // This option is equal to a situation where no style is applied.
-            //     'full',
+    console.log(`EditBlock.handleMouseEnter: ${props.id} editing ${editing} editorLoaded ${editorLoaded}`)
 
-            //     // This represents an image aligned to the left.
-            //     'alignLeft',
-
-            //     // This represents an image aligned to the right.
-            //     'alignRight'
-            //   ]
-            // },
-
-          })
-          .then((ed: any) => {
-            editorInstance.current = ed;
-            console.log(`EditBlock: Loaded editor ${props.id}`);
-            console.log(editorInstance.current)
-
-            // exit editor when focus lost by watching editor focusEvent
-            editorInstance.current.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean, editing: boolean) => {
-              console.log(`EditBlock.onEditorFocusChange: Enter function editing ${editing} ${props.id}`);
-              if (isFocused) {
-                console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor focused, set editing true`);
-                updateEditing(true)
-              } else {
-                console.log(`EditBlock.onEditorFocusChange: ${props.id} Editor lost focus editing ${editing}`);
-                exitCKEditor(editing);
-
-              }
-            })
-          })
-      }
+    if (!editing) {
+      updateEditorLoaded(true)
     }
   }
 
+  const handleClick = (event: React.MouseEvent): void => {
+    // propagates to ckeditor
+    console.log(`EditBlock.handleClick editing=${editing} id=${props.id} editorLoaded ${editorLoaded}`)
+    updateEditing(true)
+  }
   const handleMouseLeave = (event: React.MouseEvent): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
-      console.log(`EditBlock.handleMouseLeave: ${props.id} editing ${editing}`)
-      console.log(editorInstance.current)
-      if (!editing && editorInstance.current) {
+      console.log(`EditBlock.handleMouseLeave: ${props.id} editing ${editing}  editorLoaded ${editorLoaded}`)
+      if (!editing && editorLoaded) {
         // if didn't start editing, get rid of editor
         console.log(`EditBlock.handleMouseLeave: mouse leave destroy editor ${props.id}`)
-        exitCKEditor(editing)
+        updateEditorLoaded(false)
       } else {
         console.log(`EditBlock.handleMouseLeave: mouse leave didn't destroy editor ${props.id}`)
       }
@@ -275,24 +378,70 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
     
   }
 
+  const editorBlur = (event, editor): void => {
+    console.log(`EditBlock:editorBlur  editing ${editing}  editorLoaded ${editorLoaded}`);
 
-  return(
+    const outData: string = editor.getData();
+    const mediaOutData = processYT(outData) // if there was an embedded youtube added, then create the iframe
+    console.log(`EditBlock: data \n${mediaOutData}`);
+
+    let localPage: string
+    if (pathname === '/') {
+      localPage = 'Home'
+    } else {
+      localPage = pathname.replace(/\//, "")
+    }
+    appDb.storeData(localPage, props.id, mediaOutData);
+    console.log(`EditBlock.exitCKEditor: stored ${mediaOutData.length} bytes of data page ${localPage} id ${props.id} data type ${typeof (mediaOutData)}`)
+
+    updateContent(mediaOutData)
+    updateEditorLoaded(false)
+    updateEditing(false)
+  }
+  return (
     <React.Fragment>
       <div
         id={props.id}
         className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
         data-cmc="EditBlock"
+        onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        dangerouslySetInnerHTML={{ __html: content }}
       >
+        {editorLoaded ? (
+        <CKEditor 
+          editor= {InlineEditor}
+          data= {content}
+          config={inlineEditorOptions}
+          onInit={editor => {
+            // You can store the "editor" and use when it is needed.
+            console.log('EditBlock: Editor is ready to use!', editor);
+          }}
+          onBlur={editorBlur}
+          onFocus={(event, editor) => {
+            console.log('EditBlock: Focus.', editor);
+          }}
+          onClick={(event, editor) => {
+            console.log('EditBlock: Click', editor);
+          }}
+        />
+        ) : (
+          <div
+            dangerouslySetInnerHTML={{ __html: content }}
+          >
+          </div>
+        )
+        }   
       </div>
     </React.Fragment>
-    
+
   );
 }
 
 export default EditBlock;
+
+
+//         dangerouslySetInnerHTML={{ __html: content }}
 
 // ckeditor inline adds padding/margin/border
 // 1. left/right - fixed by explicit style on the div
@@ -301,6 +450,20 @@ export default EditBlock;
 // easiest solution - go back to create editor on click, but can't create a synthetic event to get cursor right
 //       style={{padding: 0}}
 
+// return (
+//   <React.Fragment>
+//     <div
+//       id={props.id}
+//       className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
+//       data-cmc="EditBlock"
+//       onMouseEnter={handleMouseEnter}
+//       onMouseLeave={handleMouseLeave}
+//       dangerouslySetInnerHTML={insertHTML()}
+//     >
+//     </div>
+//   </React.Fragment>
+
+// );
 /*
   Mouse enter: create editor unless exists
   Focus(listen to editor focus) set editing
