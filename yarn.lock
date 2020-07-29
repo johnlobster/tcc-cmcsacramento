@@ -1127,6 +1127,11 @@
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-inline/-/ckeditor5-build-inline-20.0.0.tgz#c8cd92201eb20fba3868ab17bed03819e89f3dcc"
   integrity sha512-xR1naSxGfVyy7AERhlgTSIFfkoBfNP0o0zkaqBm46U1uS5z/pJLYFAqfm0aYuREldHIK44/zD8TxGrImcSw4Fw==
 
+"@ckeditor/ckeditor5-inspector@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-inspector/-/ckeditor5-inspector-2.1.0.tgz#278a97a49b0fea35e8c76c9d8032f25c9b4372b7"
+  integrity sha512-2F6AnlT4Gk9TFXs/328vJ6DTOwlvYNhvCaKQWAjnLV8rpfYLcVtfGBtr791gSfzoB82VJF4/Dd0LeeY6buGEhA==
+
 "@ckeditor/ckeditor5-react@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-2.1.0.tgz#f612546a5a328899a436d71b72ffd632600049e8"

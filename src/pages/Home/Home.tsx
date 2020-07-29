@@ -131,6 +131,20 @@ const Home: React.FunctionComponent = () => {
           content={`
             <p>
               Here you’ll find 
+              
+            </p>
+            <figure class="media"><iframe type="text/html" src="https://www.youtube.com/embed/1fmX8rmF8Gc"></iframe></figure>
+            <p>
+              You will learn health benefits 
+            </p>
+            <figure class="media"><oembed url="https://youtu.be/R70yFDUY9Ic"></oembed></figure>
+            <p>Paragraph at the end</p>
+          `} 
+          />
+            {/* <EditBlock id="Home_welcome1" className={classes.welcome}
+              content={`
+            <p>
+              Here you’ll find 
               the information you need about our Tai Chi courses, our team, our teaching and our
               style. Professor Cheng Man Ching’s class is equally suited for beginners and
               practitioners of other martial arts. Gain strength, balance, poise and resiliency
@@ -141,11 +155,12 @@ const Home: React.FunctionComponent = () => {
               You will learn health benefits and internal practice (mindfulness) by
               studying the methods developed by one of the best-known students of Yang cheng fu.
               We welcome people of any age or skill level and love to see people try out 
-              Tai Chi for the first time. We encourage everyone to learn at their own 
+              Tai Chi for the first time. Everyone is encouraged to learn at their own 
               pace.
             </p>
+            <figure class="media"><oembed url="https://youtu.be/1fmX8rmF8Gc"></oembed></figure>
           `} 
-          />
+            /> */}
           <VSeparator lines={1} />
 
 

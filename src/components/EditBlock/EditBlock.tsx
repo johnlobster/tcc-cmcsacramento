@@ -3,13 +3,16 @@ import {useLocation} from "react-router-dom";
 
 import CKEditor from '@ckeditor/ckeditor5-react';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline'
+import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import getInitialContent from '../../database/dataLayer'
 import theme, {rhythm} from "../../global/theme";
 
+// ToDo combine into single module
 import processYT from './processYT'
+import processContent from './processContent'
 
 /* eslint no-var: "off" */
 // declare var InlineEditor: any; // loaded from cdn as global
@@ -50,6 +53,8 @@ const myStyles = makeStyles(() =>
       '& figure.media > iframe': {
         minWidth: '480px',  // Google recommendation
         maxWidth: '800px',
+        minHeight: '270px',
+        maxHeight: '450px',
         width: '50vw',
         height: 'auto',
         boxShadow: theme.shadows[7],
@@ -116,8 +121,8 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   // log state changes
   React.useEffect(() => {
-    console.log(`EditBlock: STATE CHANGE editing now ${editing} id ${props.id}`)
-  }, [editing, props.id])
+    console.log(`EditBlock: STATE CHANGE editing  ${editing} editorLoaded ${editorLoaded} id ${props.id}`)
+  }, [editing, editorLoaded, props.id])
   React.useEffect(() => {
     console.log(`EditBlock: STATE CHANGE content  id ${props.id}`)
     console.log(content)
@@ -362,14 +367,17 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   const handleClick = (event: React.MouseEvent): void => {
     // propagates to ckeditor
     console.log(`EditBlock.handleClick editing=${editing} id=${props.id} editorLoaded ${editorLoaded}`)
-    updateEditing(true)
+    updateEditing(true) // instead of handling, could we use cke focus event ?
   }
+
   const handleMouseLeave = (event: React.MouseEvent): void => {
     if (process.env.REACT_APP_BUILD_MODE === "author") {
       console.log(`EditBlock.handleMouseLeave: ${props.id} editing ${editing}  editorLoaded ${editorLoaded}`)
       if (!editing && editorLoaded) {
         // if didn't start editing, get rid of editor
         console.log(`EditBlock.handleMouseLeave: mouse leave destroy editor ${props.id}`)
+        // React destroys editor based on editorLoaded state
+        // should perhaps remove focus event listener, but need a reference to the editor
         updateEditorLoaded(false)
       } else {
         console.log(`EditBlock.handleMouseLeave: mouse leave didn't destroy editor ${props.id}`)
@@ -379,11 +387,11 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   }
 
   const editorBlur = (event, editor): void => {
-    console.log(`EditBlock:editorBlur  editing ${editing}  editorLoaded ${editorLoaded}`);
+    console.log(`EditBlock.editorBlur:  editing ${editing}  editorLoaded ${editorLoaded}`);
 
     const outData: string = editor.getData();
     const mediaOutData = processYT(outData) // if there was an embedded youtube added, then create the iframe
-    console.log(`EditBlock: data \n${mediaOutData}`);
+    console.log(`EditBlock.editorBlur: data from processYT\n${mediaOutData}`);
 
     let localPage: string
     if (pathname === '/') {
@@ -394,10 +402,64 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
     appDb.storeData(localPage, props.id, mediaOutData);
     console.log(`EditBlock.exitCKEditor: stored ${mediaOutData.length} bytes of data page ${localPage} id ${props.id} data type ${typeof (mediaOutData)}`)
 
+    // remove focus event watcher
+    editor.ui.focusTracker.stopListening('change:isFocused')
     updateContent(mediaOutData)
-    updateEditorLoaded(false)
-    updateEditing(false)
+
+    // wait for content state to propagate before changing editorLoaded
+    // don't need to destroy editor, because React will, based on editorLoaded state
+
+    setTimeout( () => {
+      console.log(`EditBlockeditorBlur: timeout ${initialId.current}`)
+      updateEditorLoaded(false)
+      updateEditing(false);
+    }, 500)
+
+    // editor.destroy()
+    //   .then(() => {
+    //     console.log(`EditBlock.editorBlur: Editor destroyed instance ${initialId.current}, editor =`);
+    //     // editorInstance.current = null
+    //     // console.log(editor)
+
+    //     // setTimeout( () => {
+    //     //   console.log(`EditBlock: ${props.id} editor after timeout, should be null `)
+    //     //   console.log(editorInstance.current)
+    //     // }, 2000)
+    //     // wait for content state to change before changing editorLoaded ?
+    //     // updateEditorLoaded(false)
+    //     // updateEditing(false);
+
+    //   })
+    //   .catch((error: any) => {
+    //     console.error("EditBlock.editorBlur: Editor crashed during destruction");
+    //     console.log(error);
+    //   });
+    
+        
   }
+
+  const editorInit = (editor): void => {
+    console.log(`EditorBlock.editorInit: enter editing ${editing}  editorLoaded ${editorLoaded}`)
+    console.log(editor)
+    // CKEditorInspector.attach(editor); // debug
+    // exit editor when focus lost by watching editor focusEvent
+    editor.ui.focusTracker.on('change:isFocused', (evt: any, data: any, isFocused: boolean, oldValue: boolean) => {
+      console.log(`EditBlock.CKEditor.onEditorFocusChange: Focus changed editing ${editing} ${initialId.current}`);
+      if (isFocused) {
+        console.log(`EditBlock.CKEditor.onEditorFocusChange: ${initialId.current} Editor focused editing ${editing} editorLoaded ${editorLoaded}`);
+        updateEditing(true)
+      } else {
+        console.log(`EditBlock.CKEditor.onEditorFocusChange: ${initialId.current} Editor lost focus editing ${editing} editorLoaded ${editorLoaded}
+        Calling editorBlur (is state bound correctly ?)`);
+        editorBlur(evt,editor) // would inline
+      }
+    })
+    // For some reason, when the editor is created by React, the data is not set correctly. Set the data again
+    const contentData: string = processContent(content)
+    // console.log(`EditorBlock.editorInit: processContent(content) ${contentData}`)
+    editor.setData(contentData)
+  } 
+
   return (
     <React.Fragment>
       <div
@@ -409,22 +471,21 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
         onMouseLeave={handleMouseLeave}
       >
         {editorLoaded ? (
-        <CKEditor 
-          editor= {InlineEditor}
-          data= {content}
-          config={inlineEditorOptions}
-          onInit={editor => {
-            // You can store the "editor" and use when it is needed.
-            console.log('EditBlock: Editor is ready to use!', editor);
-          }}
-          onBlur={editorBlur}
-          onFocus={(event, editor) => {
-            console.log('EditBlock: Focus.', editor);
-          }}
-          onClick={(event, editor) => {
-            console.log('EditBlock: Click', editor);
-          }}
-        />
+          <CKEditor 
+            editor= {InlineEditor}
+            data= {processContent(content)}
+            config={inlineEditorOptions}
+            onInit={(editor) => {
+              console.log('EditBlock: component init callback', editor);
+              editorInit(editor)
+            }}
+            onFocus={(event, editor) => {
+              console.log('EditBlock: Focus.', editor);
+            }}
+            onClick={(event, editor) => {
+              console.log('EditBlock: Click', editor);
+            }}
+          />
         ) : (
           <div
             dangerouslySetInnerHTML={{ __html: content }}
@@ -440,6 +501,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
 export default EditBlock;
 
+//             onBlur={editorBlur}
 
 //         dangerouslySetInnerHTML={{ __html: content }}
 

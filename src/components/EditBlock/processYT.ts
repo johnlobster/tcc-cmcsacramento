@@ -16,14 +16,21 @@
     </iframe>
   </figure>
   
+  Note - the iframe src could be "https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+  This would start playing on load, and check that the origin was http://example.com
+  Neither option is useful to me
+  
   */
 
+  // ToDo - combine both functions into a single module
   const processYT: (inputData: string) => string = (inputData) => {
 
     
     if ( inputData.length === 0) {
       return ""
     } else {
+      console.log(`EditBlock.processYT: Input data\n${inputData}`)
+
       let outputData = ""
       // process the input string serially
       let inputDataModified = inputData
