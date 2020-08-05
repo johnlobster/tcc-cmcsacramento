@@ -1,29 +1,13 @@
 
 
- <iframe id="iframeId" srcdoc="<h1>test</h1>
- <div style="color:red">Hello</div>"     name="userIframe">                                     </iframe> 
+<img src="./example.svg" alt="svg">
 
 <hr>
-<div >
-  <div>
-    <img src="./images/lobster.png" alt="Happy lobster" width="125">
-  </div>
-  <div>
-#### Well, sometimes a nickname sticks. I did get very sunburned that day ...
-  </div>
-</div>
 
-<hr>
-<div align="right">
 <img src="./images/lobster.png" alt="Happy lobster" width="125" align="left">
-<span>A span</span>
-<div align="left">Something cool but overly long and boring, but needs to wrap onto the next line</div>
-</div>
 
-<div align="left">Me</div>
-<span align="left">
 Well, sometimes a nickname sticks. I did get very sunburned that day ...
-</span>
+
 
 <!-- ![Happy lobster](./images/lobster.png) -->
 <!--
