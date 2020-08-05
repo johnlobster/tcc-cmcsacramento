@@ -131,20 +131,6 @@ const Home: React.FunctionComponent = () => {
           content={`
             <p>
               Here you’ll find 
-              
-            </p>
-            <figure class="media"><iframe type="text/html" src="https://www.youtube.com/embed/1fmX8rmF8Gc"></iframe></figure>
-            <p>
-              You will learn health benefits 
-            </p>
-            <figure class="media"><oembed url="https://youtu.be/R70yFDUY9Ic"></oembed></figure>
-            <p>Paragraph at the end</p>
-          `} 
-          />
-            {/* <EditBlock id="Home_welcome1" className={classes.welcome}
-              content={`
-            <p>
-              Here you’ll find 
               the information you need about our Tai Chi courses, our team, our teaching and our
               style. Professor Cheng Man Ching’s class is equally suited for beginners and
               practitioners of other martial arts. Gain strength, balance, poise and resiliency
@@ -159,13 +145,13 @@ const Home: React.FunctionComponent = () => {
               pace.
             </p>
             <figure class="media"><oembed url="https://youtu.be/1fmX8rmF8Gc"></oembed></figure>
-          `} 
-            /> */}
+            `} 
+          /> 
           <VSeparator lines={1} />
 
 
-          {/* <EditBlock id="Home_welcome2" className={classes.welcome} content={`
-          <h2>We teach</h2>
+          <EditBlock id="Home_welcome2" className={classes.welcome} content={`
+            <h2>We teach</h2>
             <ul>
               <li>Form. Cheng man ching's 37 movement form</li>
               <li>Tuishu (sensing hands), partner work with fixed foot position</li>
@@ -174,11 +160,9 @@ const Home: React.FunctionComponent = () => {
               <li>San shou - advanced two person form with applications</li>
             </ul>
           `} />
-          <VSeparator lines={1} /> */}
+          <VSeparator lines={1} />
 
-            
-
-          {/* <div className={classes.welcome}>
+          <div className={classes.welcome}>
             <EditBlock id="Home_covid19" content={`
               <h2>Covid-19 update</h2>
               <p>
@@ -189,7 +173,8 @@ const Home: React.FunctionComponent = () => {
                 wear masks, and no partner practice
               </p>
             `} />
-          </div> */}
+          </div>
+          
           <VSeparator lines={1} />
         
           <Grid container spacing={2}>

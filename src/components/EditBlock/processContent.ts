@@ -55,7 +55,8 @@ const processContent: (inputData: string) => string = (inputData) => {
         outputData = outputData + inputDataModified
         inputDataModified = "" // clean exit to loop
       }
-    }console.log(`EditBlock.processContent: output data \n${outputData}`)
+    }
+    // console.log(`EditBlock.processContent: output data \n${outputData}`)
     return outputData
   }
 }
