@@ -63,7 +63,7 @@ interface MoreProps {
   className?: string;                     // classes to be passed down 
   cardImage?: string;                     // url of an image used both by card and article
   imageAlt?: string;                      // alt attribute of image
-  cardContent?: React.ReactElement;       // html for card, other than buttons at the bottom
+  cardContent?: React.ReactElement ;       // html for card, other than buttons at the bottom
   open?: boolean;                         // if set, then article is open on first render. Very useful for creating links directly to the article
                                           // note - changing this prop will cause a re-render, but will not open the article
 } 

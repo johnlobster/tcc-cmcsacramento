@@ -15,7 +15,8 @@ import cmcForm from "../../images/cmc4_form.jpg";
 // import birds from "../../images/birds1_fade.jpg";
 
 import theme from '../../global/theme'
-// import classes from '*.module.css';
+
+import * as formList from "./formList"
 
 const useStyles = makeStyles({
   formImageBox: {
@@ -83,11 +84,7 @@ const Beginners: React.FunctionComponent = (props) => {
     </Grid>
   );
 
-  const formList = (
-    <div >
-      <h6>List of postures for 37 movement Cheng man ching form</h6>
-    </div>
-  );
+  
 
   const tipsCard = (
     <div >
@@ -241,8 +238,8 @@ const Beginners: React.FunctionComponent = (props) => {
           <p>A meaningful sentence</p>
         </CardToBlock>
 
-        <CardToBlock id="Beginners_formList" cardContent={formList} elementToScrollTo={topRef.current}>
-          <p>Yet another card</p>
+        <CardToBlock id="Beginners_formList" cardContent={formList.cardInfo} elementToScrollTo={topRef.current}>
+          <formList.FormList />
         </CardToBlock>
       </Grid>
       </ResponsiveContainer>
