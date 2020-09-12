@@ -154,7 +154,7 @@ const Home: React.FunctionComponent = () => {
               <li>Form. Cheng man ching's 37 movement form</li>
               <li>Tuishu (sensing hands), partner work with fixed foot position</li>
               <li>Moving step Tuishu</li>
-              <li>Da lu - simple two person form</li>
+              <li>Da lu - short two person form</li>
               <li>San shou - advanced two person form with applications</li>
             </ul>
           `} />

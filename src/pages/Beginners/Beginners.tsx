@@ -104,7 +104,7 @@ const Beginners: React.FunctionComponent = (props) => {
             <li>37 Posture form</li>
             <li>5 Principles</li>
             <li>Warm up exercises and Qigong</li>
-              <li>Introductory partner work (<em>Tui shu</em>)</li>
+            <li>Introductory partner work (<em>Tui shu</em>)</li>
           </ul>
 
           <Grid container>

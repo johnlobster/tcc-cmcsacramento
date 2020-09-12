@@ -329,19 +329,19 @@ const formListStyles = makeStyles({
   listBox: {
     display: 'grid',
     [theme.breakpoints.up('xs')]: {
-      gridTemplateColumns: `repeat(${1}, 1fr)`,
+      gridTemplateColumns: `repeat(${1}, minmax(250px, 400px))`,
       gridTemplateRows: `repeat(${Math.round((formListItems.length / 1) + 0.5)}, 1fr)`,
       columnGap: '0.5rem',
       rowGap: '0.5rem',
     },
     [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: `repeat(${2}, 1fr)`,
+      gridTemplateColumns: `repeat(${2}, minmax(300px, 450px))`,
       gridTemplateRows: `repeat(${Math.round((formListItems.length / 2) + 0.5)}, 1fr)`,
       columnGap: '1rem',
       rowGap: '0.5rem',
     },
     [theme.breakpoints.up('lg')]: {
-      gridTemplateColumns: `repeat(${3}, 1fr)`,
+      gridTemplateColumns: `repeat(${3}, minmax(350px, 500px))`,
       gridTemplateRows: `repeat(${Math.round((formListItems.length / 3) + 0.5)}, 1fr)`,
       columnGap: '2rem',
       rowGap: '0.75rem',

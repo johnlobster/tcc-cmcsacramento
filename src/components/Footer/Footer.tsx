@@ -34,7 +34,7 @@ const footerStyles = makeStyles((theme: Theme) =>
     tjt: {
       height: '5rem',
       width: 'auto',
-      padding: '1rem 0 1rem 7vw',
+      padding: '0 auto 0 0',
     }
   })
 )
@@ -43,23 +43,27 @@ const Footer: React.FunctionComponent = (props) => {
   const classes = footerStyles(theme);
   return(
     <div className={classes.root}>
-      <VSeparator lines={1} />
       <Grid container>
+        <Grid item xs={12}>
+          <br />
+        </Grid>
+        <Grid item xs={1}></Grid>
         <Grid item xs={3}>
           <img src={tjt} alt="Yin Yang" className={classes.tjt} />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={7} sm={6} lg={4}>
           <p>
-            Like any physical activity, Tai chi must be studied at your own risk and we cannot be held responsible for any injury that may occur. 
-            <Link to="/Contact/#disclaimer">Click here for liability information</Link>
+            Like any physical activity, Tai chi must be studied at your own risk and we cannot be held responsible for any injury that might occur
+            <Link to="/Contact/#disclaimer"> Click here for full liability information</Link>
 
           </p>
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item xs={9} justify="center">
+        <Grid item xs={1}></Grid>
+        <Grid item xs={9} sm={7} lg={5}>
           <p>
-            This website collects no data &bsp <Link to="/Contact/#privacy">Click here for privacy information</Link>
+            This website collects no data <Link to="/Contact/#privacy">Click here for full privacy information</Link>
           </p>
         </Grid>
       </Grid>

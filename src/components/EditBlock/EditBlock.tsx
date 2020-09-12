@@ -81,9 +81,10 @@ const myStyles = makeStyles(() =>
 )
 
 interface MoreProps {
-  id: string;
-  className?: string;
-  content?: string;
+  id: string;             // tag to make the content unique
+  className?: string;     // standard react classes. Mutable
+  content?: string;       // content to be used if location.path/id not found in database
+  page?: string;          // page, overrides location.path
 } 
 
 const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
@@ -112,11 +113,19 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
 
   // on mount, load the correct content from database, if that doesn't exist, load from props.content
+  // if page prop specified, use that instead of initialPathname
   React.useEffect( () => {
     console.log(`EditBlock: mount and update content id ${initialId.current}`)
-    updateContent(
-      getInitialContent(initialPathname.current, initialId.current , initialContent.current)
-    )
+    if ( props.page) {
+      updateContent(
+        getInitialContent(props.page, initialId.current, initialContent.current)
+      )
+    } else {
+      updateContent(
+        getInitialContent(initialPathname.current, initialId.current, initialContent.current)
+      )
+    }
+    
     
   }, []) 
 
@@ -237,7 +246,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
     // don't need to destroy editor, because React will, based on editorLoaded state
 
     setTimeout( () => {
-      console.log(`EditBlockeditorBlur: timeout ${initialId.current}`)
+      console.log(`EditBlock.editorBlur: timeout ${initialId.current}`)
       updateEditorLoaded(false)
       updateEditing(false);
     }, 500)

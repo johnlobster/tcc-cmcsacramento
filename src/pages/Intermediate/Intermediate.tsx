@@ -49,9 +49,13 @@ const Intermediate: React.FunctionComponent = () => {
                 </li>
                 <li>
                   There are many different aspects of Tai Chi. Everyone progresses at a different
-                  rate through each aspect. 
+                  rate through each aspect.
                   Finding people with better skills in an aspect is an opportunity to learn, not a
                   time to despair about your abilities
+                </li>
+                <li>
+                  Your understanding of principles changes. A new definition may conflict with your previous knowledge.
+                  Expect your mind to be blown on a regular basis
                 </li>
                 <li>
                   There is no separation between Tai Chi for health, and Tai Chi as a martial art.

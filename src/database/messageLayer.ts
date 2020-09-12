@@ -1,4 +1,5 @@
 // function attached to message event listener
+// when in author mode, the content is in an iframe, using the message event mechanism to communicate with author code
 
 const validMessages = [
   'Ping',             // sent by author on startup
