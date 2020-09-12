@@ -22,10 +22,9 @@ const useStyles = makeStyles({
   },
   pictureBox: {
     display: 'flex',
-    // justifyContent: 'center',
     '& img': {
       width: '95%',
-      // height: 'auto',
+      alignSelf: 'center',
     },
   }
 })
@@ -55,7 +54,7 @@ const Contact: React.FunctionComponent = (props) => {
               <img src={bigRoom} alt="Hagan community center" />
             </Grid>
             <Grid item xs={12} sm={5}>
-              <h5>Hagan community center</h5>
+              <h4>Hagan community center</h4>
               <h5>2197 Chase Dr, Rancho Cordova, CA 95670</h5>
               <Phone /> 916 369 9844 (Office)
               <br />
