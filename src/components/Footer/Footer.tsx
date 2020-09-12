@@ -5,7 +5,6 @@ import { Theme, Grid } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import theme from "../../global/theme";
-import VSeparator from "../VSeparator/VSeparator"
 import tjt from "../../images/Taijitu.svg";
 
 const footerStyles = makeStyles((theme: Theme) =>
@@ -57,16 +56,12 @@ const Footer: React.FunctionComponent = (props) => {
             <Link to="/Contact/#disclaimer"> Click here for full liability information</Link>
 
           </p>
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={9} sm={7} lg={5}>
           <p>
             This website collects no data <Link to="/Contact/#privacy">Click here for full privacy information</Link>
           </p>
         </Grid>
       </Grid>
+      
       <div className={classes.copyBox}>
         <span className={classes.copy}><em>© 2020 Jinbao Tai Chi Chuan </em></span>
       </div>
