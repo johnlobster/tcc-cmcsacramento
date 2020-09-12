@@ -136,7 +136,6 @@ const Home: React.FunctionComponent = () => {
               practitioners of other martial arts. Gain strength, balance, poise and resiliency
               while engaging in a modified form of Tai Chi created for busy people. 
             </p>
-            <figure class="media"><iframe type="text/html" src="https://www.youtube.com/embed/1fmX8rmF8Gc"></iframe></figure>
             <p>
               You will learn health benefits and internal practice (mindfulness) by
               studying the methods developed by one of the best-known students of Yang cheng fu.
@@ -144,7 +143,6 @@ const Home: React.FunctionComponent = () => {
               Tai Chi for the first time. Everyone is encouraged to learn at their own 
               pace.
             </p>
-            <figure class="media"><oembed url="https://youtu.be/1fmX8rmF8Gc"></oembed></figure>
             `} 
           /> 
           <VSeparator lines={1} />
@@ -166,10 +164,10 @@ const Home: React.FunctionComponent = () => {
             <EditBlock id="Home_covid19" content={`
               <h2>Covid-19 update</h2>
               <p>
-                The Hagan community center is closed, so no classes until further notice
+                We have access to the Hagan community center again.
               </p>
               <p>
-                We expect that when are able to resume classes, we will be following social distancing protocols. Keep 6' apart,
+                We will be following social distancing protocols. Keep 6' apart,
                 wear masks, and no partner practice
               </p>
             `} />

@@ -3,13 +3,22 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
+import {  Grid, Button, Card, CardContent, CardActions, Paper } from '@material-ui/core';
 
-import {  Grid, Button, Card, CardContent, CardActions } from '@material-ui/core';
+import theme from "../../global/theme"
+import VSeparator from "../../components/VSeparator/VSeparator"
 
-import crane from "../../images/crane1.jpg"
+import birdsTail from "../../images/birdsTail.jpg"
+import crane from "../../images/crane2.jpg"
 import monkey from "../../images/3Monkeys.jpg"
+import squat from "../../images/squattingSingleWhip.jpg"
+import snake from "../../images/snake.png"
 import tiger1 from "../../images/tiger1.jpg"
+import tiger2 from "../../images/tiger2.png"
 import lady from "../../images/jadeWoman1.jpg"
+import pipa from "../../images/pipa.jpg"
+import rooster from "../../images/rooster.png"
+import clouds from "../../images/clouds.jpg"
 import bookCover from "../../images/ThirteenTreatisesBook.jpg"
 
 export type EntryCount = number | boolean
@@ -35,7 +44,8 @@ export const formListItems: FormList = [
   {
     count: false,
     chinese: "lán què wěi",
-    english: "Grasp the sparrow’s tail, postures 3-7"
+    english: "Grasp the sparrow’s tail, postures 3-7",
+    image: birdsTail
   },
   {
     count: 3,
@@ -91,7 +101,8 @@ export const formListItems: FormList = [
   {
     count: 13,
     chinese: "shǒu huī pípá",
-    english: "Play P'i P'a (Lute/Guitar)"
+    english: "Play P'i P'a (Lute/Guitar)",
+    image: pipa,
   }, 
   {
     count: false,
@@ -164,6 +175,7 @@ export const formListItems: FormList = [
     count: 22,
     chinese: "yún shǒu",
     english: "Cloudy hands, right",
+    image: clouds
   },
   {
     count: 23,
@@ -173,12 +185,13 @@ export const formListItems: FormList = [
   {
     count: false,
     chinese: "",
-    english: "Repeat: Cloudy hands right, Cloudy hands, right, single whip"
+    english: "Repeat: Cloudy hands right, Cloudy hands left, single whip"
   },
   {
     count: 24,
     chinese: "shé shēn xià shì",
     english: "Descending(squatting) single whip (Snake creeps down)",
+    image: squat
   },
   {
     count: 25,
@@ -189,6 +202,7 @@ export const formListItems: FormList = [
     count: 26,
     chinese: "jīn jī dú lì",
     english: "Golden pheasant (rooster) stands on one leg, left side",
+    image: rooster
   },
   {
     count: 27,
@@ -260,6 +274,7 @@ export const formListItems: FormList = [
     count: false,
     chinese: "shé shēn xià shì",
     english: "Repeat: Squatting single whip",
+    image: snake,
   },
   {
     count: 34,
@@ -280,6 +295,7 @@ export const formListItems: FormList = [
     count: 37,
     chinese: "wān gōng shè hǔ",
     english: "Bend bow, shoot Tiger",
+    image: tiger2
   },
   {
     count: false,
@@ -312,10 +328,25 @@ export const formListItems: FormList = [
 const formListStyles = makeStyles({
   listBox: {
     display: 'grid',
-    gridTemplateColumns: `repeat(${3}, 1fr)`,
-    gridTemplateRows: `repeat(${Math.round((formListItems.length/3)+ 0.5)}, 1fr)`,
-    columnGap: '0.5rem',
-    rowGap: '0.5rem',
+    [theme.breakpoints.up('xs')]: {
+      gridTemplateColumns: `repeat(${1}, 1fr)`,
+      gridTemplateRows: `repeat(${Math.round((formListItems.length / 1) + 0.5)}, 1fr)`,
+      columnGap: '0.5rem',
+      rowGap: '0.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: `repeat(${2}, 1fr)`,
+      gridTemplateRows: `repeat(${Math.round((formListItems.length / 2) + 0.5)}, 1fr)`,
+      columnGap: '1rem',
+      rowGap: '0.5rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: `repeat(${3}, 1fr)`,
+      gridTemplateRows: `repeat(${Math.round((formListItems.length / 3) + 0.5)}, 1fr)`,
+      columnGap: '2rem',
+      rowGap: '0.75rem',
+    },
+    
     gridAutoFlow: 'column',
   },
   itemBox: {
@@ -325,9 +356,16 @@ const formListStyles = makeStyles({
     borderColor: 'lightGrey',
     margin: '0.25rem',
     padding: '0.5rem',
+    backgroundColor: 'white',
+
+  },
+  gridContainer: {
+    // height: '100%',
+    width: '85%',
+    margin: '0.5rem',
   },
   numberBox: {
-    fontSize: '1.5em',
+    fontSize: '1.75rem',
   },
   itemChinese: {
   },
@@ -349,28 +387,47 @@ export const FormList: React.FunctionComponent = () => {
             backgroundImage: `url(${item.image})`,
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right top',
 
           }) : ({})
         return (
-          <Grid container className={classes.itemBox} style={backgroundStyles}>
+          <Paper elevation={2} style={backgroundStyles}>
+            <Grid container className={classes.gridContainer}>
               <Grid item xs={3} className={classes.numberBox}>
                 {item.count && item.count}
               </Grid>
               <Grid item xs={9} >
-                  <div className={classes.itemEnglish}>
-                    {item.english}
-                  </div>
-                  <div className={classes.itemChinese}>
-                    <em>{item.chinese}</em>
-                  </div>
+                <div className={classes.itemEnglish}>
+                  {item.english}
+                </div>
+                <div className={classes.itemChinese}>
+                  <em>{item.chinese}</em>
+                </div>
               </Grid>
-          </Grid>
+            </Grid>
+          </Paper>
+          
         )})}
     </div>
 
+    <VSeparator lines={1} />
+    
     <p>
       The numbering and English naming of the postures varies from author to author, but there are always 37. 
-      These are from this book
+      I have put in brackets some of the other names commonly used. It is important to know that the names themselves
+      are not important, they are labels for the form postures - some are more poetic than others. There is no need to
+      learn (or try to pronounce) the Chinese names. However , the components of Grasp the sparrow's tail are commonly 
+      used. <em>Peng</em> - ward off, pronounced more like "pung". <em>Lu</em> - rollback, long 'u' sound. <em> Ji </em> - press,
+      short 'i', more 'ee'. <em>An</em> - push, pronounced more like "aahn"
+    </p>
+    <p>
+      Each labelled posture consists of several complete movements and changes of direction, with co-ordination of arms, waist and feet. So this simple list
+      cannot be used to learn the form, but only as a reminder. It is helpful to know the names of movements, or at least a rough
+      version of the name, to be able to ask questions about movements during class. I have also found this list useful in
+      piecing together the form as a single movement
+    </p>
+    <p>
+      The numbering and English translations are from this book by Cheng Man Ching
     </p>
 
     <Card raised={true} >
