@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import ContactButton from "../../components/ContactButton/ContactButton";
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+import useHashScrolling from "../../hooks/useHashScrolling"
 
 
 import * as DList from "../../components/DescriptionList/DescriptionList"
@@ -65,10 +66,15 @@ const principlesCard = (
   </div>
 );
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const Beginners: React.FunctionComponent = (props) => {
+const Beginners: React.FunctionComponent = () => {
 
   const classes = useStyles();
+
+  const formRef = React.useRef(null)
+  useHashScrolling()
+
 
   const topRef = React.useRef(null);
 
@@ -240,7 +246,10 @@ const Beginners: React.FunctionComponent = (props) => {
             <p>A meaningful sentence</p>
           </CardToBlock>
 
-          <CardToBlock id="Beginners_formList" cardContent={formList.cardInfo} elementToScrollTo={topRef.current}>
+          <CardToBlock id="Beginners_formList" cardContent={formList.cardInfo} 
+            elementToScrollTo={topRef.current}
+            domRef={formRef}
+          >
             <formList.FormList />
           </CardToBlock>
         </Grid>
@@ -254,3 +263,12 @@ const Beginners: React.FunctionComponent = (props) => {
 }
 
 export default Beginners;
+
+/*
+  To do on scrolling etc.
+  - CardToBlock no longer a grid item
+  - useHashScrolling to get ref to react element
+
+  1. create explicit refs, pass into useHashScrolling as an array
+  2. auto generate refs
+*/

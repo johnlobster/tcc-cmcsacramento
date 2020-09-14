@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import { Card, CardContent, CardMedia, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -147,6 +148,8 @@ const Home: React.FunctionComponent = () => {
           /> 
           <VSeparator lines={1} />
 
+          <h3>Test linking</h3>
+            <Link to="/Beginners/#Beginners_formList">Form list article</Link>
 
           <EditBlock id="Home_welcome2" className={classes.welcome} content={`
             <h2>We teach</h2>

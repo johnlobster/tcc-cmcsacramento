@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Grid, GridSize, Paper, Box, Button, Card, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -59,6 +59,7 @@ const useStyles = makeStyles({
 interface MoreProps { 
   id: string; // id of block and used for database
   elementToScrollTo: HTMLElement | null;  // scroll here when article closed
+  domRef: React.MutableRefObject<null>;   // top level can scroll here
   columnWidth?: number;                   // number of columns taken up by card. Perhaps should be responsive. Article itself will be 12
   className?: string;                     // classes to be passed down 
   cardImage?: string;                     // url of an image used both by card and article
@@ -85,7 +86,12 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
     changeOpen(false);
   }
   
-  
+  useEffect(() => {
+    if (props.open) {
+      openBlock()
+    }
+  }, [props.open])
+
   const scroller: () => void = () => {
     if (props.elementToScrollTo) {
       props.elementToScrollTo.scrollIntoView();
@@ -116,7 +122,7 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   
   return(
-    <React.Fragment>
+    <div id={props.id} ref={props.domRef}>
       {/* Block  (article) */}
       
       {/* style={{display: open ? "block" : "none"}} */}
@@ -176,7 +182,7 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
       </Grid>
       </SlideArticle>
 
-    </React.Fragment>
+    </div>
 
   );
 }

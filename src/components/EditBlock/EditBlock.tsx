@@ -127,7 +127,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
     }
     
     
-  }, []) 
+  }, [props.page]) 
 
   const inlineEditorOptions = {
     initialData: content,
