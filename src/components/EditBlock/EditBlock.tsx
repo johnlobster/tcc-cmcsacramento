@@ -301,38 +301,46 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   return (
     <React.Fragment>
-      <div
-        id={props.id}
-        className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
-        data-cmc="EditBlock"
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {editorLoaded ? (
-          <CKEditor 
-            editor= {InlineEditor}
-            data= {processContent(content)}
-            config={inlineEditorOptions}
-            onInit={(editor) => {
-              console.log('EditBlock: component init callback', editor);
-              editorInit(editor)
-            }}
-            onFocus={(event, editor) => {
-              console.log('EditBlock: Focus.', editor);
-            }}
-            onClick={(event, editor) => {
-              console.log('EditBlock: Click', editor);
-            }}
-          />
-        ) : (
-          <div
-            dangerouslySetInnerHTML={{ __html: content }}
-          >
-          </div>
-        )
-        }   
-      </div>
+      { process.env.REACT_APP_BUILD_MODE === "author" ? (
+        <div
+          id={props.id}
+          className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
+          data-cmc="EditBlock"
+          onClick={handleClick}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {editorLoaded ? (
+            <CKEditor
+              editor={InlineEditor}
+              data={processContent(content)}
+              config={inlineEditorOptions}
+              onInit={(editor) => {
+                console.log('EditBlock: component init callback', editor);
+                editorInit(editor)
+              }}
+              onFocus={(event, editor) => {
+                console.log('EditBlock: Focus.', editor);
+              }}
+              onClick={(event, editor) => {
+                console.log('EditBlock: Click', editor);
+              }}
+            />
+          ) : (
+              <div
+                dangerouslySetInnerHTML={{ __html: content }}
+              >
+              </div>
+            )
+          }
+        </div>
+      ):(
+        <div
+          dangerouslySetInnerHTML={{ __html: content }}
+        >
+        </div>
+      )}
+      
     </React.Fragment>
 
   );

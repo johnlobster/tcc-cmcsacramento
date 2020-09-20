@@ -1,14 +1,14 @@
-# Website for Cheng Man Ching Sacramento Tai Chi website
+# Website for Cheng Man Ching Sacramento Tai Chi website - Technical details
 
 John Webster
 
 Github <https://github.com/johnlobster/tcc-cmcsacramento>
 
-## Technical details
 
-### Set up development environment
 
-#### Required environment variables
+## Set up development environment
+
+### Required environment variables
 
 `GH_OA_TOKEN`
 
@@ -19,13 +19,13 @@ github authorization token, allows server to pull and push from github
 Building for web removes most of the code specific to author. Values are `author` and `web`
 If it is not there, then create-create-act won't do tree shaking and the front end may crash
 
-#### Favicon generation
+## Favicon generation
 
 [Real favicon generator](https://realfavicongenerator.net/)
 
 used svg as starting point
 
-#### templating
+## templating
 
 I used `create-react-app` to scaffold, but wanted something that would create new components
 
@@ -52,3 +52,6 @@ Then cd to directory (`src/components` or `src/pages`) and use hygen
 hygen comp new ComponentName
 ```
 [hygen documentation](https://www.hygen.io/docs/quick-start)
+
+## Deployment
+

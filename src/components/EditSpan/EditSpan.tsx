@@ -162,15 +162,22 @@ const EditSpan: React.FunctionComponent<MoreProps> = (props) => {
   
 
   return(
-      <div
-        id={props.id}
-        className={editing ? classes.editorSpan : classes.noEditHover}
-        onClick={editing ? undefined :  handleClick }
-        
-      >
+    <React.Fragment>
+      { process.env.REACT_APP_BUILD_MODE === "author" ? (
+        <div
+          id={props.id}
+          className={editing ? classes.editorSpan : classes.noEditHover}
+          onClick={editing ? undefined : handleClick}
+
+        >
+          <p>{content}</p>
+
+        </div>
+      ):(
         <p>{content}</p>
-        
-      </div>
+      )}
+    </React.Fragment>
+      
 
   );
 }

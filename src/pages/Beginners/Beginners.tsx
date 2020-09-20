@@ -195,6 +195,9 @@ const Beginners: React.FunctionComponent = () => {
       </ResponsiveContainer>
 
       <ResponsiveContainer>
+
+        <h2>More information</h2>
+        
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
             <CardToBlock id="Beginners_tips" cardContent={tipsCard} elementToScrollTo={topRef.current}>
