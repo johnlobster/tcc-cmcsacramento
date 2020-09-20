@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Grid, GridSize, Paper, Box, Button, Card, CardContent, CardActions } from '@material-ui/core';
+import { GridSize, Paper, Box, Button, Card, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SlideArticle from '../../components/SlideArticle/SlideArticle'
@@ -101,10 +101,10 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
     
   }
   // check attributes/props and set defaults
-  let itemWidth: GridSize = 6; // default size of grid item
-  if (props.columnWidth) {
-    itemWidth = props.columnWidth as GridSize;
-  }
+  // let itemWidth: GridSize = 6; // default size of grid item
+  // if (props.columnWidth) {
+  //   itemWidth = props.columnWidth as GridSize;
+  // }
 
   // let altTextCard = "card";
   // if ( props.cardImage && props.imageAlt) {
@@ -127,7 +127,7 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
       
       {/* style={{display: open ? "block" : "none"}} */}
       <SlideArticle id={props.id} in={open}>
-      <Grid item xs={12} >
+      <div>
         <Paper elevation={1} className={classes.paper}>
           <article>
             <Box p={2}>
@@ -154,13 +154,13 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
             
           </Box>
         </Paper>      
-      </Grid>
+      </div>
       </SlideArticle>
 
       {/* Card */}
       <SlideArticle id={props.id + "_card"} in={! open}>
 
-      <Grid item xs={12} sm={itemWidth}>
+      <div>
         <Card raised={true} >
           <React.Fragment>
             {props.cardContent && (
@@ -179,7 +179,7 @@ const CardToBlock: React.FunctionComponent<MoreProps> = (props) => {
             
           </React.Fragment>
         </Card>
-      </Grid>
+      </div>
       </SlideArticle>
 
     </div>

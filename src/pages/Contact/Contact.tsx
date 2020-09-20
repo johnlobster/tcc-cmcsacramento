@@ -12,7 +12,6 @@ import EditBlock from '../../components/EditBlock/EditBlock'
 
 import bigRoom from "../../images/bigRoom.jpeg"
 import sign from "../../images/sign.jpg"
-import classes from '*.module.css';
 
 const useStyles = makeStyles({
   contactForm: {

@@ -92,6 +92,7 @@ const Resources: React.FunctionComponent = (props) => {
           src="https://www.youtube.com/embed/Ihwz94E-Rs8"  
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; "
           className={classes.yootoob} 
+          title="Master Chan Tai chi form"
         >
         </iframe>
 
@@ -105,6 +106,8 @@ const Resources: React.FunctionComponent = (props) => {
           src="https://www.youtube.com/embed/tljjjyRuUG8" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; " 
           className={classes.yootoob} 
+          title="Mike Pecor Tai chi form instruction"
+
         ></iframe>
         
         <h3>Books</h3>
