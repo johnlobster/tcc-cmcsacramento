@@ -21,7 +21,7 @@ const Advanced: React.FunctionComponent = (props) => {
 
             <p>As an advanced student, you will work on</p>
             <ul>
-              <li>Relaxation,<em>Sung</em></li>
+              <li>Relaxation, <em>Sung</em></li>
               <li>Full curriculum</li>
                 <ul>
                   <li>Solo form</li>
@@ -29,9 +29,13 @@ const Advanced: React.FunctionComponent = (props) => {
                   <li>Moving step Tuishu</li>
                   <li>Da lu - short two person form</li>
                   <li>San shou - advanced two person form with applications</li>
+                  <li>San shou - free form partner work</li>
                 </ul>
               <li>
                 Tai chi classics
+              </li>
+              <li>
+                Sword form, <em>Jian</em>
               </li>
             </ul>
           </Grid>

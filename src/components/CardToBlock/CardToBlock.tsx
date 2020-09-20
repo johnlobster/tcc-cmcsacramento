@@ -59,7 +59,7 @@ const useStyles = makeStyles({
 interface MoreProps { 
   id: string; // id of block and used for database
   elementToScrollTo: HTMLElement | null;  // scroll here when article closed
-  domRef: React.MutableRefObject<null>;   // top level can scroll here
+  domRef?: React.MutableRefObject<null>;   // top level can scroll here
   columnWidth?: number;                   // number of columns taken up by card. Perhaps should be responsive. Article itself will be 12
   className?: string;                     // classes to be passed down 
   cardImage?: string;                     // url of an image used both by card and article

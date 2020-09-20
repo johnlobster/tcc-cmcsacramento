@@ -85,6 +85,7 @@ interface MoreProps {
   className?: string;     // standard react classes. Mutable
   content?: string;       // content to be used if location.path/id not found in database
   page?: string;          // page, overrides location.path
+  draft?: boolean;        // if true, visible and editable in author mode, otherwise render "under construction"
 } 
 
 const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
@@ -116,15 +117,35 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   // if page prop specified, use that instead of initialPathname
   React.useEffect( () => {
     console.log(`EditBlock: mount and update content id ${initialId.current}`)
-    if ( props.page) {
+    if (props.draft) {
       updateContent(
-        getInitialContent(props.page, initialId.current, initialContent.current)
+        `
+        <q>
+        <br>
+          Trying to understand is like straining through muddy water.<br>
+          Have the patience to wait!<br>
+          Be still and allow the mud to settle.<br>
+        </q>
+        <br>
+        Lao Tzu: Dao de ching chapter 15
+        <br>
+        <br>
+        <br>
+        <em>This content isn't quite ready yet</em>
+        `
       )
     } else {
-      updateContent(
-        getInitialContent(initialPathname.current, initialId.current, initialContent.current)
-      )
+      if (props.page) {
+        updateContent(
+          getInitialContent(props.page, initialId.current, initialContent.current)
+        )
+      } else {
+        updateContent(
+          getInitialContent(initialPathname.current, initialId.current, initialContent.current)
+        )
+      }
     }
+    
     
     
   }, [props.page]) 

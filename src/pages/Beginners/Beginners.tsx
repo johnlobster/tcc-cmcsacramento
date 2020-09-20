@@ -73,7 +73,7 @@ const Beginners: React.FunctionComponent = () => {
   const classes = useStyles();
 
   const formRef = React.useRef(null)
-  useHashScrolling()
+  useHashScrolling([])
 
 
   const topRef = React.useRef(null);

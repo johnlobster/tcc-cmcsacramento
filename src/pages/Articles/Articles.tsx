@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+
 // add more props 
 // add <MoreProps> to type FunctionComponent (adds typescript generic)
 // interface MoreProps {
@@ -8,7 +10,10 @@ import React from 'react';
 const Articles: React.FunctionComponent = (props) => {
   return(
     <div>
-      <h1>I am a Articles</h1>
+      <ResponsiveContainer>
+        <h1>Articles</h1>
+        <p>Coming soon</p>
+      </ResponsiveContainer>
     </div>
   );
 }

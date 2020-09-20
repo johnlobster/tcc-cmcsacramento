@@ -148,9 +148,6 @@ const Home: React.FunctionComponent = () => {
           /> 
           <VSeparator lines={1} />
 
-          <h3>Test linking</h3>
-            <Link to="/Beginners/#Beginners_formList">Form list article</Link>
-
           <EditBlock id="Home_welcome2" className={classes.welcome} content={`
             <h2>We teach</h2>
             <ul>
@@ -162,6 +159,34 @@ const Home: React.FunctionComponent = () => {
             </ul>
           `} />
           <VSeparator lines={1} />
+
+          <h2>Class times</h2>
+          <h4>Saturdays</h4>
+          <Grid container>
+            <Grid item xs={6} sm={4} md={3}>
+              8:30-9am
+            </Grid>
+            <Grid item xs={6} sm={4}>
+              Advanced
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={6} sm={4} md={3}>
+              9-10am
+            </Grid>
+            <Grid item xs={6} sm={4}>
+              Class
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={6} sm={4} md={3}>
+              10-10:30am
+            </Grid>
+            <Grid item xs={6} sm={4}>
+              Beginners
+            </Grid>
+          </Grid>
+          <br />
 
           <div className={classes.welcome}>
             <EditBlock id="Home_covid19" content={`
