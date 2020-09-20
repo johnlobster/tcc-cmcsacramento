@@ -391,7 +391,7 @@ export const FormList: React.FunctionComponent = () => {
 
           }) : ({})
         return (
-          <Paper elevation={2} style={backgroundStyles}>
+          <Paper elevation={2} style={backgroundStyles} key={`${item.count}_${index}`}>
             <Grid container className={classes.gridContainer}>
               <Grid item xs={3} className={classes.numberBox}>
                 {item.count && item.count}
