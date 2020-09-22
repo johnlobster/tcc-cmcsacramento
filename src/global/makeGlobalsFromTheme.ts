@@ -16,6 +16,8 @@ const makeGlobalsFromTheme: (inputTheme: Theme, tagsList: string[]) => Theme = (
       // check if exists
       if (inputTheme.typography[tagsList[i] as Variant]) {
         allTags[tagsList[i]] = inputTheme.typography[tagsList[i] as Variant]
+        console.log(`makeGlobalsFromTheme: `)
+        console.log(inputTheme.typography[tagsList[i]])
       }
     }
     
@@ -27,6 +29,7 @@ const makeGlobalsFromTheme: (inputTheme: Theme, tagsList: string[]) => Theme = (
       }
     })
 
+  console.log(`makeGlobalsFromTheme theme = \n ${outputTheme}`)
   return outputTheme;
 }
 

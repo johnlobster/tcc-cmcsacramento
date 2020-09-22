@@ -1,4 +1,4 @@
-import { createMuiTheme, Theme} from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes, Theme} from '@material-ui/core/styles';
 // import { CSSProperties } from '@material-ui/core/styles/withStyles'
 
 import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
@@ -50,7 +50,7 @@ export const rhythm = 1.5;
 // h4  Minor         (3)
 // 
 
-const initialTheme: Theme = createMuiTheme({
+let initialTheme: Theme = createMuiTheme({
   palette: {
     primary: {
       main: 'rgba(84, 24, 83, 1)',
@@ -87,9 +87,10 @@ const initialTheme: Theme = createMuiTheme({
 
   typography: {
     fontSize: 16,
+    // using rhythm, but not ratio, i.e. ratio changes as font size gets bigger
     h1: {
       fontSize: `${2.7 * rhythm}rem`,
-      lineHeight: `${3 * rhythm}rem`,
+      lineHeight: `${3 * rhythm}`,
       marginBlockStart: 0,
       // reduced padding at top by 1 rhythm
       paddingTop: `${rhythm}rem`,
@@ -98,7 +99,7 @@ const initialTheme: Theme = createMuiTheme({
     },
     h2: {
       fontSize: `${rhythm * 2}rem`,
-      lineHeight: `${2.5 * rhythm}rem`,
+      lineHeight: `${2.5 * rhythm}`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 1.5}rem`,
       marginBlockEnd: `${rhythm * 0.5}rem`,
@@ -106,7 +107,7 @@ const initialTheme: Theme = createMuiTheme({
     },
     h3: {
       fontSize: `${(1.4 * rhythm)}rem`,
-      lineHeight: `${(2 * rhythm)}rem`,
+      lineHeight: `${(2 * rhythm)}`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 1.6}rem`,
       marginBlockEnd: `${rhythm * 0.4}rem`,
@@ -114,7 +115,7 @@ const initialTheme: Theme = createMuiTheme({
     },
     h4: {
       fontSize: `${0.95 * rhythm }rem`,
-      lineHeight: `${(1.5 * rhythm)}rem`,
+      lineHeight: `${(1.5)}`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 0.6}rem`,
       marginBlockEnd: `${rhythm * 0.4}rem`,
@@ -122,13 +123,56 @@ const initialTheme: Theme = createMuiTheme({
     },
     h5: {
       fontSize: '1rem',
-      lineHeight: `${rhythm}rem`,
+      lineHeight: `${rhythm}`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 0.7}rem`,
       marginBlockEnd: `${rhythm * 0.3 }rem`,
       letterSpacing: '0.005rem',
       fontWeight: 500,
     },
+    // h1: {
+    //   fontSize: `${2.7 * rhythm}rem`,
+    //   lineHeight: `${3 * rhythm}rem`,
+    //   marginBlockStart: 0,
+    //   // reduced padding at top by 1 rhythm
+    //   paddingTop: `${rhythm}rem`,
+    //   marginBlockEnd: `${rhythm}rem`,
+    //   fontWeight: 500,
+    // },
+    // h2: {
+    //   fontSize: `${rhythm * 2}rem`,
+    //   lineHeight: `${2.5 * rhythm}rem`,
+    //   marginBlockStart: 0,
+    //   paddingTop: `${rhythm * 1.5}rem`,
+    //   marginBlockEnd: `${rhythm * 0.5}rem`,
+    //   fontWeight: 500,
+    // },
+    // h3: {
+    //   fontSize: `${(1.4 * rhythm)}rem`,
+    //   lineHeight: `${(2 * rhythm)}rem`,
+    //   marginBlockStart: 0,
+    //   paddingTop: `${rhythm * 1.6}rem`,
+    //   marginBlockEnd: `${rhythm * 0.4}rem`,
+    //   fontWeight: 500,
+    // },
+    // h4: {
+    //   fontSize: `${0.95 * rhythm}rem`,
+    //   lineHeight: `${(1.5 * rhythm)}rem`,
+    //   marginBlockStart: 0,
+    //   paddingTop: `${rhythm * 0.6}rem`,
+    //   marginBlockEnd: `${rhythm * 0.4}rem`,
+    //   fontWeight: 500,
+    // },
+    // h5: {
+    //   fontSize: '1rem',
+    //   lineHeight: `${rhythm}rem`,
+    //   marginBlockStart: 0,
+    //   paddingTop: `${rhythm * 0.7}rem`,
+    //   marginBlockEnd: `${rhythm * 0.3}rem`,
+    //   letterSpacing: '0.005rem',
+    //   fontWeight: 500,
+    // },
+
     // h1: {
     //   fontSize: `${Math.pow(ratio, 4)}rem`,
     //   lineHeight: `${Math.pow(ratio , 4) * Math.sqrt(Math.sqrt(Math.sqrt(rhythm))) }rem`,
@@ -167,7 +211,7 @@ const initialTheme: Theme = createMuiTheme({
     // },
     h6: {
       fontSize: `${ratio}rem`,
-      lineHeight: `${ratio * rhythm}rem`,
+      lineHeight: `${ratio * rhythm}`,
       marginBlockStart: 0,
       marginBlockEnd: `${ratio * rhythm}rem`,
       fontWeight: 500,
@@ -223,6 +267,11 @@ const initialTheme: Theme = createMuiTheme({
 // by Press Gang Studios
 // https://www.facebook.com/pressgangstudios 
 
+initialTheme = responsiveFontSizes(initialTheme,
+  {
+    factor: 1.1,
+    variants: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+  })
 const theme: Theme = makeGlobalsFromTheme(initialTheme, ['h1',  'h2', 'h3', 'h4', 'h5', 'h6']);
 
 export default theme;
