@@ -1,5 +1,4 @@
-import { createMuiTheme, responsiveFontSizes, Theme} from '@material-ui/core/styles';
-// import { CSSProperties } from '@material-ui/core/styles/withStyles'
+import { createMuiTheme, Theme} from '@material-ui/core/styles';
 
 import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
 
@@ -178,42 +177,7 @@ const initialTheme: Theme = createMuiTheme({
       fontWeight: 500,
     },
 
-    // h1: {
-    //   fontSize: `${Math.pow(ratio, 4)}rem`,
-    //   lineHeight: `${Math.pow(ratio , 4) * Math.sqrt(Math.sqrt(Math.sqrt(rhythm))) }rem`,
-    //   // paddingBottom: '20px',
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${((Math.pow(ratio, 4) * Math.sqrt(Math.sqrt(rhythm))) % rhythm)}rem`,
-    //   fontWeight: 500,
-    // },
-    // h2: {
-    //   fontSize: `${Math.pow(ratio, 3)}rem`,
-    //   lineHeight: `${Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${((Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))) % rhythm)}rem`,
-    //   fontWeight: 500,
-    // },
-    // h3: {
-    //   fontSize: `${Math.pow(ratio, 2)}rem`,
-    //   lineHeight: `${Math.pow(ratio, 2) * Math.sqrt(rhythm)}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${((Math.pow(ratio, 2) * Math.sqrt(rhythm)) % rhythm)}rem`,
-    //   fontWeight: 500,
-    // },
-    // h4: {
-    //   fontSize: `${Math.pow(ratio, 1)}rem`,
-    //   lineHeight: `${Math.pow(ratio, 1) * Math.sqrt(rhythm)}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${(Math.pow(ratio, 1) * Math.sqrt(rhythm)) % rhythm}rem`,
-    //   fontWeight: 500,
-    // },
-    // h5: {
-    //   fontSize: `${ratio}rem`,
-    //   lineHeight: `${ratio * Math.sqrt(rhythm)}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${(ratio * Math.sqrt(rhythm)) % rhythm}rem`,
-    //   fontWeight: 400,
-    // },
+    
     h6: {
       fontSize: `${ratio}rem`,
       lineHeight: `${ratio * rhythm}rem`,
@@ -272,11 +236,7 @@ const initialTheme: Theme = createMuiTheme({
 // by Press Gang Studios
 // https://www.facebook.com/pressgangstudios 
 
-// initialTheme = responsiveFontSizes(initialTheme,
-//   {
-//     factor: 1.1,
-//     variants: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-//   })
+
 const theme: Theme = makeGlobalsFromTheme(initialTheme, ['h1',  'h2', 'h3', 'h4', 'h5', 'h6']);
 
 export default theme;

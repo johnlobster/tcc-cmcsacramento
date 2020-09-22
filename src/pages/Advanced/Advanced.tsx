@@ -29,7 +29,7 @@ const Advanced: React.FunctionComponent = (props) => {
                   <li>Moving step <em>Tui shou</em> </li>
                   <li><em>Da lu</em> - short two person form</li>
                   <li><em>San shou</em> - advanced two person form with applications</li>
-                  <li><em>San shou</em> - free form partner work</li>
+                  <li><em>San shou</em> - free form with partner</li>
                 </ul>
               <li>
                 Tai chi classics

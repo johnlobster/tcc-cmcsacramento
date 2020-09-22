@@ -2,7 +2,7 @@ import React from 'react'
 
 import EditBlock from "../../components/EditBlock/EditBlock"
 
-import spyVsSpy from "../../images/spyvsspy.png"
+// import spyVsSpy from "../../images/spyvsspy.png"
 
 export const TccSecrets: React.FunctionComponent = () => {
 
