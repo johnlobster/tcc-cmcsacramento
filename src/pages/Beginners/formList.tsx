@@ -202,7 +202,6 @@ export const formListItems: FormList = [
     count: 26,
     chinese: "jīn jī dú lì",
     english: "Golden pheasant (rooster) stands on one leg, left side",
-    image: rooster
   },
   {
     count: 27,
@@ -415,16 +414,19 @@ export const FormList: React.FunctionComponent = () => {
     <p>
       The numbering and English naming of the postures varies from author to author, but there are always 37. 
       I have put in brackets some of the other names commonly used. It is important to know that the names themselves
-      are not important, they are labels for the form postures - some are more poetic than others. There is no need to
-      learn (or try to pronounce) the Chinese names. However , the components of Grasp the sparrow's tail are commonly 
-      used. <em>Peng</em> - ward off, pronounced more like "pung". <em>Lu</em> - rollback, long 'u' sound. <em> Ji </em> - press,
-      short 'i', more 'ee'. <em>An</em> - push, pronounced more like "aahn"
+      are not important, they are labels for the form postures - some are more poetic than others. 
     </p>
     <p>
       Each labelled posture consists of several complete movements and changes of direction, with co-ordination of arms, waist and feet. So this simple list
       cannot be used to learn the form, but only as a reminder. It is helpful to know the names of movements, or at least a rough
       version of the name, to be able to ask questions about movements during class. I have also found this list useful in
       piecing together the form as a single movement
+    </p>
+    <p>
+      There is no need to
+      learn (or try to pronounce) the Chinese names. However , the components of Grasp the sparrow's tail are commonly
+      used. <em>Peng</em> - ward off, pronounced more like "pung", short 'u'. <em>Lu</em> - rollback, long 'u' sound. <em> Ji </em> - press,
+      long 'i', more 'ee'. <em>An</em> - push, pronounced more like "aahn"
     </p>
     <p>
       The numbering and English translations are from this book by Cheng Man Ch'ing

@@ -11,6 +11,10 @@ const useStyles = makeStyles({
     display: 'flex',
     width: '100%',
     justifyContent: 'center',
+    '&  a': {
+      color: "white",
+      textDecoration: 'none',
+    }
   },
   contactButton: {
     color: theme.palette.secondary.contrastText,

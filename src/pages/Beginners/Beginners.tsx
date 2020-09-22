@@ -34,8 +34,8 @@ const useStyles = makeStyles({
     [theme.breakpoints.up('xs')]: {
       paddingTop: '0',
     },
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '1.5rem',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: '2.75rem',
     },
     '& img': {
       [theme.breakpoints.down('sm')]: {
@@ -169,29 +169,31 @@ const Beginners: React.FunctionComponent = () => {
               <li>Introductory partner work (<em>Tui shu</em>)</li>
             </ul>
           </Grid>
+          <Grid item xs={12}>
+            <Grid container>
+              <Grid item xs={12} sm={7}>
+                <h3>5 Principles</h3>
+                <p>
+                  Professor Cheng Man Ch'ing emphasized 5 principles of Tai chi
+                </p>
+                <ul>
+                  <li>Relax</li>
+                  <li>Upright body</li>
+                  <li>Turn the waist</li>
+                  <li>Separate the weight</li>
+                  <li>Fair ladies' hand</li>
+                </ul>
+              </Grid>
+              <Grid item xs={12} sm={5} className={classes.buttonImageBox}>
+                <div className={classes.formImageBox}>
+                  <img src={cmcForm} alt="Tai chi form" />
+                </div>
+                <ContactButton />
+              </Grid>
 
-          <Grid container>
-            <Grid item xs={12} sm={7}>
-              <h3>5 Principles</h3>
-              <p>
-                Professor Cheng Man Ch'ing emphasized 5 principles of Tai chi
-              </p>
-              <ul>
-                <li>Relax</li>
-                <li>Upright body</li>
-                <li>Turn the waist</li>
-                <li>Separate the weight</li>
-                <li>Fair ladies' hand</li>
-              </ul>
             </Grid>
-            <Grid item xs={12} sm={5} className={classes.buttonImageBox}>
-              <div className={classes.formImageBox}>
-                <img src={cmcForm} alt="Tai chi form" />
-              </div>
-              <ContactButton />
-            </Grid>
+          </Grid>
           
-        </Grid>
         </Grid>
       </ResponsiveContainer>
 
