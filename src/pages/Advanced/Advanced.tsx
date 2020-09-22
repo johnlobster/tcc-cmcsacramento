@@ -24,12 +24,12 @@ const Advanced: React.FunctionComponent = (props) => {
               <li>Relaxation, <em>Sung</em></li>
               <li>Full curriculum</li>
                 <ul>
-                  <li>Solo form</li>
-                  <li>Tuishu (sensing hands), partner work with fixed foot position</li>
-                  <li>Moving step Tuishu</li>
-                  <li>Da lu - short two person form</li>
-                  <li>San shou - advanced two person form with applications</li>
-                  <li>San shou - free form partner work</li>
+                  <li>Solo form with applications</li>
+                  <li><em>Tui shou</em> (sensing hands), partner work with fixed foot position</li>
+                  <li>Moving step <em>Tui shou</em> </li>
+                  <li><em>Da lu</em> - short two person form</li>
+                  <li><em>San shou</em> - advanced two person form with applications</li>
+                  <li><em>San shou</em> - free form partner work</li>
                 </ul>
               <li>
                 Tai chi classics

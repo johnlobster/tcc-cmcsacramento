@@ -125,7 +125,7 @@ const Home: React.FunctionComponent = () => {
 
             {/* Background image */}
             <div style={{position: 'relative'}}>
-              <img src={cmc} alt="Cheng man ching" className={classes.bgImage} />
+              <img src={cmc} alt="Cheng Man Ch'ing" className={classes.bgImage} />
             </div>
 
           <EditBlock id="Home_welcome1" className={classes.welcome} 
@@ -133,13 +133,13 @@ const Home: React.FunctionComponent = () => {
             <p>
               Here you’ll find 
               the information you need about our Tai Chi courses, our team, our teaching and our
-              style. Professor Cheng Man Ching’s class is equally suited for beginners and
+              style. Professor Cheng Man Ch'ing’s class is equally suited for beginners and
               practitioners of other martial arts. Gain strength, balance, poise and resiliency
               while engaging in a modified form of Tai Chi created for busy people. 
             </p>
             <p>
               You will learn health benefits and internal practice (mindfulness) by
-              studying the methods developed by one of the best-known students of Yang cheng fu.
+              studying the methods developed by one of the best-known students of Yang Cheng Fu.
               We welcome people of any age or skill level and love to see people try out 
               Tai Chi for the first time. Everyone is encouraged to learn at their own 
               pace.
@@ -151,20 +151,21 @@ const Home: React.FunctionComponent = () => {
           <EditBlock id="Home_welcome2" className={classes.welcome} content={`
             <h2>We teach</h2>
             <ul>
-              <li>Form. Cheng man ching's 37 movement form</li>
-              <li>Tuishu (sensing hands), partner work with fixed foot position</li>
-              <li>Moving step Tuishu</li>
-              <li>Da lu - short two person form</li>
-              <li>San shou - advanced two person form with applications</li>
+              <li>Form. Cheng Man Ch'ing's 37 movement form</li>
+              <li><em>Tui shou</em> (sensing hands), partner work with fixed foot position</li>
+              <li>Moving step <em>Tui shou</em></li>
+              <li><em>Da lu</em> - short two person form</li>
+              <li><em>San shou</em> - advanced two person form with applications</li>
             </ul>
           `} />
           <VSeparator lines={1} />
 
           <h2>Class times</h2>
           <h4>Saturdays</h4>
+            
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-              8:30-9am
+              8:30 - 9 am
             </Grid>
             <Grid item xs={6} sm={4}>
               Advanced
@@ -172,7 +173,7 @@ const Home: React.FunctionComponent = () => {
           </Grid>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-              9-10am
+                9 &nbsp; &nbsp; - 10 am
             </Grid>
             <Grid item xs={6} sm={4}>
               Class
@@ -180,7 +181,7 @@ const Home: React.FunctionComponent = () => {
           </Grid>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-              10-10:30am
+              10 &nbsp; - 10:30 am
             </Grid>
             <Grid item xs={6} sm={4}>
               Beginners

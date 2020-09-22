@@ -379,7 +379,7 @@ export const FormList: React.FunctionComponent = () => {
 
   return (
   <div>
-    <h4>List of postures for 37 movement Cheng man ching form</h4>
+    <h4>List of postures for 37 movement Cheng Man Ch'ing form</h4>
     <div className={classes.listBox}>
       {formListItems.map((item, index) => {
         const backgroundStyles = item.image ? (
@@ -427,7 +427,7 @@ export const FormList: React.FunctionComponent = () => {
       piecing together the form as a single movement
     </p>
     <p>
-      The numbering and English translations are from this book by Cheng Man Ching
+      The numbering and English translations are from this book by Cheng Man Ch'ing
     </p>
 
     <Card raised={true} >

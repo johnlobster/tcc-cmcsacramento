@@ -12,42 +12,42 @@ export const data: PageData = [
   {
     name: "Home",
     menu: "Home page",
-    title: "Chen man ching Sacramento"
+    title: "Cheng Man Ch'ing Sacramento"
   },
   {
     name: "Beginners",
     menu: "Beginners",
-    title: "Chen man ching Sacramento for beginners"
+    title: "Cheng Man Ch'ing Sacramento for beginners"
   },
   {
     name: "Intermediate",
     menu: "Intermediate",
-    title: "Chen man ching Sacramento"
+    title: "Cheng Man Ch'ing Sacramento"
   },
   {
     name: "Advanced",
     menu: "Advanced",
-    title: "Chen man ching Sacramento for beginners"
+    title: "Cheng Man Ch'ing Sacramento for beginners"
   },
   {
     name: "History",
     menu: "History",
-    title: "Chen man ching Sacramento"
+    title: "Cheng Man Ch'ing Sacramento"
   },
   {
     name: "Articles",
     menu: "Articles",
-    title: "Chen man ching Sacramento"
+    title: "Cheng Man Ch'ing Sacramento"
   },
   {
     name: "Resources",
     menu: "Resources",
-    title: "Chen man ching Sacramento"
+    title: "Cheng Man Ch'ing Sacramento"
   },
   {
     name: "Contact",
     menu: "Contact",
-    title: "Chen man ching Sacramento"
+    title: "Cheng Man Ch'ing Sacramento"
   }
   
 ]

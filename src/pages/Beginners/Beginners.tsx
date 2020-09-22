@@ -8,6 +8,7 @@ import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import ContactButton from "../../components/ContactButton/ContactButton";
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import ExpandableGridItem from '../../components/ExpandableGridItem/ExpandableGridItem'
+import {Draft} from '../../components/Draft/Draft'
 
 // import useHashScrolling from "../../hooks/useHashScrolling"
 
@@ -173,7 +174,7 @@ const Beginners: React.FunctionComponent = () => {
             <Grid item xs={12} sm={7}>
               <h3>5 Principles</h3>
               <p>
-                Professor Chen man ching emphasized 5 principles of Tai chi
+                Professor Cheng Man Ch'ing emphasized 5 principles of Tai chi
               </p>
               <ul>
                 <li>Relax</li>
@@ -260,6 +261,11 @@ const Beginners: React.FunctionComponent = () => {
 
               </DList.DL>
 
+              <p>
+                There are more principles described in the Tai chi classics, but Cheng Man Ch'ing considered these to be fundamental. 
+                These are not just principles for beginners, there are many layers of understanding - they apply at all levels of Tai chi.
+              </p>
+
               <h5>Additional concepts</h5>
 
               <DList.DL>
@@ -304,20 +310,7 @@ const Beginners: React.FunctionComponent = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <CardToBlock id="Beginners_squareTao" cardImage={tjt} imageAlt="test" cardContent={squareTaoCard} elementToScrollTo={topRef.current}>
-              <div>
-              <q>
-                <br />
-                Trying to understand is like straining through muddy water.<br />
-                Have the patience to wait!<br />
-                Be still and allow the mud to settle.<br />
-              </q>
-              <br />
-                Lao Tzu: Dao de ching chapter 15
-              <br />
-              <br />
-              <br />
-              <em>This content isn't quite ready yet</em>
-              </div>
+              <Draft />
               
             </CardToBlock>
 

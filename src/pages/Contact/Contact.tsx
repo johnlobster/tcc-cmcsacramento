@@ -75,7 +75,7 @@ const Contact: React.FunctionComponent = (props) => {
           <h5>Saturdays</h5>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-            8:30-9am
+            8:30 - 9am
             </Grid>
             <Grid item xs={6} sm={4}>
             Advanced
@@ -83,7 +83,7 @@ const Contact: React.FunctionComponent = (props) => {
           </Grid>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-            9-10am
+              9 &nbsp; &nbsp; - 10am
             </Grid>
             <Grid item xs={6} sm={4}>
             Class
@@ -91,7 +91,7 @@ const Contact: React.FunctionComponent = (props) => {
           </Grid>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-            10-10:30am
+              10 &nbsp; - 10:30am
             </Grid>
             <Grid item xs={6} sm={4}>
             Beginners

@@ -55,3 +55,23 @@ hygen comp new ComponentName
 
 ## Deployment
 
+### web (user)
+
+Netlify has been set up to deploy from pushes to `releaseWeb` branch
+
+Release procedure is
+1. check out `releaseWeb`
+2. merge from dev
+3. run all checks
+4. check build `yarn build:web`
+5. check that build is ok
+6. check in any changes, commit
+7. push to github - this will trigger Netlify release
+8. merge any changes back into dev and master
+9. check Netlify release didn't crash
+
+### Author
+
+
+
+
