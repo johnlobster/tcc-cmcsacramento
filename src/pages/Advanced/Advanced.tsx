@@ -34,6 +34,7 @@ const Advanced: React.FunctionComponent = (props) => {
               <li>
                 Tai chi classics
               </li>
+              <li>Long form (Yang)</li>
               <li>
                 Sword form, <em>Jian</em>
               </li>

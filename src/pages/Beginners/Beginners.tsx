@@ -8,6 +8,7 @@ import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import ContactButton from "../../components/ContactButton/ContactButton";
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import ExpandableGridItem from '../../components/ExpandableGridItem/ExpandableGridItem'
+import ExpandingCard from "../../components/ExpandingCard/ExpandingCard"
 import {Draft} from '../../components/Draft/Draft'
 
 // import useHashScrolling from "../../hooks/useHashScrolling"
@@ -79,6 +80,11 @@ const Beginners: React.FunctionComponent = () => {
 
   const formRef = React.useRef(null);
   const [formListOpen, formListOpenUpdate ] = React.useState(false);
+  const [squareTaoOpen, squareTaoOpenUpdate] = React.useState(false);
+  const [principlesOpen, principlesOpenUpdate] = React.useState(false);
+  const [tipsOpen, tipsOpenUpdate] = React.useState(false);
+
+
 
   // temporary version, only works for forms list
   (function useHashScrolling() {
@@ -138,7 +144,7 @@ const Beginners: React.FunctionComponent = () => {
   const squareTaoCard = (
     <Grid container>
       <Grid item xs={12} sm={9} >
-        <h6 >The square Tao</h6>
+        <h4 >The square Tao </h4>
       </Grid>
       <Grid item xs={12} sm={3} >
         <img src={tjt} alt="Yin yang symbol" className={classes.squareTaoCardImage} />
@@ -150,7 +156,7 @@ const Beginners: React.FunctionComponent = () => {
 
   const tipsCard = (
     <div >
-      <h6>10 Essential tips for beginners</h6>
+      <h4>10 Essential tips for beginners</h4>
     </div>
   );
 
@@ -202,133 +208,140 @@ const Beginners: React.FunctionComponent = () => {
         <h2>More information</h2>
         
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={4}>
-            <CardToBlock id="Beginners_tips" cardContent={tipsCard} elementToScrollTo={topRef.current}>
-              <h4>10 Essential tips for beginners</h4>
-              <ol>
-                <li>
-                  Come with an open mind
+          <ExpandingCard
+            open={tipsOpen}
+            openCallback={tipsOpenUpdate}
+            id="Beginners_tips"
+            cardContent={tipsCard}
+            xs={12} sm={6} md={4}
+          >
+            <h4>10 Essential tips for beginners</h4>
+            <ol>
+              <li>
+                Come with an open mind
               </li>
-                <li>Follow and copy what the instructors do as closely as you can </li>
-                <li>Be Patient with yourself, learning Tai Chi Chuan takes time.</li>
-                <li>Wear comfortable loose clothing and flat bottomed shoes</li>
-                <li>Relax, relax, relax <em>(Sung)</em></li>
-                <li>Never use external muscular strength <em>(Li)</em></li>
-                <li>Never lean, the body should always be upright</li>
-                <li>Always breathe naturally through the nose</li>
-                <li>Try to make all movements fluid and smooth</li>
-                <li>and have fun!!!</li>
-              </ol>
-            </CardToBlock>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <CardToBlock id="Beginners_principles" cardContent={principlesCard} elementToScrollTo={topRef.current}>
-              <h4>Basic principles of Tai Chi</h4>
-              <p>Intro</p>
+              <li>Follow and copy what the instructors do as closely as you can </li>
+              <li>Be Patient with yourself, learning Tai Chi Chuan takes time.</li>
+              <li>Wear comfortable loose clothing and flat bottomed shoes</li>
+              <li>Relax, relax, relax <em>(Sung)</em></li>
+              <li>Never use external muscular strength <em>(Li)</em></li>
+              <li>Never lean, the body should always be upright</li>
+              <li>Always breathe naturally through the nose</li>
+              <li>Try to make all movements fluid and smooth</li>
+              <li>and have fun!!!</li>
+            </ol>
+          </ExpandingCard>
+          
+          <ExpandingCard
+            open={principlesOpen}
+            openCallback={principlesOpenUpdate}
+            id="Beginners_principles"
+            cardContent={principlesCard}
+            xs={12} sm={6} md={4}
+          >
+            <h4>Basic principles of Tai Chi</h4>
 
-              <h5>
-                Five Basic Principles:<br />
+            <h5>
+              Five Basic Principles:<br />
               (Represented with the Acronym BURST)
             </h5>
+            <DList.DL>
+              <DList.DT><strong>B</strong>: Beautiful Ladies Hand</DList.DT>
+              <DList.DD>Straight relaxed wrists</DList.DD>
+              <DList.DD>No tension in arms, wrists or fingers</DList.DD>
 
-              <DList.DL>
-                <DList.DT><strong>B</strong>: Beautiful Ladies Hand</DList.DT>
-                <DList.DD>Straight relaxed wrists</DList.DD>
-                <DList.DD>No tension in arms, wrists or fingers</DList.DD>
+              <DList.DT><strong>U</strong>: Upright Body</DList.DT>
+              <DList.DD>Coccyx (Tail Bone) tucks down slightly to straighten lower back</DList.DD>
+              <DList.DD>Imagine that tail bone is if pulled down with weight</DList.DD>
+              <DList.DD>Chin turns slightly down</DList.DD>
+              <DList.DD>Top of head is pulled up as if lifted with a string</DList.DD>
+              <DList.DD>Lower body is pulled down to the ground with gravity</DList.DD>
+              <DList.DD>Upper body floats loose and free as if suspended</DList.DD>
 
-                <DList.DT><strong>U</strong>: Upright Body</DList.DT>
-                <DList.DD>Coccyx (Tail Bone) tucks down slightly to straighten lower back</DList.DD>
-                <DList.DD>Imagine that tail bone is if pulled down with weight</DList.DD>
-                <DList.DD>Chin turns slightly down</DList.DD>
-                <DList.DD>Top of head is pulled up as if lifted with a string</DList.DD>
-                <DList.DD>Lower body is pulled down to the ground with gravity</DList.DD>
-                <DList.DD>Upper body floats loose and free as if suspended</DList.DD>
+              <DList.DT><strong>R</strong>: Relax</DList.DT>
+              <DList.DD>Be aware of and let go of any tension in the body</DList.DD>
+              <DList.DD>This is the pivotal principle in Tai Chi</DList.DD>
 
-                <DList.DT><strong>R</strong>: Relax</DList.DT>
-                <DList.DD>Be aware of and let go of any tension in the body</DList.DD>
-                <DList.DD>This is the pivotal principle in Tai Chi</DList.DD>
+              <DList.DT><strong>S</strong>: Separate the Weight</DList.DT>
+              <DList.DD>Weight is not to be distributed evenly on both legs</DList.DD>
+              <DList.DD>One leg is ‘Substantial’ and the other is ‘Insubstantial’</DList.DD>
+              <DList.DD>(Except for in the Preparation Posture)</DList.DD>
 
-                <DList.DT><strong>S</strong>: Separate the Weight</DList.DT>
-                <DList.DD>Weight is not to be distributed evenly on both legs</DList.DD>
-                <DList.DD>One leg is ‘Substantial’ and the other is ‘Insubstantial’</DList.DD>
-                <DList.DD>(Except for in the Preparation Posture)</DList.DD>
-
-                <DList.DT><strong>T</strong>: Turn the Waist</DList.DT>
-                <DList.DD>Never move the body independently of the hips/waist</DList.DD>
-                <DList.DD>All movements come from the center-hips/waist</DList.DD>
-                <DList.DD>
-                  Move from the hips/waist, power comes from the legs,
-                  is controlled by the waist/hips and expressed through the fingers
+              <DList.DT><strong>T</strong>: Turn the Waist</DList.DT>
+              <DList.DD>Never move the body independently of the hips/waist</DList.DD>
+              <DList.DD>All movements come from the center-hips/waist</DList.DD>
+              <DList.DD>
+                Move from the hips/waist, power comes from the legs,
+                is controlled by the waist/hips and expressed through the fingers
               </DList.DD>
 
-              </DList.DL>
+            </DList.DL>
 
-              <p>
-                There are more principles described in the Tai chi classics, but Cheng Man Ch'ing considered these to be fundamental. 
-                These are not just principles for beginners, there are many layers of understanding - they apply at all levels of Tai chi.
-              </p>
+            <p>
+              There are more principles described in the Tai chi classics, but Cheng Man Ch'ing considered these to be fundamental.
+              These are not just principles for beginners, they apply at all levels of Tai chi and there are many layers of understanding.
+            </p>
 
-              <h5>Additional concepts</h5>
+            <h5>Additional concepts</h5>
 
-              <DList.DL>
-                <DList.DT>
-                  Softness (Yielding)
+            <DList.DL>
+              <DList.DT>
+                Softness (Yielding)
               </DList.DT>
-                <DList.DD>Water is the softest element in the universe yet unstoppable. Soft always overcomes the hard</DList.DD>
+              <DList.DD>Water is the softest element in the universe yet unstoppable. Soft always overcomes the hard</DList.DD>
 
-                <DList.DT>
-                  Smooth Flow
+              <DList.DT>
+                Smooth Flow
               </DList.DT>
-                <DList.DD>Momentum from one movement leads into the next</DList.DD>
-                <DList.DD>Movements always flow from the previous movement</DList.DD>
-                <DList.DD>In essence; Only one movement from start to finish</DList.DD>
+              <DList.DD>Momentum from one movement leads into the next</DList.DD>
+              <DList.DD>Movements always flow from the previous movement</DList.DD>
+              <DList.DD>In essence; Only one movement from start to finish</DList.DD>
 
-                <DList.DT>
-                  Silk Reeling
+              <DList.DT>
+                Silk Reeling
               </DList.DT>
-                <DList.DD>Movements are steady with no break between postures</DList.DD>
-                <DList.DD>Like pulling silk from a cocoon.</DList.DD>
+              <DList.DD>Movements are steady with no break between postures</DList.DD>
+              <DList.DD>Like pulling silk from a cocoon.</DList.DD>
 
-                <DList.DT>
-                  Natural Breathing
+              <DList.DT>
+                Natural Breathing
               </DList.DT>
-                <DList.DD>Breathe through the nose</DList.DD>
-                <DList.DD>Tongue lightly touching upper palette</DList.DD>
-                <DList.DD>Breathe like a little child</DList.DD>
-                <DList.DD>Abdomen expands when inhaling</DList.DD>
-                <DList.DD>Abdomen contracts when exhaling</DList.DD>
-                <DList.DD>Additional inhalation into the back of the lungs</DList.DD>
-                <DList.DD>Allow chest to sink-Plucking up the back</DList.DD>
+              <DList.DD>Breathe through the nose</DList.DD>
+              <DList.DD>Tongue lightly touching upper palette</DList.DD>
+              <DList.DD>Breathe like a little child</DList.DD>
+              <DList.DD>Abdomen expands when inhaling</DList.DD>
+              <DList.DD>Abdomen contracts when exhaling</DList.DD>
+              <DList.DD>Additional inhalation into the back of the lungs</DList.DD>
+              <DList.DD>Allow chest to sink-Plucking up the back</DList.DD>
 
-                <DList.DT>
-                  Rooting
+              <DList.DT>
+                Rooting
               </DList.DT>
-                <DList.DD>Weight falls naturally with gravity to the ground</DList.DD>
-                <DList.DD>Imagine you are being rooted to the ground through feet</DList.DD>
+              <DList.DD>Weight falls naturally with gravity to the ground</DList.DD>
+              <DList.DD>Imagine you are being rooted to the ground through feet</DList.DD>
 
-              </DList.DL>
-            </CardToBlock>
+            </DList.DL>
+          </ExpandingCard>
+          
+          <ExpandingCard 
+            open = {squareTaoOpen}
+            openCallback = {squareTaoOpenUpdate}
+            id="Beginners_squareTao"
+            cardContent={squareTaoCard} 
+            xs={12} sm={6} md={4}
+          >
+            <Draft />
+          </ExpandingCard>
 
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <CardToBlock id="Beginners_squareTao" cardImage={tjt} imageAlt="test" cardContent={squareTaoCard} elementToScrollTo={topRef.current}>
-              <Draft />
-              
-            </CardToBlock>
-
-          </Grid>
-          <ExpandableGridItem expand={formListOpen} xs={12} sm={6} md={4}>
-            <div ref={formRef}>
-              <CardToBlock 
-                id="Beginners_formList" 
-                cardContent={formList.cardInfo}
-                elementToScrollTo={topRef.current}
-                open={formListOpen}
-              >
-                <formList.FormList />
-              </CardToBlock>
-            </div>
-          </ExpandableGridItem>
+          <ExpandingCard 
+            open={formListOpen} 
+            openCallback={formListOpenUpdate}
+            cardContent={formList.cardInfo}
+            id="Beginners_formList" 
+            xs={12} sm={6} md={4}
+          >
+            <formList.FormList />
+          </ExpandingCard>
           
 
           
@@ -353,4 +366,19 @@ export default Beginners;
 
   1. create explicit refs, pass into useHashScrolling as an array
   2. auto generate refs
+*/
+
+/*
+<ExpandableGridItem expand={formListOpen} xs={12} sm={6} md={4}>
+            <div ref={formRef}>
+              <CardToBlock
+                id="Beginners_formList"
+                cardContent={formList.cardInfo}
+                elementToScrollTo={topRef.current}
+                open={formListOpen}
+              >
+                <formList.FormList />
+              </CardToBlock>
+            </div>
+          </ExpandableGridItem>
 */

@@ -202,6 +202,7 @@ export const formListItems: FormList = [
     count: 26,
     chinese: "jīn jī dú lì",
     english: "Golden pheasant (rooster) stands on one leg, left side",
+    image: rooster,
   },
   {
     count: 27,

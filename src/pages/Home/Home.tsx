@@ -151,7 +151,7 @@ const Home: React.FunctionComponent = () => {
           <EditBlock id="Home_welcome2" className={classes.welcome} content={`
             <h2>We teach</h2>
             <ul>
-              <li>Form. Cheng Man Ch'ing's 37 movement form</li>
+              <li>Form: Cheng Man Ch'ing's 37 movement form</li>
               <li><em>Tui shou</em> (sensing hands), partner work with fixed foot position</li>
               <li>Moving step <em>Tui shou</em></li>
               <li><em>Da lu</em> - short two person form</li>

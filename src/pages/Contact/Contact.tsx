@@ -9,6 +9,7 @@ import {Phone, Person, Email, Description, Message, Send} from '@material-ui/ico
 import useHashScrolling from "../../hooks/useHashScrolling"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import EditBlock from '../../components/EditBlock/EditBlock'
+import {Draft} from '../../components/Draft/Draft'
 
 import bigRoom from "../../images/bigRoom.jpeg"
 import sign from "../../images/sign.jpg"
@@ -132,70 +133,73 @@ const Contact: React.FunctionComponent = (props) => {
             {/* To send us Email, please use the following form. The message will be sent anonymously, so don't forget to fill in your own information.
             You can also contact us through Facebook or Meetup */}
           </p>
-          <div >
-            <Grid container className={contactStyles.contactForm}>
-              <Grid item xs={1}>
-                <Person color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="name"
-                  label="Name"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
+          <Draft>
+            <div >
+              <Grid container className={contactStyles.contactForm}>
+                <Grid item xs={1}>
+                  <Person color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    id="name"
+                    label="Name"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
 
-              <Grid item xs={1}>
-                <Email color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="email"
-                  label="Your Email address"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
+                <Grid item xs={1}>
+                  <Email color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    id="email"
+                    label="Your Email address"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
 
-              <Grid item xs={1}>
-                <Description color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="subject"
-                  label="Subject"
-                  variant="outlined"
-                  fullWidth
-                />
-              </Grid>
-              
-              <Grid item xs={1}>
-                <Message color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="message"
-                  label="Message"
-                  variant="outlined"
-                  multiline
-                  fullWidth
-                />
-              </Grid>
+                <Grid item xs={1}>
+                  <Description color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    id="subject"
+                    label="Subject"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
 
-              <Grid item xs={1}>
-                <Send color="primary" fontSize="large" />
-              </Grid>
-              <Grid item xs={11}>
-                <Button variant="contained" color="secondary" disabled>
-                  Send message
+                <Grid item xs={1}>
+                  <Message color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    id="message"
+                    label="Message"
+                    variant="outlined"
+                    multiline
+                    fullWidth
+                  />
+                </Grid>
+
+                <Grid item xs={1}>
+                  <Send color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={11}>
+                  <Button variant="contained" color="secondary" disabled>
+                    Send message
                 </Button>
+                </Grid>
+
               </Grid>
-              
-            </Grid>
-            
-            
-          </div>
+
+
+            </div>
+          </Draft>
+          
           
           
 
