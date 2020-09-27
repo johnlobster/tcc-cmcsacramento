@@ -105,4 +105,11 @@ I didn't ask for that ...
 
 As I suspected, mono repo creates massive problems
 
+had 'build:functions' in `package.json` instead of `yarn build:functions`
+Now deployment is clean
+
+(Loading is pretty slow ...)
+
+Postman can now hit and get a result, but same error 'regeneratorRuntime is not defined'
+
 
