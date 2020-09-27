@@ -112,4 +112,29 @@ Now deployment is clean
 
 Postman can now hit and get a result, but same error 'regeneratorRuntime is not defined'
 
+--------------------------------------------
+9/27/20
+Getting places
+
+Need
+@babel/plugin-transform-runtime
+yarn add and in .babelrc
+
+This babel plugin is needed to support async await ....
+
+```
+localhost:9000/.netlify/functions/mailer
+```
+Hits the function when started with 
+```
+yarn dev:functions
+"dev:functions": "npx netlify-lambda -c functions-webpack-override serve functions",
+```
+
+```
+netlify link
+netlify env:import .env
+```
+No idea why I had to link, I thought that I already had ...
+
 
