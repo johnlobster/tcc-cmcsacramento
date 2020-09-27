@@ -4,7 +4,12 @@ John Webster
 
 Github <https://github.com/johnlobster/tcc-cmcsacramento>
 
+## Set up
 
+created using create-react-app
+
+
+npx create-react-app my-app --template typescript
 
 ## Set up development environment
 
