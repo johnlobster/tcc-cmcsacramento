@@ -85,4 +85,24 @@ I had
   functions = ".netlify/functions/"
   publish = "build:functions"
 ```
-No doubt the reason why it crashed
+No doubt the reason why it crashed, removed publish
+
+```
+info
+1 plugin ran successfully
+
+Click for details.
+
+@netlify/plugin-functions-core
+```
+I didn't ask for that ...
+
+```
+5:37:44 PM: Failing build: Failed to build site
+5:37:45 PM: Failed during stage 'building site': Deploy directory 'build' does not exist
+5:37:45 PM: Finished processing build request in 1m41.283058887s
+```
+
+As I suspected, mono repo creates massive problems
+
+

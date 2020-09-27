@@ -1,4 +1,4 @@
 [build]
-  command = "yarn build:functions"
+  command = "yarn build:web"
   functions = ".netlify/functions/"
   
