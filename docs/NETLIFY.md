@@ -60,3 +60,29 @@ netlify functions:invoke mailer
 ```
 crashed dev server as before
 
+
+Trying to deploy through website. This will crash because .env variables not present
+
+```
+5:25:43 PM: Failed during stage 'building site': Deploy directory 'build:functions' does not exist
+```
+No idea why it should
+
+calling function 
+```
+https://www.cmctaichisacramento.com/.netlify/functions/mailer
+```
+Causes a 404. Not surprising
+
+Manually added functions in GUI
+
+So, although I am running netlify dev, still using netlify-lambda, which is probably the source of my issues
+
+I had 
+```
+[build]
+  command = "yarn build:functions"
+  functions = ".netlify/functions/"
+  publish = "build:functions"
+```
+No doubt the reason why it crashed
