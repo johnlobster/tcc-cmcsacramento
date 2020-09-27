@@ -59,13 +59,12 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "dev": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
     "dev:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts start",
     "dev:functions": "npx netlify-lambda -c functions-webpack-override serve functions",
     "build:functions": "npx netlify-lambda build functions",
-    "build:web": "build:functions && npx cross-env REACT_APP_BUILD_MODE='web' CI= react-scripts build",
-    "build:author": "build:functions && npx cross-env REACT_APP_BUILD_MODE='author' CI= react-scripts build",
+    "build:web": "yarn build:functions && npx cross-env REACT_APP_BUILD_MODE='web' CI= react-scripts build",
+    "build:author": "yarn build:functions && npx cross-env REACT_APP_BUILD_MODE='author' CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --quiet \"src/**/*.tsx\" \"src/**/*.ts\" "
