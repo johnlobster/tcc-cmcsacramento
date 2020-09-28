@@ -165,8 +165,6 @@ export async function handler(event: APIGatewayEvent) {
   } 
   catch (err){
     messageBody = event.body
-    console.log("Not JSON")
-    console.log(err)
   }
   // console.log("Message body")
   // console.log(messageBody)
