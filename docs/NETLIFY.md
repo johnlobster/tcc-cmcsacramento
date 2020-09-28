@@ -137,4 +137,24 @@ netlify env:import .env
 ```
 No idea why I had to link, I thought that I already had ...
 
+The real problem here is being able to separate the concerns
+- typescript
+- `async await`
+- code bugs
+- environment mistakes
+- standalone testing environment (with Jest module issues)
+- function debug (I had problems with nodemailer and comcast)
+- changes in netlify code and documentation
+- netlify dev still under development
+- should I be using `netlify-lambda build` ?
+
+Works, but can be running for > 10 seconds causing timeout
+No idea why it is so slow, could experiment with a simpler function that just returns a value
+There is an issue here, could extend duration of function. Could return without waiting for result from nodemailer
+
+Timeout didn't give an error in the function, so didn't log contact information ...
+
+Don't have this issue when running locally ...
+
+I wonder if load of 200k function isn't part of the problem
 

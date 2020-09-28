@@ -146,6 +146,9 @@ export async function handler(event: APIGatewayEvent) {
     }
   }
     
+  const sendTime = new Date()
+  const rTime = new Date(sendTime.valueOf() - entryTime.valueOf())
+  console.log(`Verified nodemailer connection after ${rTime.getSeconds()} seconds`)
   
   //////////////////////////////////////////////////////////////////////////////////
   // Send email to list
@@ -162,8 +165,8 @@ export async function handler(event: APIGatewayEvent) {
   } 
   catch (err){
     messageBody = event.body
-    // console.log("Not JSON")
-    // console.log(err)
+    console.log("Not JSON")
+    console.log(err)
   }
   // console.log("Message body")
   // console.log(messageBody)
