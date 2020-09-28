@@ -1,5 +1,7 @@
 import React from 'react';
 
+import axios from "axios";
+
 import { Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -13,6 +15,7 @@ import {Draft} from '../../components/Draft/Draft'
 
 import bigRoom from "../../images/bigRoom.jpeg"
 import sign from "../../images/sign.jpg"
+
 
 const useStyles = makeStyles({
   contactForm: {
@@ -48,7 +51,94 @@ const Contact: React.FunctionComponent = (props) => {
 
   const contactStyles = useStyles()
 
-  useHashScrolling([])
+  // useHashScrolling([])
+
+  // Contact form setup
+  // Name and Email are required - make them controlled so can set error 
+  const [contactFormName, setName] = React.useState("")
+  const [formNameError, setFormNameError ] = React.useState(false)
+  const [contactFormEmail, setEmail] = React.useState("")
+  const [formEmailError, setFormEmailError] = React.useState(false)
+  const [contactFormSubject, setSubject] = React.useState("")
+  const [contactFormMessage, setMessage] = React.useState("")
+
+  const [mailMessage, setMailMessage] = React.useState("")
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setName(event.target.value);
+    if ( event.target.value.length > 0) {
+      setFormNameError(false)
+    }
+  };
+  
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setEmail(event.target.value);
+    if (event.target.value.length > 0) {
+      setFormEmailError(false)
+    }
+  };
+
+  const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setSubject(event.target.value)
+  }
+
+  const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setMessage(event.target.value)
+
+  }
+
+  const contactSubmit = (event: React.MouseEvent<HTMLElement>): void => {
+    event.preventDefault();
+    // check Name and Email
+    if (contactFormName.length === 0) {
+      setFormNameError(true)
+    }
+    if (contactFormEmail.length === 0) {
+      setFormEmailError(true)
+    } 
+    if ((contactFormName.length > 0) && (contactFormEmail.length > 0)) {
+      const messageBody = {
+        name: contactFormName,
+        email: contactFormEmail,
+        subject: contactFormSubject,
+        message:  contactFormMessage
+      }
+      setMailMessage("Message sent")
+      // const lambdaAddress = "www.cmctaichisacramento.com/.netlify/functions/mailer"
+      const lambdaAddress = "/.netlify/functions/mailer" // development proxies to localhost:9000
+      console.log("Contact: Message sent to lambda server")
+      axios.post(lambdaAddress, JSON.stringify(messageBody))
+        .then( (response) => {
+          console.log("Contact: Lambda server replied")
+          console.log(response)
+          setMailMessage("Message received")
+        })
+        .catch( (err) => {
+          console.log("Contact: Lambda server was very sad")
+          console.log(err)
+          setMailMessage("Message sent, but the internet lost it somewhere")
+
+        })
+    } else {
+      setMailMessage("Message not sent, please check Name and Email")
+
+    }
+  }
+
+  const clearForm = (event: React.MouseEvent<HTMLElement>): void => {
+    event.preventDefault();
+    setName("")
+    setFormNameError(false)
+    setEmail("")
+    setFormEmailError(false)
+    setMailMessage("  ")
+    setSubject("")
+    setMessage("")
+  }
 
   return(
     <ResponsiveContainer>
@@ -127,71 +217,93 @@ const Contact: React.FunctionComponent = (props) => {
         </Grid>
 
         <Grid item xs={12} id="contact">
-          <h2>Contact via email</h2>
+          <h2>Email contact</h2>
           <p>
-            Email form is still under development
-            {/* To send us Email, please use the following form. The message will be sent anonymously, so don't forget to fill in your own information.
-            You can also contact us through Facebook or Meetup */}
+            To send us Email, please use the following form. The message will be sent anonymously, so don't forget to fill in your own Email address.
+            You can also contact us through Facebook or Meetup
           </p>
           <Draft>
             <div >
               <Grid container className={contactStyles.contactForm}>
-                <Grid item xs={1}>
+                <Grid item xs={2} sm={1}>
                   <Person color="primary" fontSize="large" />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10} sm={11}>
                   <TextField
-                    id="name"
+                    id="contactName"
                     label="Name"
                     variant="outlined"
                     required
+                    value = {contactFormName}
+                    onChange={handleNameChange}
+                    error={formNameError}
                   />
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item xs={2} sm={1}>
                   <Email color="primary" fontSize="large" />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10} sm={11}>
                   <TextField
-                    id="email"
+                    id="contactEmail"
                     label="Your Email address"
                     variant="outlined"
                     required
+                    value = {contactFormEmail}
+                    onChange={handleEmailChange}
+                    error={formEmailError}
                   />
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item xs={2} sm={1}>
                   <Description color="primary" fontSize="large" />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10} sm={11}>
                   <TextField
-                    id="subject"
+                    id="contactSubject"
                     label="Subject"
                     variant="outlined"
                     fullWidth
+                    value={contactFormSubject}
+                    onChange={handleSubjectChange}
                   />
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item xs={2} sm={1}>
                   <Message color="primary" fontSize="large" />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10} sm={11}>
                   <TextField
-                    id="message"
+                    id="contactMessage"
                     label="Message"
                     variant="outlined"
                     multiline
                     fullWidth
+                    value={contactFormMessage}
+                    onChange={handleMessageChange}
                   />
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item xs={2} sm={1}>
+                </Grid>
+                <Grid item xs={10} sm={11}>
+                  <div style={{minHeight: "2rem"}}>
+                    {mailMessage}
+                  </div>
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
                   <Send color="primary" fontSize="large" />
                 </Grid>
-                <Grid item xs={11}>
-                  <Button variant="contained" color="secondary" disabled>
-                    Send message
-                </Button>
+                <Grid item xs={10} sm={8} md={6}>
+                  <Grid container justify="space-between">
+                      <Button variant="contained" color="secondary" onClick={contactSubmit}>
+                        Send message
+                      </Button>
+                      <Button variant="contained" color="secondary" onClick={clearForm}>
+                        Clear Email form
+                      </Button>
+                  </Grid>                  
                 </Grid>
 
               </Grid>
@@ -212,7 +324,7 @@ const Contact: React.FunctionComponent = (props) => {
           <p>
             Like any physical sport, martial arts always carry the possibility of injury. The instructors and venue accept no responsibility for 
             any injury incurred in their pursuit. Besides seeking proper “hands-on” instruction, in the event of any doubts concerning possible stress or strain 
-            to the student a physician should be consulted for assurance that no instruction is counter-indicated by the reader’s physical condition.
+            to the student a physician should be consulted for assurance that no instruction is counter-indicated by the student’s physical condition.
           </p>
           ">
           </EditBlock>

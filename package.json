@@ -4,6 +4,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "private": false,
+  "proxy": "http://localhost:9000",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
@@ -32,6 +33,7 @@
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-transition-group": "^4.4.0",
+    "axios": "^0.20.0",
     "color": "^3.1.2",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
@@ -40,6 +42,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "express": "^4.17.1",
     "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^1.0.5",
     "hygen": "^6.0.4",
     "node-forge": "^0.10.0",
     "node-sass": "^4.14.1",
@@ -61,9 +64,10 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "dev": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
+    "start": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
+    "dev": "yarn start",
     "dev:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts start",
-    "dev:functions": "npx netlify-lambda -c functions-webpack-override serve functions",
+    "dev:functions": "npx netlify-lambda -t 60 -p 9000 -c functions-webpack-override serve functions",
     "build:functions": "npx netlify-lambda build functions",
     "build:web": "yarn build:functions && npx cross-env REACT_APP_BUILD_MODE='web' CI= react-scripts build",
     "build:author": "yarn build:functions && npx cross-env REACT_APP_BUILD_MODE='author' CI= react-scripts build",

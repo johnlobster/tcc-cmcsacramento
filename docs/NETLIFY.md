@@ -158,3 +158,39 @@ Don't have this issue when running locally ...
 
 I wonder if load of 200k function isn't part of the problem
 
+-----------------------------
+9/28
+
+Have it up and going, but getting proxy error - more related to create-react-app
+ 
+```
+$ netlify dev -c yarn start                                                              ◈ Netlify Dev ◈
+◈ Injected build setting env var: REACT_APP_BUILD_MODE
+◈ Injected build setting env var: EMAIL_ADDRESS
+◈ Injected build setting env var: NODEMAILER_HOST
+◈ Injected build setting env var: NODEMAILER_PORT
+◈ Injected build setting env var: NODEMAILER_SECURE
+◈ Injected build setting env var: NODEMAILER_AUTH_USERNAME
+◈ Injected build setting env var: NODEMAILER_AUTH_PASSWORD
+◈ Injected build setting env var: EMAIL_LIST
+◈ Injected build setting env var: CONTACT_DATA
+◈ Injected build setting env var: NETLIFY_AUTH_TOKEN
+◈ Overriding the following env variables with .env file: REACT_APP_BUILD_MODE,EMAIL_ADDRESS,NODEMAILER_HOST,NODEMAILER_PORT,NODEMAILER_SECURE,NODEMAILER_AUTH_USERNAME,NODEMAILER_AUTH_PASSWORD,EMAIL_LIST,CONTACT_DATA,NETLIFY_AUTH_TOKEN
+◈ Overriding command with setting derived from netlify.toml [dev] block:  yarn
+◈ Function builder netlify-lambda detected: Running npm script build:functions
+ »   Warning: ◈ This is a beta feature, please give us feedback on how to improve at
+ »   https://github.com/netlify/cli/
+◈ Function builder netlify-lambda building functions from directory functions
+◈ Function builder netlify-lambda finished building functions from directory functions
+◈ Functions server is listening on 57664
+◈ Starting Netlify Dev with create-react-app
+yarn install v1.17.3
+warning ..\package.json: No license field
+[1/4] Resolving packages...
+success Already up-to-date.
+Done in 0.83s.
+◈ "yarn" exited with code 0. Shutting down Netlify Dev server
+
+JohnL@DESKTOP-A2OD0L1 MINGW64 ~/webDev/tcc-cmcsacramento (dev)
+$
+```

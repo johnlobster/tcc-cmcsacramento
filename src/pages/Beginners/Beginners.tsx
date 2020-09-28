@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import CardToBlock from "../../components/CardToBlock/CardToBlock";
+// import CardToBlock from "../../components/CardToBlock/CardToBlock";
 import ContactButton from "../../components/ContactButton/ContactButton";
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
-import ExpandableGridItem from '../../components/ExpandableGridItem/ExpandableGridItem'
+// import ExpandableGridItem from '../../components/ExpandableGridItem/ExpandableGridItem'
 import ExpandingCard from "../../components/ExpandingCard/ExpandingCard"
 import {Draft} from '../../components/Draft/Draft'
 
