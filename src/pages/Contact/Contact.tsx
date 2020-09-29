@@ -12,6 +12,7 @@ import useHashScrolling from "../../hooks/useHashScrolling"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import EditBlock from '../../components/EditBlock/EditBlock'
 import {Draft} from '../../components/Draft/Draft'
+import theme from '../../global/theme'
 
 import bigRoom from "../../images/bigRoom.jpeg"
 import sign from "../../images/sign.jpg"
@@ -34,12 +35,25 @@ const useStyles = makeStyles({
   },
   pictureSignBox: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    [theme.breakpoints.up('xs')]: {
+      justifyContent: 'space-around',
+    },
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'flex-end',
+    },
+    
     '& img': {
-      width: '80%',
+      // width: '80%',
+      height: "8rem",
       alignSelf: 'center',
     },
   },
+  buttonBox: {
+    '& button': {
+      marginTop: "0.25rem",
+      marginBottom: "0.25rem",
+    }
+  }
 })
   
 // add more props 
@@ -296,7 +310,7 @@ const Contact: React.FunctionComponent = (props) => {
                   <Send color="primary" fontSize="large" />
                 </Grid>
                 <Grid item xs={10} sm={8} md={6}>
-                  <Grid container justify="space-between">
+                  <Grid container justify="space-between" className={contactStyles.buttonBox}>
                       <Button variant="contained" color="secondary" onClick={contactSubmit}>
                         Send message
                       </Button>
@@ -354,7 +368,16 @@ const Contact: React.FunctionComponent = (props) => {
         <Grid item xs={12}>
           <h2>About this website</h2>
 
-          <p>Detailed information for nerds like me - under construction</p>
+          <p>Some information for nerds like me</p>
+          <p>
+            Web technologies
+            <ul>
+              <li>React</li>
+              <li>react-router</li>
+              <li>Netlify</li>
+              <li>Material-UI</li>
+            </ul>
+          </p>
 
         </Grid>
 
