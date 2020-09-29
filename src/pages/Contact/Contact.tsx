@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
 import axios from "axios";
 
 import { Grid, TextField, Button } from '@material-ui/core';
@@ -12,6 +13,7 @@ import useHashScrolling from "../../hooks/useHashScrolling"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import EditBlock from '../../components/EditBlock/EditBlock'
 import {Draft} from '../../components/Draft/Draft'
+import GMap from '../../components/GMap/GMap'
 import Social from '../../components/Social/Social'
 import theme from '../../global/theme'
 
@@ -227,6 +229,14 @@ const Contact: React.FunctionComponent = (props) => {
           
           </EditBlock>
             
+          <GMap />
+
+          <Button variant="contained" color="secondary">
+            <Link to="https:google">
+              Open in Google maps
+            </Link>
+          </Button>
+
           {/* <p>The following map, if accessed on a phone, will allow you to navigate to the correct place</p> */}
 
         </Grid>

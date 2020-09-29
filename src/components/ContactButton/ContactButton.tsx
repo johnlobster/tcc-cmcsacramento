@@ -27,8 +27,12 @@ const classes= useStyles();
 
 return (
   <div className={classes.buttonBox}>
-    <Button variant="contained" size="large"
-      color="secondary" className={classes.contactButton}>
+    <Button 
+      variant="contained" 
+      size="large"
+      color="secondary" 
+      className={classes.contactButton}
+    >
       <Link to="/Contact#contact">
         Contact us
       </Link>
