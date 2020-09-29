@@ -12,6 +12,7 @@ import useHashScrolling from "../../hooks/useHashScrolling"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import EditBlock from '../../components/EditBlock/EditBlock'
 import {Draft} from '../../components/Draft/Draft'
+import Social from '../../components/Social/Social'
 import theme from '../../global/theme'
 
 import bigRoom from "../../images/bigRoom.jpeg"
@@ -326,11 +327,8 @@ const Contact: React.FunctionComponent = (props) => {
             </div>
           </Draft>
           
+          <Social />
           
-          
-
-          
-
         </Grid>
         
         <Grid item xs={12} id="disclaimer">

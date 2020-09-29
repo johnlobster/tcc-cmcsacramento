@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Card, CardContent, CardMedia, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,12 +11,13 @@ import EditSpan from '../../components/EditSpan/EditSpan';
 import CircleMenu from "../../components/CircleMenu/CircleMenu";
 import VSeparator from "../../components/VSeparator/VSeparator"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+import Social from '../../components/Social/Social'
+
 
 
 import map from "../../images/map2.jpg";
 import cmc from "../../images/cmc1_fade.png";
-import facebook from "../../images/facebook.png";
-import meetup from "../../images/meetup.png";
+import sendMail from "../../images/send-mail.gif"
 
 const useStyles = makeStyles({
   
@@ -40,13 +41,17 @@ const useStyles = makeStyles({
     width: 'auto',
     height: '35vw',
     maxHeight: '250px',
-    margin: '0 auto'
+    margin: '0 auto',
+    
   },
   contactCard: {
-    height: '100%'
+    height: '100%',
   },
   customCard: {
-    color: theme.palette.text.primaryColorDark
+    color: theme.palette.text.primaryColorDark,
+    '& > a': {
+      textDecoration: "none",
+    }
   },
   // not so useful now I changed the defaults. This doesn't affect headings
   // because the <h.> style I set is more specific
@@ -109,6 +114,26 @@ const useStyles = makeStyles({
     '& *': {
       lineHeight: 'inherit'
     }
+  },
+  email: {
+    paddingTop: "0.75rem",
+    paddingBottom: "0.75rem",
+    '& a': {
+      textDecoration: "none",
+    },
+    '& img': {
+      width: "80%",
+    }
+  },
+  centerContent: {
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
+  },
+  emailGifBox: {
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
   }
 });
 
@@ -211,29 +236,25 @@ const Home: React.FunctionComponent = () => {
                   <Typography variant="h4" component="h3" >
                     Contact us through social media
                   </Typography>
-                  <Grid container >
-                    <Grid item xs={6}>
-                      <div className={classes.logoBox} >
-                        <a href="https://www.facebook.com/chengmanchingtaichi/" className={classes.linkBox}>
-                          <img src={facebook} alt="Click here to visit our facebook page" className={classes.logoFacebook} />
-                        </a>
-                      </div>
-                    </Grid>
-                    
-                    <Grid item xs={6}>
-                      <div className={classes.logoBox}>
-                        <a href="https://www.meetup.com/Cheng-Man-Ching-Tai-Chi-Chuan-Group/" className={classes.linkBox}>
-                          <img src={meetup} alt="Click here to visit our meetup page" className={classes.logoMeetup} />
-                        </a>
-                      </div>
-                      
-                    </Grid>
-          
-                  </Grid>
+                  <Social />
 
-                  <Typography variant="h4" component="h3">
-                    Contact us through Email
-                  </Typography>
+                  <div className={classes.email}>
+                      <Link to="/Contact">
+                        <Grid container>
+                          <Grid item xs={4} className={classes.emailGifBox}>
+                            <img src={sendMail} alt="Email" />
+                          </Grid>
+                          <Grid item xs={8} className={classes.emailGifBox}>
+                            <Typography variant="h4" component="h3">
+                              Contact us through Email
+                        </Typography>
+                          </Grid>
+                        </Grid>
+                      </Link>
+                  </div>
+                  
+                  
+                  
 
                 </CardContent>
               </Card>
@@ -241,19 +262,20 @@ const Home: React.FunctionComponent = () => {
 
             <Grid item xs={12} sm={6}>
               <Card raised={true} className={classes.customCard}>
-                  <CardMedia className={classes.map}
-                    component="img"
-                    alt="Click here to find directions to Tai chi group"
-                    image={map}
-                    title="Click here to find directions to Tai chi group"
-                  />
-                  <CardContent className={classes.mapTitle}>
-                    <Typography variant="h4" component="h3">
-                      <span >
+                <Link to="/Contact">
+                    <CardMedia className={classes.map}
+                      component="img"
+                      alt="Click here to find directions to Tai chi group"
+                      image={map}
+                      title="Click here to find directions to Tai chi group"
+                    />
+                    <CardContent className={classes.mapTitle}>
+                      <Typography variant="h4" component="h3">
                         Location and class times
-                      </span>
-                    </Typography>
-                  </CardContent>                
+                      </Typography>
+                    </CardContent>
+                </Link>
+                                  
               </Card>
             </Grid>
 
