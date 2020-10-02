@@ -1,12 +1,11 @@
 import React from 'react';
 
-import google from 'google'
 
-import { GoogleMap, LoadScript, Marker, InfoBox } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import taijitu from '../../images/Taijitu.svg'
+import taijitu from '../../images/tjt4.png'
 // import theme from "../../global/theme";
 
 const useStyles = makeStyles({
@@ -36,16 +35,25 @@ const GMap: React.FunctionComponent = (props) => {
   }
 
   const communityCenterLocation = {
-    lat: 38.601662, lng: -121.309458
+    lat: 38.601668, lng: -121.309464
   }
 
-  // use to position infobox
-  // const offsetLocation = {
-  //   lat: communityCenterLocation.lat - 0.000020,
-  //   lng: communityCenterLocation.lng - 0.000020
-  // }
+  
+  const parkLocation = {
+    lat: 38.600766,
+    lng: -121.310778
+  }
 
-  const iconSize = new google.maps.Size(40, 40)
+  const theatreLocation = {
+    lat: 38.600540, 
+    lng: -121.309190,
+  }
+
+  const hsLocation = {
+    lat: 38.599775, 
+    lng: -121.308382
+  }
+  
 
   return (
     <div className={classes.topBox}>
@@ -57,13 +65,27 @@ const GMap: React.FunctionComponent = (props) => {
           zoom={16}
           center={communityCenterLocation}
         >
-          {/* <InfoBox position={offsetLocation} >
-            <img src={taijitu} alt="Class location" width="40" />
-          </InfoBox> */}
-          <Marker 
-            position={communityCenterLocation} 
-            icon={{ url: taijitu, size: iconSize }}
+          <Marker
+            position={communityCenterLocation}
+            icon={{ url: taijitu }}
+            opacity={0.8}
           />
+          <Marker 
+            position={parkLocation}
+            label="Hagan Park"
+            opacity={0.6} 
+          />
+          <Marker
+            position={theatreLocation}
+            label="Community theatre"
+            opacity={0.6} 
+          />
+          <Marker
+            position={hsLocation}
+            label="High school"
+            opacity={0.6} 
+          />
+          
         </GoogleMap>
       </LoadScript>
     </div>

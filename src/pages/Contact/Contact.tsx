@@ -56,6 +56,12 @@ const useStyles = makeStyles({
       marginTop: "0.25rem",
       marginBottom: "0.25rem",
     }
+  },
+  openMap: {
+    '& a': {
+      color: "white",
+      textDecoration: 'none',
+    }
   }
 })
   
@@ -231,10 +237,13 @@ const Contact: React.FunctionComponent = (props) => {
             
           <GMap />
 
-          <Button variant="contained" color="secondary">
-            <Link to="https:google">
+          <Button variant="contained" color="secondary" className={contactStyles.openMap}>
+            <a 
+              target="_blank"
+              href="https://www.google.com/maps/place/Hagan+Community+Center/@38.6014079,-121.3118612,17z/data=!3m1!4b1!4m5!3m4!1s0x809addab44082533:0xd2077a03010da7ad!8m2!3d38.6014079!4d-121.3096672"
+            >
               Open in Google maps
-            </Link>
+            </a>
           </Button>
 
           {/* <p>The following map, if accessed on a phone, will allow you to navigate to the correct place</p> */}
@@ -337,7 +346,11 @@ const Contact: React.FunctionComponent = (props) => {
             </div>
           </Draft>
           
-          <Social />
+          <Grid container justify="center">
+            <Grid item xs={8} md={6}>
+              <Social />
+            </Grid>
+          </Grid>
           
         </Grid>
         
