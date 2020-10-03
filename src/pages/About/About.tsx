@@ -45,8 +45,8 @@ const About: React.FunctionComponent = (props) => {
   // ToDo, create list length instructorList.length
   const tmp = [false, false, false, false]
   const [openList, openListUpdate] = React.useState(tmp)
-  // ToDo, create list of functions calling openListUpdate
-  
+  // ToDo, create list of functions calling openListUpdate to be passed as callback into ExpandingCard
+
   const toggleCard: (index: number) => void = (index) => {
 
   }

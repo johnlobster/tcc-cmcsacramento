@@ -1,0 +1,10 @@
+{
+  "name": "sparkpost",
+  "version": "1.0.0",
+  "main": "sparkpost.js",
+  "author": "John Webster",
+  "license": "MIT",
+  "devDependencies": {
+    "sparkpost": "^2.1.4"
+  }
+}
