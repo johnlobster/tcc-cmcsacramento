@@ -9,6 +9,7 @@ import Home from "../../pages/Home/Home";
 import Beginners from "../../pages/Beginners/Beginners";
 import Intermediate from "../../pages/Intermediate/Intermediate"
 import Advanced from "../../pages/Advanced/Advanced"
+import About from "../../pages/About/About"
 import History from "../../pages/History/History"
 import Articles from "../../pages/Articles/Articles"
 import Resources from "../../pages/Resources/Resources"
@@ -19,6 +20,7 @@ const pageList = [ // this doesn't make it any more dry ..., maybe pull path fro
   Beginners,
   Intermediate,
   Advanced,
+  About,
   History,
   Articles,
   Resources,

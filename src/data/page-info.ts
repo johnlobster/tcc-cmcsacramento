@@ -1,3 +1,6 @@
+// List of pages
+
+// ToDo - import all pages here, then build access into list so that it can be used as is by Router
 
 export interface PageDataItem {
   name: string;
@@ -28,6 +31,11 @@ export const data: PageData = [
     name: "Advanced",
     menu: "Advanced",
     title: "Cheng Man Ch'ing Sacramento for beginners"
+  },
+  {
+    name: "About",
+    menu: "About",
+    title: "About Cheng Man Ch'ing Sacramento"
   },
   {
     name: "History",

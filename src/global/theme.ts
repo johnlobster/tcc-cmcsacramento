@@ -49,15 +49,17 @@ export const rhythm = 1.5;
 // h4  Minor         (3)
 // 
 
+
+// Primary yellow #fac456
 const initialTheme: Theme = createMuiTheme({
   palette: {
     primary: {
-      main: 'rgba(84, 24, 83, 1)',
+      main: 'rgba(252, 184, 67, 1)',
       contrastText: '#FFFFFF',
-      fade: 'rgba(84, 24, 83, 0.8)' // custom
+      fade: 'rgba(252, 184, 67, 1)' // custom. With yellow main colour, this looks better without fade
     },
     secondary: {
-      main: 'rgba(34, 33, 153, 0.8)',
+      main: 'rgba(211, 0, 0, 1)',
       contrastText: '#FFFFFF',
     },
     text: {
@@ -76,8 +78,8 @@ const initialTheme: Theme = createMuiTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
     background: {
-      paper: '#f0f0f0',
-      articlePaper: '#e9e5eb',
+      paper: 'rbga(250, 190, 86, 1)',
+      articlePaper: 'rbga(250, 190, 86, 1)',
       default: '#FFFFFF'
     }
   },
