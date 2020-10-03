@@ -194,3 +194,31 @@ Done in 0.83s.
 JohnL@DESKTOP-A2OD0L1 MINGW64 ~/webDev/tcc-cmcsacramento (dev)
 $
 ```
+
+------------------
+10/3
+
+Try removing my function dev stuff from package.json (branch funcTest)
+
+old scripts
+```json
+"scripts": {
+    "start": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
+    "dev": "yarn start",
+    "dev:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts start",
+    "dev:functions": "npx netlify-lambda -t 60 -p 9000 -c functions-webpack-override serve functions",
+    "build:functions": "npx netlify-lambda build functions",
+    "build:web": "yarn build:functions && npx cross-env REACT_APP_BUILD_MODE='web' CI= react-scripts build",
+    "build:author": "yarn build:functions && npx cross-env REACT_APP_BUILD_MODE='author' CI= react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --quiet \"src/**/*.tsx\" \"src/**/*.ts\" "
+  },
+  ```
+  
+  Messing with node version got rid of anything installed using node
+
+  ```
+  npm install netlify-cli -g
+  ```
+  
