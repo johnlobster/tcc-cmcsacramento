@@ -5,27 +5,17 @@ import * as pageInfo from "../../data/page-info"; // single source of truth, but
 
 import Tcc404 from "../../pages/Tcc404/Tcc404";
 
-import Home from "../../pages/Home/Home";
-import Beginners from "../../pages/Beginners/Beginners";
-import Intermediate from "../../pages/Intermediate/Intermediate"
-import Advanced from "../../pages/Advanced/Advanced"
-import About from "../../pages/About/About"
-import History from "../../pages/History/History"
-import Articles from "../../pages/Articles/Articles"
-import Resources from "../../pages/Resources/Resources"
-import Contact from "../../pages/Contact/Contact"
-
-const pageList = [ // this doesn't make it any more dry ..., maybe pull path from pageInfo.data
-  Home,
-  Beginners,
-  Intermediate,
-  Advanced,
-  About,
-  History,
-  Articles,
-  Resources,
-  Contact
-]
+// const pageList = [ // this doesn't make it any more dry ..., maybe pull path from pageInfo.data
+//   Home,
+//   Beginners,
+//   Intermediate,
+//   Advanced,
+//   About,
+//   History,
+//   Articles,
+//   Resources,
+//   Contact
+// ]
 
 
 // ToDo import and Route using pageInfo instead of hard coding, but have to be able to pass them all to webpack ...
@@ -35,13 +25,13 @@ const Router: React.FunctionComponent = () => {
 
   return(
     <Switch>
-      <Route exact path='/' component={Home} />
+      <Route exact path='/' component={pageInfo.allPages[0].reactPage} />
 
-      <Route exact path='/index.html' component={Home} />
+      <Route exact path='/index.html' component={pageInfo.allPages[0].reactPage} />
 
       
-      {pageList.map( (item, index) => {
-        return <Route path={`/${pageInfo.data[index].name}`} component={item} key={pageInfo.data[index].name} />
+      {pageInfo.allPages.map( (item, index) => {
+        return <Route path={`/${item.name}`} component={item.reactPage} key={`${item.name}_${index}`} />
       })}
       
       <Route component={Tcc404} />

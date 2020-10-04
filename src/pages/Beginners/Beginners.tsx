@@ -207,7 +207,7 @@ const Beginners: React.FunctionComponent = () => {
 
         <h2>More information</h2>
         
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignContent="stretch">
           <ExpandingCard
             open={tipsOpen}
             openCallback={tipsOpenUpdate}

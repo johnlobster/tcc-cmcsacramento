@@ -59,7 +59,7 @@ const initialTheme: Theme = createMuiTheme({
       fade: 'rgba(252, 184, 67, 1)' // custom. With yellow main colour, this looks better without fade
     },
     secondary: {
-      main: 'rgba(211, 0, 0, 1)',
+      main: 'rgba(168, 0, 0, 1)',
       contrastText: '#FFFFFF',
     },
     text: {
@@ -78,8 +78,8 @@ const initialTheme: Theme = createMuiTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
     background: {
-      paper: 'rbga(250, 190, 86, 1)',
-      articlePaper: 'rbga(250, 190, 86, 1)',
+      paper: 'rgba(240, 240, 240, 1)',
+      articlePaper: 'rgba(240, 240, 240, 1)',
       default: '#FFFFFF'
     }
   },

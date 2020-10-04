@@ -10,7 +10,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // ToDo a11y - this is a menu, needs to be described as a menu
 
-import { data as pageData } from "../../data/page-info"
+import { allPages } from "../../data/page-info"
 import Taijitu from "../../images/Taijitu.svg";
 
 // Making this component generic would require
@@ -87,32 +87,35 @@ const tjtStyles = makeStyles(() =>
   })
 )
 
-// have to account for button padding,  adding to box height and width 
-const xy: XYData[] = ((): XYData[] => {
-  const arc: number = (2 * Math.PI) / pageData.length; // radians
-  const output: XYData[] = [];
-  pageData.forEach((value, index) => {
-    const print: XYData = {
-      top: (size - (boxHeight / 2) + (size * Math.sin(index * arc))).toFixed(2) + 'rem',
-      right: (size - (boxWidth/ 2) + (size * Math.cos(index * arc))).toFixed(2) + 'rem'
-    }
-    // console.log(`${index} top: ${print.top} right: ${print.right}`);
-    // console.log(`  ${(index * arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
-    output.push(print);
-  });
-  return output;
-})()
+
 
 const CircleMenu: React.FunctionComponent = () => {
   const topBoxClasses = topBoxStyles();
   const linkButtonClasses = linkButtonStyles();
   const tjtClasses = tjtStyles();
+
+  // have to account for button padding,  adding to box height and width 
+  const xy: XYData[] = ((): XYData[] => {
+    const arc: number = (2 * Math.PI) / allPages.length; // radians
+    const output: XYData[] = [];
+    allPages.forEach((value, index) => {
+      const print: XYData = {
+        top: (size - (boxHeight / 2) + (size * Math.sin(index * arc))).toFixed(2) + 'rem',
+        right: (size - (boxWidth / 2) + (size * Math.cos(index * arc))).toFixed(2) + 'rem'
+      }
+      // console.log(`${index} top: ${print.top} right: ${print.right}`);
+      // console.log(`  ${(index * arc)} radians sin  ${Math.sin(index * arc)}  cos ${Math.cos(index * arc)}`)
+      output.push(print);
+    });
+    return output;
+  })()
+  
   return (
     <div>
       <Box className={topBoxClasses.root} aria-label="menu">
         <img src={Taijitu} alt="Yin yang symbol" className={tjtClasses.root} />
 
-        {pageData.map((item, index) => {
+        {allPages.map((item, index) => {
           return (
             <Button
               className={linkButtonClasses.root}

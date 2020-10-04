@@ -1,0 +1,16 @@
+// Names are unique from component based naming convention
+// prefix with md-jww-cgrid-
+
+.md-jww-cgrid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 8px;
+    row-gap: 8px;
+}
+@for $i from 1 through 12 {
+    .md-jww-cgrid-itemSpan#{$i} {
+        grid-column-start: span #{$i};
+        height: 100%;
+    }
+}

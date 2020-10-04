@@ -1,0 +1,17 @@
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 8px;
+  row-gap: 8px;
+}
+.itemSpan12 {
+    grid-column-start: span 12;
+}
+.itemSpan6 {
+    grid-column-start: span 6;
+}
+.itemSpan4 {
+    grid-column-start: span 4;
+}
