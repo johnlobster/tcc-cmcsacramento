@@ -46,7 +46,11 @@ const mkStyles = makeStyles({
   paper: {
     backgroundColor: theme.palette.background.articlePaper,
   },
-
+  closedItem: {
+    '& > *': {
+      height: "100%", // by making immediate child element 100% high, grid items will all have the same height in a single row
+    },
+  }
 });
 
 // add more props 
@@ -114,7 +118,7 @@ const ExpandingCard: React.FunctionComponent<MoreProps> = (props) => {
           </SlideArticle>
         </Grid>
       ) : (
-        <Grid item
+        <Grid item className={classes.closedItem}
             {...props}
           >
             {/* Card */}

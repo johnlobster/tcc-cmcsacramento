@@ -144,7 +144,7 @@ const Beginners: React.FunctionComponent = () => {
   const squareTaoCard = (
     <Grid container>
       <Grid item xs={12} sm={9} >
-        <h4 >The square Tao </h4>
+        <h6 >The square Tao </h6>
       </Grid>
       <Grid item xs={12} sm={3} >
         <img src={tjt} alt="Yin yang symbol" className={classes.squareTaoCardImage} />
@@ -156,7 +156,7 @@ const Beginners: React.FunctionComponent = () => {
 
   const tipsCard = (
     <div >
-      <h4>10 Essential tips for beginners</h4>
+      <h6>10 Essential tips for beginners</h6>
     </div>
   );
 

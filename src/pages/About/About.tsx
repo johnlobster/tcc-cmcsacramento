@@ -43,29 +43,43 @@ const useStyles = makeStyles({
   }
 })
 
-
+// the card open/closed state is an array of booleans
+type boolArray = Array< boolean >
+const initOpen: ( length: number) => boolArray = (length) => {
+  const outputArray: boolArray = []
+  for ( let i=0; i < length; i++) {
+    outputArray[i] = false
+  }
+  return outputArray
+}
 const About: React.FunctionComponent = (props) => {
 
   const styles = useStyles()
 
-  // ToDo, create list length instructorList.length
-  const initOpenArray = Array.prototype.fill(false, 0, instructorList.length) // ugly syntax to create a [false, false ..] array
+  // state for opening/closing cards
+  const initOpenArray: boolArray = initOpen(instructorList.length) 
   const [openList, openListUpdate] = React.useState(initOpenArray)
 
-  // ToDo, create list of functions calling openListUpdate
-  
-  const toggleCard: (index: number) => void = (index) => {
-    const currentOpenList = openList
-    const newOpenList = initOpenArray
-    for( let i= 0; i < initOpenArray.length; i++) {
+  const toggleCard: (index: number, cardOpen: boolean) => void = (index, cardOpen) => {
+    const newOpenList: boolArray = []
+    for (let i = 0; i < instructorList.length; i++) {
+      console.log(`${i} `)
       if ( i === index) {
-        newOpenList[i] = ! currentOpenList[i]
+        newOpenList[i] = cardOpen
       } else {
-        newOpenList[i] = currentOpenList[i]
+        newOpenList[i] = openList[i]
       }
     }
-    console.log(`About:ToggleCard(${index}) New open list: ${newOpenList}`)
+    // console.log(`About:ToggleCard(${index}, open) New open list:`)
     openListUpdate(newOpenList)
+  }
+
+  // pass buttonFunctions[i] to each card (ExpandingCard), so that it can call toggleCard with the right index
+  const buttonFunctions: Array< (open: boolean) => void > = []
+  for( let i=0; i < instructorList.length; i++) {
+    buttonFunctions[i] = (open ) => {
+      toggleCard( i, open)
+    }  
   }
 
   return(
@@ -79,7 +93,7 @@ const About: React.FunctionComponent = (props) => {
 
         <h2>Instructors</h2>
 
-        {/* use my own components instead of mui - much easier */}
+        {/* use my own components instead of mui - testing */}
         {/* <div className={styles.bioBox}>
           <CGrid container >
             {instructorList.map((item, index) => {
@@ -114,7 +128,7 @@ const About: React.FunctionComponent = (props) => {
               return (
                   <ExpandingCard
                     open={openList[index]}
-                    openCallback={cantOpen}
+                    openCallback={buttonFunctions[index]}
                     id={`Instructor_${index}`}
                     key={`Instructor_${index}`}
                     cardContent={cardContent}

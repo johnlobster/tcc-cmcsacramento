@@ -226,7 +226,7 @@ const Contact: React.FunctionComponent = (props) => {
           </Grid>
           <br />
           
-          <EditBlock id="directions" content="<p>Google maps does not find the location correctly using the name/address and will happily send you to the other side of Hagan park</p><p>
+          <EditBlock id="directions" content="<p>Google maps sometimes doesn't find the location correctly using the name/address and will happily send you to the other side of Hagan park</p><p>
           To get to the community center, turn off Coloma onto Chase drive. Drive past the High school and community theatre.
           Turn right just before the park entrance and park anywhere. The community center is up some steps, past the ponds
           </p>
