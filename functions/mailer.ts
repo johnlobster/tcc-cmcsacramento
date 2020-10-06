@@ -198,13 +198,12 @@ export async function handler(event: APIGatewayEvent) {
   }
   
   const exitTime = new Date() 
-  // const runTime = exitTime.getSeconds() - entryTime.getSeconds()
   const runTime = new Date(exitTime.valueOf() - entryTime.valueOf())
 
   console.log(`Function completed at ${exitTime}`)
   console.log(`Function took ${runTime.getSeconds()} seconds to run. Started ${exitTime}\n\n`)
   return {
     statusCode: 200,
-    body: `mailer.js completed in ${runTime.getSeconds()} seconds`,
+    body: `mailer.ts completed in ${runTime.getSeconds()} seconds`,
   }
 }
