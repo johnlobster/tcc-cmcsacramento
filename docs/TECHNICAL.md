@@ -77,6 +77,22 @@ Release procedure is
 
 ### Author
 
+## Netlify cli
+
+Transfer .env variables to netlify release area
+
+```bash
+netlify env:import .env
+```
+
+Switch to a new netlify site
+```bash
+netlify unlink
+netlify link --name relaxed-murdock-358ec5
+```
+
+
+
 
 
 
