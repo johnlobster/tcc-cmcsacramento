@@ -214,11 +214,50 @@ old scripts
     "eject": "react-scripts eject",
     "lint": "eslint --quiet \"src/**/*.tsx\" \"src/**/*.ts\" "
   },
-  ```
+```
   
-  Messing with node version got rid of anything installed using node
+Messing with node version got rid of anything installed using node
 
-  ```
-  npm install netlify-cli -g
-  ```
+```
+npm install netlify-cli -g
+```
   
+-----------------------------
+10/6
+
+Gave up on sparky
+
+Mailjet - really easy setup and API key generation
+
+Instant first response
+
+Tested easily, but now can't make Postman respond using netlify-cli dev
+
+It is messed up
+
+I think functions are served up unbuilt by default, so a ts function that includes other stuff needs netlify-lambda
+
+scripts
+```json
+    "postinstall": "netlify-lambda install",
+```
+
+
+-------------------------------------------------
+10/7
+
+Need to use netlify-lambda or own build flow
+
+    "build:functions": "npx netlify-lambda build functions -c functions-webpack-override.js",
+
+Had to take this out, otherwise dev recognized it and messed everything up
+
+Nope, simply not mature enough
+
+Going for typescript compiler tsc
+
+I think that there is a bug in linking typescript. Simply not worth messing with. Do it all in js
+
+```
+    "build:fn": "npx tsc --pretty --sourceMap --outDir .netlify/functions functions/mailjet.ts",
+```

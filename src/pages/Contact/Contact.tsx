@@ -132,7 +132,7 @@ const Contact: React.FunctionComponent = (props) => {
       }
       setMailMessage("Message sent")
       // const lambdaAddress = "www.cmctaichisacramento.com/.netlify/functions/mailer"
-      const lambdaAddress = "/.netlify/functions/mailer" // development proxies to localhost:9000
+      const lambdaAddress = "/.netlify/functions/mailjet" // development proxies to localhost:9000
       console.log("Contact: Message sent to lambda server")
       axios.post(lambdaAddress, JSON.stringify(messageBody))
         .then( (response) => {
@@ -256,7 +256,6 @@ const Contact: React.FunctionComponent = (props) => {
             To send us Email, please use the following form. The message will be sent anonymously, so don't forget to fill in your own Email address.
             You can also contact us through Facebook or Meetup
           </p>
-          <Draft>
             <div >
               <Grid container className={contactStyles.contactForm}>
                 <Grid item xs={2} sm={1}>
@@ -344,7 +343,6 @@ const Contact: React.FunctionComponent = (props) => {
 
 
             </div>
-          </Draft>
           
           <Grid container justify="center">
             <Grid item xs={8} md={6}>

@@ -48,6 +48,7 @@
     "http-proxy-middleware": "^1.0.5",
     "hygen": "^6.0.4",
     "node-forge": "^0.10.0",
+    "node-mailjet": "^3.3.1",
     "node-sass": "^4.14.1",
     "nodemailer": "^6.4.11",
     "normalize.css": "^8.0.1",
@@ -71,8 +72,10 @@
     "start": "npx cross-env REACT_APP_BUILD_MODE='author' react-scripts start",
     "dev": "yarn start",
     "dev:web": "npx cross-env REACT_APP_BUILD_MODE='web' react-scripts start",
+    "prebuild": "yarn functions && echo 'Pre build'",
     "build:web": "npx cross-env REACT_APP_BUILD_MODE='web' CI= react-scripts build",
     "build:author": "npx cross-env REACT_APP_BUILD_MODE='author' CI= react-scripts build",
+    "functions": "cp functions/mailjet.js .netlify/functions",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --quiet \"src/**/*.tsx\" \"src/**/*.ts\" "
