@@ -97,6 +97,17 @@ const Resources: React.FunctionComponent = (props) => {
         >
         </iframe>
 
+        <h4>Ben Lo</h4>
+        <p>
+          Ben Lo was Cheng Man Ch'ing's senior student. In this instructional video, each step is repeated three times.
+        </p> 
+          <iframe
+            src="https://www.youtube.com/embed/zU-Bej5ZAVI"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; "
+            className={classes.yootoob}
+            title="Ben Lo Tai chi form"
+          >
+        </iframe>
         <h4>Mike Pekor</h4>
         <p>
           This is a helpful guide for beginners as Mike shows the whole form and talks through each move in detail. There are 22 Chapters, all contained within an hour long video.
@@ -111,6 +122,17 @@ const Resources: React.FunctionComponent = (props) => {
 
         ></iframe>
         
+        <h4>Cheng Man Ch'ing</h4>
+        <p>
+          There are a number of videos of "The Professor" on Youtube. This is one of the clearest
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/iL8SFY7Li_8"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; "
+          className={classes.yootoob}
+          title="Cheng Man Ch'ing 37 posture Tai chi form"
+        >
+        </iframe>
         <h3>Books</h3>
         <Link to="https://www.amazon.com/ideas/amzn1.account.AHVX4CTBMPZRVGRYBNSH2DXNQJCA/1QVJ46A6OU9LG">
           Recommended books on Amazon
