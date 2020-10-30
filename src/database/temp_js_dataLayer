@@ -1,4 +1,3 @@
-"use strict";
 exports.__esModule = true;
 // gets latest value from the database. If the database doesn't have that entry, then return 
 // the content passed through propsContent
