@@ -11,10 +11,16 @@ import Resources from "../pages/Resources/Resources"
 import Contact from "../pages/Contact/Contact"
 
 export interface PageDataItem {
-  name: string;
-  menu: string;
-  title: string;
-  reactPage: React.FunctionComponent;
+  name: string;                           // used in URL, directory and files names
+  menu: string;                           // Description used in menus
+                                          // meta values can be used to update the html meta tags. They are optional, assuming that
+                                          // the default index.html has them set appropriately
+                                          // Should make sure that the home/landing page has good meta tags, so that they get reset during navigation
+                                          // SEO may not be using keywords and title any more
+  title?: string;                         // meta <title>
+  description?: string;                   // <meta> name="description" content=...
+  keywords?: string;                      // <meta> name="keywords"
+  reactPage: React.FunctionComponent;     // React component, used by menu/routing
 }
 // title is for meta title
 
