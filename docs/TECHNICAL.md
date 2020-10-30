@@ -81,6 +81,26 @@ Release procedure is
 ### sitemap generation
 
 ```
+npx tsc --esModuleInterop make-sitemap.ts && node make-sitemap.js
 ```
+
+had to add
+```
+"lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2020.string"
+    ],
+```
+
+F*** Typescript
+```
+make-sitemap.ts:56:23 - error TS2339: Property 'matchAll' does not exist on type 'string'.
+
+56 const mArr = m1String.matchAll(/\{(.*)\}/)
+```
+I think this is because using tsc instead of babel ...
+
 
 

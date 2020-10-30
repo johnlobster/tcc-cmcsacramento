@@ -1,1 +1,48 @@
-Beautiful headerBeautiful footer
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Home</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Beginners</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Intermediate</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Advanced</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/About</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/History</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Articles</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Resources</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      
+      <url>
+        <loc>https://www.cmctaichisacramento.com/Contact</loc>
+        <changefreq>weekly</changefreq>
+      </url>
+      </urlset>
