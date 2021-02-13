@@ -1,5 +1,7 @@
 import React from 'react';
 
+import QRcode from 'qrcode';
+
 import { Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -47,6 +49,18 @@ const Contact: React.FunctionComponent = (props) => {
 
   const contactStyles = useStyles()
 
+  const qrCanvas = React.useRef(null)
+
+  React.useEffect(() => {
+    QRcode.toCanvas(qrCanvas.current, "https://www.facebook.com/chengmanchingtaichi/",{scale:8})
+      .catch(err => {
+        console.log("QR code generation error")
+        console.log(err)
+      })
+  })
+
+  
+
   useHashScrolling([])
 
   return(
@@ -66,6 +80,12 @@ const Contact: React.FunctionComponent = (props) => {
               <h4>Hagan community center</h4>
               <h5>2197 Chase Dr, Rancho Cordova, CA 95670</h5>
               <Phone /> 916 369 9844 (Office)
+            </Grid>
+            <Grid item xs={6}>
+              <h4>QR code</h4>
+                <canvas ref={qrCanvas} height="200" width="200">
+                </canvas>
+              
             </Grid>
           </Grid>
           {/* <p>
