@@ -5,7 +5,7 @@ import {AppBar, Toolbar, IconButton, Box, Menu, MenuItem, MenuList, Theme, Typog
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-import {data} from "../../data/page-info";
+import {allPages} from "../../data/page-info";
 
 // ToDo - use media hook to disable some of the title
 const headerStyles = makeStyles((theme: Theme) =>
@@ -167,7 +167,7 @@ const Header: React.FunctionComponent = () => {
                   Close Menu
                 </Typography>
               </MenuItem>
-              {data.map((item) => {
+              {allPages.map((item) => {
                 return (
                   <MenuItem onClick={menuClose} key={item.name}>
                     <RouterLink to={item.name} >
@@ -190,7 +190,7 @@ const Header: React.FunctionComponent = () => {
             <Box className={headerClasses.info}>
               <div >Jinbao(Golden Treasure) Tai Chi Chuan</div>
               <div className={headerClasses.thirdRow}>
-                Sacramento Cheng Man-ching Tai Chi Group
+                Sacramento Cheng Man Ch'ing Tai Chi Group
               </div>
             </Box>
           

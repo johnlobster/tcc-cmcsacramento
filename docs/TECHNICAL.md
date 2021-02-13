@@ -1,14 +1,19 @@
-# Website for Cheng Man Ching Sacramento Tai Chi website
+# Website for Cheng Man Ching Sacramento Tai Chi website - Technical details
 
 John Webster
 
 Github <https://github.com/johnlobster/tcc-cmcsacramento>
 
-## Technical details
+## Set up
 
-### Set up development environment
+created using create-react-app
 
-#### Required environment variables
+
+npx create-react-app my-app --template typescript
+
+## Set up development environment
+
+### Required environment variables
 
 `GH_OA_TOKEN`
 
@@ -19,13 +24,13 @@ github authorization token, allows server to pull and push from github
 Building for web removes most of the code specific to author. Values are `author` and `web`
 If it is not there, then create-create-act won't do tree shaking and the front end may crash
 
-#### Favicon generation
+## Favicon generation
 
 [Real favicon generator](https://realfavicongenerator.net/)
 
 used svg as starting point
 
-#### templating
+## templating
 
 I used `create-react-app` to scaffold, but wanted something that would create new components
 
@@ -52,3 +57,50 @@ Then cd to directory (`src/components` or `src/pages`) and use hygen
 hygen comp new ComponentName
 ```
 [hygen documentation](https://www.hygen.io/docs/quick-start)
+
+## Deployment
+
+### web (user)
+
+Netlify has been set up to deploy from pushes to `releaseWeb` branch
+
+Release procedure is
+1. check out `releaseWeb`
+2. merge from dev
+3. run all checks
+4. check build `yarn build:web`
+5. check that build is ok
+6. check in any changes, commit
+7. push to github - this will trigger Netlify release
+8. merge any changes back into dev and master
+9. check Netlify release didn't crash
+
+### Author
+
+
+### sitemap generation
+
+```
+npx tsc --esModuleInterop make-sitemap.ts && node make-sitemap.js
+```
+
+had to add
+```
+"lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2020.string"
+    ],
+```
+
+F*** Typescript
+```
+make-sitemap.ts:56:23 - error TS2339: Property 'matchAll' does not exist on type 'string'.
+
+56 const mArr = m1String.matchAll(/\{(.*)\}/)
+```
+I think this is because using tsc instead of babel ...
+
+
+

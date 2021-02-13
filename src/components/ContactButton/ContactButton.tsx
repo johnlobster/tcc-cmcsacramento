@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +11,10 @@ const useStyles = makeStyles({
     display: 'flex',
     width: '100%',
     justifyContent: 'center',
+    '&  a': {
+      color: "white",
+      textDecoration: 'none',
+    }
   },
   contactButton: {
     color: theme.palette.secondary.contrastText,
@@ -22,9 +27,15 @@ const classes= useStyles();
 
 return (
   <div className={classes.buttonBox}>
-    <Button variant="contained" size="large" href="/Contact#contact"
-      color="secondary" className={classes.contactButton}>
-      Contact us
+    <Button 
+      variant="contained" 
+      size="large"
+      color="secondary" 
+      className={classes.contactButton}
+    >
+      <Link to="/Contact#contact">
+        Contact us
+      </Link>
     </Button>
   </div>
 )

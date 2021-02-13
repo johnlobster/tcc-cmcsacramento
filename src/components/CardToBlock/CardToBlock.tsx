@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { GridSize, Paper, Box, Button, Card, CardContent, CardActions } from '@material-ui/core';
+import { Paper, Box, Button, Card, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SlideArticle from '../../components/SlideArticle/SlideArticle'

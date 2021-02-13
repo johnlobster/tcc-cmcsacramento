@@ -5,6 +5,7 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+import {Draft} from '../../components/Draft/Draft'
 import theme from "../../global/theme";
 
 import whiteCrow from '../../images/whiteCrow.jpg'
@@ -87,7 +88,7 @@ const Resources: React.FunctionComponent = (props) => {
         <h4>
           Master Lee Chan
         </h4>
-        <p>Master Chan's form is immaculate. This video is especially helpful as foot positions can be seen very clearly</p>
+        <p>Master Chan's form is immaculate. This video is especially helpful as foot positions can be seen clearly</p>
         <iframe 
           src="https://www.youtube.com/embed/Ihwz94E-Rs8"  
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; "
@@ -96,7 +97,7 @@ const Resources: React.FunctionComponent = (props) => {
         >
         </iframe>
 
-        <h4>Mike Pecor</h4>
+        <h4>Mike Pekor</h4>
         <p>
           This is a helpful guide for beginners as Mike shows the whole form and talks through each move in detail. There are 22 Chapters, all contained within an hour long video.
           A good way to review material taught in class
@@ -115,18 +116,20 @@ const Resources: React.FunctionComponent = (props) => {
           Recommended books on Amazon
         </Link>
 
-        <h3>Bob Amacker</h3>
+        <h3>White Crow Taiji</h3>
+        <h4>Yang Style Taijiquan taught by Robert Amacker</h4>
 
-        <p>
-          Bob Amacker learned directly from Chen man ching and traveled to study with a number of other masters, as well as becoming an expert in some external martial arts.
-          He is one of a very few number of people who is able to use Tai Chi as a fighting art, without dropping back to an external (hard) approach.
-          He is also making his advanced knowledge accessible to all.
+        <Draft>
+          <p>
+            Bob Amacker learned directly from Cheng Man Ch'ing and traveled to study with a number of other masters, as well as becoming an expert in some external martial arts.
+            He is one of a very few number of people who is able to use Tai Chi as a fighting art, without dropping back to an external (hard) approach.
+            He is also making his advanced knowledge accessible to all.
         </p>
-        <p>
-          Gary has been studying with Bob for a long time, Craig a few years, and John is working on an online Long form class.
+          <p>
+            Gary has been studying with Bob for a long time, Craig a few years, and John is working on an online Long form class.
         </p>
-        <p>
-          Bob's YouTube channel has a mix of informational, beginner and advanced material. All the material is incredibly insightful and is highly recommended. 
+          <p>
+            Bob's YouTube channel has a mix of informational, beginner and advanced material. All the material is incredibly insightful and is highly recommended.
         </p>
         <Grid container>
           <Grid item xs={4} sm={3}>
@@ -140,23 +143,25 @@ const Resources: React.FunctionComponent = (props) => {
                 </Link>
               </Grid>
               <br /> <br />
-              <Grid item xs={12}>
-                <Link to="https://www.youtube.com/channel/UC9glD1EU1YRqEzoJmz1K27g">
-                  Bob's YouTube channel
+            <Grid item xs={12}>
+            <Link to="https://www.youtube.com/channel/UC9glD1EU1YRqEzoJmz1K27g">
+            Bob's YouTube channel
             </Link>
-              </Grid>
             </Grid>
-            
           </Grid>
+        
         </Grid>
-        <br />
-        <p>
-          Bob's books are more suitable for intermediate and advanced students. They are both in the &nbsp; 
+        </Grid>
+          <br />
+          <p>
+            Bob's books are more suitable for intermediate and advanced students. They are both in the &nbsp;
           <Link to="https://www.amazon.com/ideas/amzn1.account.AHVX4CTBMPZRVGRYBNSH2DXNQJCA/1QVJ46A6OU9LG">
-            list of recommended books on Amazon. 
+              list of recommended books on Amazon.
           </Link>
-          &nbsp; Only Kindle versions are available, but there are no issues with the formatting
-        </p>
+            &nbsp; Only Kindle versions are available, but there are no issues with the formatting
+          </p>
+        </Draft>
+        
           
         <h3>Our social media</h3>
 

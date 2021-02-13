@@ -9,6 +9,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import getInitialContent from '../../database/dataLayer'
 import theme, {rhythm} from "../../global/theme";
+import {DraftMessage} from '../../components/Draft/Draft'
 
 // ToDo combine into single module
 import processYT from './processYT'
@@ -117,24 +118,7 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
   // if page prop specified, use that instead of initialPathname
   React.useEffect( () => {
     console.log(`EditBlock: mount and update content id ${initialId.current}`)
-    if (props.draft) {
-      updateContent(
-        `
-        <q>
-        <br>
-          Trying to understand is like straining through muddy water.<br>
-          Have the patience to wait!<br>
-          Be still and allow the mud to settle.<br>
-        </q>
-        <br>
-        Lao Tzu: Dao de ching chapter 15
-        <br>
-        <br>
-        <br>
-        <em>This content isn't quite ready yet</em>
-        `
-      )
-    } else {
+      
       if (props.page) {
         updateContent(
           getInitialContent(props.page, initialId.current, initialContent.current)
@@ -143,12 +127,43 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
         updateContent(
           getInitialContent(initialPathname.current, initialId.current, initialContent.current)
         )
-      }
-    }
-    
-    
-    
-  }, [props.page, props.draft]) 
+      }    
+  }, [props.page]) 
+
+  // React.useEffect(() => {
+  //   console.log(`EditBlock: mount and update content id ${initialId.current}`)
+  //   if (props.draft) {
+  //     updateContent(
+  //       `
+  //       <q>
+  //       <br>
+  //         Trying to understand is like straining through muddy water.<br>
+  //         Have the patience to wait!<br>
+  //         Be still and allow the mud to settle.<br>
+  //       </q>
+  //       <br>
+  //       Lao Tzu: Dao de ching chapter 15
+  //       <br>
+  //       <br>
+  //       <br>
+  //       <em>This content isn't quite ready yet</em>
+  //       `
+  //     )
+  //   } else {
+  //     if (props.page) {
+  //       updateContent(
+  //         getInitialContent(props.page, initialId.current, initialContent.current)
+  //       )
+  //     } else {
+  //       updateContent(
+  //         getInitialContent(initialPathname.current, initialId.current, initialContent.current)
+  //       )
+  //     }
+  //   }
+
+
+
+  // }, [props.page, props.draft]) 
 
   const inlineEditorOptions = {
     initialData: content,
@@ -301,38 +316,55 @@ const EditBlock: React.FunctionComponent<MoreProps> = (props) => {
 
   return (
     <React.Fragment>
-      <div
-        id={props.id}
-        className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
-        data-cmc="EditBlock"
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {editorLoaded ? (
-          <CKEditor 
-            editor= {InlineEditor}
-            data= {processContent(content)}
-            config={inlineEditorOptions}
-            onInit={(editor) => {
-              console.log('EditBlock: component init callback', editor);
-              editorInit(editor)
-            }}
-            onFocus={(event, editor) => {
-              console.log('EditBlock: Focus.', editor);
-            }}
-            onClick={(event, editor) => {
-              console.log('EditBlock: Click', editor);
-            }}
-          />
-        ) : (
-          <div
-            dangerouslySetInnerHTML={{ __html: content }}
-          >
-          </div>
-        )
-        }   
-      </div>
+      { process.env.REACT_APP_BUILD_MODE === "author" ? (
+        <div
+          id={props.id}
+          className={classes.root + " " + (editing ? classes.editorBlock : classes.noEditHover)}
+          data-cmc="EditBlock"
+          onClick={handleClick}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {editorLoaded ? (
+            <CKEditor
+              editor={InlineEditor}
+              data={processContent(content)}
+              config={inlineEditorOptions}
+              onInit={(editor) => {
+                console.log('EditBlock: component init callback', editor);
+                editorInit(editor)
+              }}
+              onFocus={(event, editor) => {
+                console.log('EditBlock: Focus.', editor);
+              }}
+              onClick={(event, editor) => {
+                console.log('EditBlock: Click', editor);
+              }}
+            />
+          ) : (
+              <div
+                dangerouslySetInnerHTML={{ __html: content }}
+              >
+              </div>
+            )
+          }
+        </div>
+      ):(
+        
+        <div> 
+          {props.draft ? (
+            <DraftMessage />
+          ) : (
+            <div
+              dangerouslySetInnerHTML={{ __html: content }}
+            >
+            </div>
+          )}
+        </div>
+        
+        
+      )}
+      
     </React.Fragment>
 
   );

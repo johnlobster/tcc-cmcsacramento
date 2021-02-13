@@ -28,9 +28,9 @@ const Intermediate: React.FunctionComponent = () => {
               <p>As an intermediate student, you will work on</p>
               <ul>
                 <li>Solo form corrections</li>
-              <li>Detailed movements of the body, hips, <em>kwa</em></li>
+                <li>Detailed movements of the body, hips, <em>kwa</em></li>
                 <li>Relaxation,<em>Sung</em></li>
-                <li>Fixed step partner work, <em>Tui shu</em></li>
+                <li>Fixed step partner work, <em>Tui shou</em></li>
                   <ul>
                     <li>Sensitivity and the ability to follow your partner</li>
                     <li>Posture, relaxation, co-ordination of body movements</li>
@@ -38,7 +38,7 @@ const Intermediate: React.FunctionComponent = () => {
                     <li>Identifying your center, and that of your partner</li>
                     <li>Use of some movements from solo form</li>
                   </ul>
-                <li>Moving step partner work</li>
+                <li>Moving step partner work, three step <em>Tui shou</em></li>
               </ul>
 
               

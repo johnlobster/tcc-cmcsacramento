@@ -1,5 +1,4 @@
 import { createMuiTheme, Theme} from '@material-ui/core/styles';
-// import { CSSProperties } from '@material-ui/core/styles/withStyles'
 
 import makeGlobalsFromTheme from "./makeGlobalsFromTheme";
 
@@ -50,15 +49,17 @@ export const rhythm = 1.5;
 // h4  Minor         (3)
 // 
 
+
+// Primary yellow #fac456
 const initialTheme: Theme = createMuiTheme({
   palette: {
     primary: {
-      main: 'rgba(84, 24, 83, 1)',
+      main: 'rgba(252, 184, 67, 1)',
       contrastText: '#FFFFFF',
-      fade: 'rgba(84, 24, 83, 0.8)' // custom
+      fade: 'rgba(252, 184, 67, 1)' // custom. With yellow main colour, this looks better without fade
     },
     secondary: {
-      main: 'rgba(34, 33, 153, 0.8)',
+      main: 'rgba(168, 0, 0, 1)',
       contrastText: '#FFFFFF',
     },
     text: {
@@ -77,8 +78,8 @@ const initialTheme: Theme = createMuiTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
     background: {
-      paper: '#f0f0f0',
-      articlePaper: '#e9e5eb',
+      paper: 'rgba(240, 240, 240, 1)',
+      articlePaper: 'rgba(240, 240, 240, 1)',
       default: '#FFFFFF'
     }
   },
@@ -87,37 +88,85 @@ const initialTheme: Theme = createMuiTheme({
 
   typography: {
     fontSize: 16,
+    // using rhythm (1.5), but not ratio, i.e. ratio changes as font size gets bigger
+    
+    // breakpoints
+
+    // sm: 600
+    // md: 960
+    // lg: 1280
+    // xl: 1920
+
     h1: {
-      fontSize: `${2.7 * rhythm}rem`,
-      lineHeight: `${3 * rhythm}rem`,
-      marginBlockStart: 0,
-      // reduced padding at top by 1 rhythm
-      paddingTop: `${rhythm}rem`,
-      marginBlockEnd: `${rhythm}rem`,
       fontWeight: 500,
-    },
-    h2: {
+
+      // mobile first
+      // h2 setting
       fontSize: `${rhythm * 2}rem`,
       lineHeight: `${2.5 * rhythm}rem`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 1.5}rem`,
       marginBlockEnd: `${rhythm * 0.5}rem`,
-      fontWeight: 500,
+      '@media screen and (min-width:600px)': {
+        fontSize: `${2.7 * rhythm}rem`,
+        lineHeight: `${3 * rhythm}rem`,
+        marginBlockStart: 0,
+        // reduced padding at top by 1 rhythm
+        paddingTop: `${rhythm}rem`,
+        marginBlockEnd: `${rhythm}rem`,
+      },
+      
     },
-    h3: {
+    h2: {
+      // mobile first
+      // h3 setting
       fontSize: `${(1.4 * rhythm)}rem`,
       lineHeight: `${(2 * rhythm)}rem`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 1.6}rem`,
       marginBlockEnd: `${rhythm * 0.4}rem`,
+      '@media screen and (min-width:600px)': {
+        fontSize: `${rhythm * 2}rem`,
+        lineHeight: `${2.5 * rhythm}rem`,
+        marginBlockStart: 0,
+        paddingTop: `${rhythm * 1.5}rem`,
+        marginBlockEnd: `${rhythm * 0.5}rem`,
+      },
+      
       fontWeight: 500,
     },
-    h4: {
-      fontSize: `${0.95 * rhythm }rem`,
+    h3: {
+      // mobile first
+      // h4 setting
+      fontSize: `${0.95 * rhythm}rem`,
       lineHeight: `${(1.5 * rhythm)}rem`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 0.6}rem`,
       marginBlockEnd: `${rhythm * 0.4}rem`,
+      '@media screen and (min-width:600px)': {
+        fontSize: `${(1.4 * rhythm)}rem`,
+        lineHeight: `${(2 * rhythm)}rem`,
+        marginBlockStart: 0,
+        paddingTop: `${rhythm * 1.6}rem`,
+        marginBlockEnd: `${rhythm * 0.4}rem`,
+      },
+      fontWeight: 500,
+    },
+    h4: {
+      fontSize: '1rem',
+      lineHeight: `${rhythm}rem`,
+      marginBlockStart: 0,
+      paddingTop: `${rhythm * 0.7}rem`,
+      marginBlockEnd: `${rhythm * 0.3}rem`,
+      letterSpacing: '0.005rem',
+      '@media screen and (min-width:600px)': {
+        fontSize: `${0.95 * rhythm}rem`,
+        lineHeight: `${(1.5 * rhythm)}rem`,
+        marginBlockStart: 0,
+        paddingTop: `${rhythm * 0.6}rem`,
+        marginBlockEnd: `${rhythm * 0.4}rem`,
+      },
+      
       fontWeight: 500,
     },
     h5: {
@@ -125,46 +174,12 @@ const initialTheme: Theme = createMuiTheme({
       lineHeight: `${rhythm}rem`,
       marginBlockStart: 0,
       paddingTop: `${rhythm * 0.7}rem`,
-      marginBlockEnd: `${rhythm * 0.3 }rem`,
+      marginBlockEnd: `${rhythm * 0.3}rem`,
       letterSpacing: '0.005rem',
       fontWeight: 500,
     },
-    // h1: {
-    //   fontSize: `${Math.pow(ratio, 4)}rem`,
-    //   lineHeight: `${Math.pow(ratio , 4) * Math.sqrt(Math.sqrt(Math.sqrt(rhythm))) }rem`,
-    //   // paddingBottom: '20px',
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${((Math.pow(ratio, 4) * Math.sqrt(Math.sqrt(rhythm))) % rhythm)}rem`,
-    //   fontWeight: 500,
-    // },
-    // h2: {
-    //   fontSize: `${Math.pow(ratio, 3)}rem`,
-    //   lineHeight: `${Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${((Math.pow(ratio, 3) * Math.sqrt(Math.sqrt(rhythm))) % rhythm)}rem`,
-    //   fontWeight: 500,
-    // },
-    // h3: {
-    //   fontSize: `${Math.pow(ratio, 2)}rem`,
-    //   lineHeight: `${Math.pow(ratio, 2) * Math.sqrt(rhythm)}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${((Math.pow(ratio, 2) * Math.sqrt(rhythm)) % rhythm)}rem`,
-    //   fontWeight: 500,
-    // },
-    // h4: {
-    //   fontSize: `${Math.pow(ratio, 1)}rem`,
-    //   lineHeight: `${Math.pow(ratio, 1) * Math.sqrt(rhythm)}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${(Math.pow(ratio, 1) * Math.sqrt(rhythm)) % rhythm}rem`,
-    //   fontWeight: 500,
-    // },
-    // h5: {
-    //   fontSize: `${ratio}rem`,
-    //   lineHeight: `${ratio * Math.sqrt(rhythm)}rem`,
-    //   marginBlockStart: 0,
-    //   marginBlockEnd: `${(ratio * Math.sqrt(rhythm)) % rhythm}rem`,
-    //   fontWeight: 400,
-    // },
+
+    
     h6: {
       fontSize: `${ratio}rem`,
       lineHeight: `${ratio * rhythm}rem`,
@@ -222,6 +237,7 @@ const initialTheme: Theme = createMuiTheme({
 // Roof runners active Regular
 // by Press Gang Studios
 // https://www.facebook.com/pressgangstudios 
+
 
 const theme: Theme = makeGlobalsFromTheme(initialTheme, ['h1',  'h2', 'h3', 'h4', 'h5', 'h6']);
 

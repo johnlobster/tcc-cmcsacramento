@@ -6,6 +6,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import theme from "../../global/theme";
 import tjt from "../../images/Taijitu.svg";
+import ContactButton from "../../components/ContactButton/ContactButton"
 
 const footerStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +34,16 @@ const footerStyles = makeStyles((theme: Theme) =>
     tjt: {
       height: '5rem',
       width: 'auto',
-      padding: '0 auto 0 0',
+    },
+    leftBox: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between"
+    },
+    infoBox: {
+      paddingLeft: "0.5rem",
+      paddingRight: "0.5rem"
     }
   })
 )
@@ -46,11 +56,12 @@ const Footer: React.FunctionComponent = (props) => {
         <Grid item xs={12}>
           <br />
         </Grid>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={3}>
+        <Grid item xs={1} ></Grid>
+        <Grid item xs={4} md={3} className={classes.leftBox}>
           <img src={tjt} alt="Yin Yang" className={classes.tjt} />
+          <ContactButton />
         </Grid>
-        <Grid item xs={7} sm={6} lg={4}>
+        <Grid item xs={7} sm={6} lg={4} className={classes.infoBox}>
           <p>
             Like any physical activity, Tai chi must be studied at your own risk and we cannot be held responsible for any injury that might occur
             <Link to="/Contact/#disclaimer"> Click here for full liability information</Link>

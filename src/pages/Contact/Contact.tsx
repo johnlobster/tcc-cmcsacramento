@@ -1,6 +1,11 @@
 import React from 'react';
 
+<<<<<<< HEAD
 import QRcode from 'qrcode';
+=======
+import { Link } from 'react-router-dom'
+import axios from "axios";
+>>>>>>> releaseWeb
 
 import { Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,9 +16,14 @@ import {Phone, Person, Email, Description, Message, Send} from '@material-ui/ico
 import useHashScrolling from "../../hooks/useHashScrolling"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import EditBlock from '../../components/EditBlock/EditBlock'
+import {Draft} from '../../components/Draft/Draft'
+import GMap from '../../components/GMap/GMap'
+import Social from '../../components/Social/Social'
+import theme from '../../global/theme'
 
 import bigRoom from "../../images/bigRoom.jpeg"
 import sign from "../../images/sign.jpg"
+
 
 const useStyles = makeStyles({
   contactForm: {
@@ -32,12 +42,31 @@ const useStyles = makeStyles({
   },
   pictureSignBox: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    [theme.breakpoints.up('xs')]: {
+      justifyContent: 'space-around',
+    },
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'flex-end',
+    },
+    
     '& img': {
-      width: '80%',
+      // width: '80%',
+      height: "8rem",
       alignSelf: 'center',
     },
   },
+  buttonBox: {
+    '& button': {
+      marginTop: "0.25rem",
+      marginBottom: "0.25rem",
+    }
+  },
+  openMap: {
+    '& a': {
+      color: "white",
+      textDecoration: 'none',
+    }
+  }
 })
   
 // add more props 
@@ -49,19 +78,94 @@ const Contact: React.FunctionComponent = (props) => {
 
   const contactStyles = useStyles()
 
-  const qrCanvas = React.useRef(null)
+  // useHashScrolling([])
 
-  React.useEffect(() => {
-    QRcode.toCanvas(qrCanvas.current, "https://www.facebook.com/chengmanchingtaichi/",{scale:8})
-      .catch(err => {
-        console.log("QR code generation error")
-        console.log(err)
-      })
-  })
+  // Contact form setup
+  // Name and Email are required - make them controlled so can set error 
+  const [contactFormName, setName] = React.useState("")
+  const [formNameError, setFormNameError ] = React.useState(false)
+  const [contactFormEmail, setEmail] = React.useState("")
+  const [formEmailError, setFormEmailError] = React.useState(false)
+  const [contactFormSubject, setSubject] = React.useState("")
+  const [contactFormMessage, setMessage] = React.useState("")
 
+  const [mailMessage, setMailMessage] = React.useState("")
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setName(event.target.value);
+    if ( event.target.value.length > 0) {
+      setFormNameError(false)
+    }
+  };
   
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setEmail(event.target.value);
+    if (event.target.value.length > 0) {
+      setFormEmailError(false)
+    }
+  };
 
-  useHashScrolling([])
+  const handleSubjectChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setSubject(event.target.value)
+  }
+
+  const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setMessage(event.target.value)
+
+  }
+
+  const contactSubmit = (event: React.MouseEvent<HTMLElement>): void => {
+    event.preventDefault();
+    // check Name and Email
+    if (contactFormName.length === 0) {
+      setFormNameError(true)
+    }
+    if (contactFormEmail.length === 0) {
+      setFormEmailError(true)
+    } 
+    if ((contactFormName.length > 0) && (contactFormEmail.length > 0)) {
+      const messageBody = {
+        name: contactFormName,
+        email: contactFormEmail,
+        subject: contactFormSubject,
+        message:  contactFormMessage
+      }
+      setMailMessage("Message sent")
+      // const lambdaAddress = "www.cmctaichisacramento.com/.netlify/functions/mailer"
+      const lambdaAddress = "/.netlify/functions/mailjet" // development proxies to localhost:9000
+      console.log("Contact: Message sent to lambda server")
+      axios.post(lambdaAddress, JSON.stringify(messageBody))
+        .then( (response) => {
+          console.log("Contact: Lambda server replied")
+          console.log(response)
+          setMailMessage("Message received")
+        })
+        .catch( (err) => {
+          console.log("Contact: Lambda server was very sad")
+          console.log(err)
+          setMailMessage("Message sent, but the internet lost it somewhere")
+
+        })
+    } else {
+      setMailMessage("Message not sent, please check Name and Email")
+
+    }
+  }
+
+  const clearForm = (event: React.MouseEvent<HTMLElement>): void => {
+    event.preventDefault();
+    setName("")
+    setFormNameError(false)
+    setEmail("")
+    setFormEmailError(false)
+    setMailMessage("  ")
+    setSubject("")
+    setMessage("")
+  }
 
   return(
     <ResponsiveContainer>
@@ -95,7 +199,7 @@ const Contact: React.FunctionComponent = (props) => {
           <h5>Saturdays</h5>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-            8:30-9am
+            8:30 - 9am
             </Grid>
             <Grid item xs={6} sm={4}>
             Advanced
@@ -103,7 +207,7 @@ const Contact: React.FunctionComponent = (props) => {
           </Grid>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-            9-10am
+              9 &nbsp; &nbsp; - 10am
             </Grid>
             <Grid item xs={6} sm={4}>
             Class
@@ -111,7 +215,7 @@ const Contact: React.FunctionComponent = (props) => {
           </Grid>
           <Grid container>
             <Grid item xs={6} sm={4} md={3}>
-            10-10:30am
+              10 &nbsp; - 10:30am
             </Grid>
             <Grid item xs={6} sm={4}>
             Beginners
@@ -132,7 +236,7 @@ const Contact: React.FunctionComponent = (props) => {
           </Grid>
           <br />
           
-          <EditBlock id="directions" content="<p>Google maps does not find the location correctly using the name/address and will happily send you to the other side of Hagan park</p><p>
+          <EditBlock id="directions" content="<p>Google maps sometimes doesn't find the location correctly using the name/address and will happily send you to the other side of Hagan park</p><p>
           To get to the community center, turn off Coloma onto Chase drive. Drive past the High school and community theatre.
           Turn right just before the park entrance and park anywhere. The community center is up some steps, past the ponds
           </p>
@@ -141,86 +245,121 @@ const Contact: React.FunctionComponent = (props) => {
           
           </EditBlock>
             
+          <GMap />
+
+          <Button variant="contained" color="secondary" className={contactStyles.openMap}>
+            <a 
+              target="_blank"
+              href="https://www.google.com/maps/place/Hagan+Community+Center/@38.6014079,-121.3118612,17z/data=!3m1!4b1!4m5!3m4!1s0x809addab44082533:0xd2077a03010da7ad!8m2!3d38.6014079!4d-121.3096672"
+            >
+              Open in Google maps
+            </a>
+          </Button>
+
           {/* <p>The following map, if accessed on a phone, will allow you to navigate to the correct place</p> */}
 
         </Grid>
 
         <Grid item xs={12} id="contact">
-          <h2>Contact via email</h2>
+          <h2>Email contact</h2>
           <p>
-            Email form is still under development
-            {/* To send us Email, please use the following form. The message will be sent anonymously, so don't forget to fill in your own information.
-            You can also contact us through Facebook or Meetup */}
+            To send us Email, please use the following form. The message will be sent anonymously, so don't forget to fill in your own Email address.
+            You can also contact us through Facebook or Meetup
           </p>
-          <div >
-            <Grid container className={contactStyles.contactForm}>
-              <Grid item xs={1}>
-                <Person color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="name"
-                  label="Name"
-                  variant="outlined"
-                  required
-                />
+            <div >
+              <Grid container className={contactStyles.contactForm}>
+                <Grid item xs={2} sm={1}>
+                  <Person color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={10} sm={11}>
+                  <TextField
+                    id="contactName"
+                    label="Name"
+                    variant="outlined"
+                    required
+                    value = {contactFormName}
+                    onChange={handleNameChange}
+                    error={formNameError}
+                  />
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                  <Email color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={10} sm={11}>
+                  <TextField
+                    id="contactEmail"
+                    label="Your Email address"
+                    variant="outlined"
+                    required
+                    value = {contactFormEmail}
+                    onChange={handleEmailChange}
+                    error={formEmailError}
+                  />
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                  <Description color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={10} sm={11}>
+                  <TextField
+                    id="contactSubject"
+                    label="Subject"
+                    variant="outlined"
+                    fullWidth
+                    value={contactFormSubject}
+                    onChange={handleSubjectChange}
+                  />
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                  <Message color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={10} sm={11}>
+                  <TextField
+                    id="contactMessage"
+                    label="Message"
+                    variant="outlined"
+                    multiline
+                    fullWidth
+                    value={contactFormMessage}
+                    onChange={handleMessageChange}
+                  />
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                </Grid>
+                <Grid item xs={10} sm={11}>
+                  <div style={{minHeight: "2rem"}}>
+                    {mailMessage}
+                  </div>
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                  <Send color="primary" fontSize="large" />
+                </Grid>
+                <Grid item xs={10} sm={8} md={6}>
+                  <Grid container justify="space-between" className={contactStyles.buttonBox}>
+                      <Button variant="contained" color="secondary" onClick={contactSubmit}>
+                        Send message
+                      </Button>
+                      <Button variant="contained" color="secondary" onClick={clearForm}>
+                        Clear Email form
+                      </Button>
+                  </Grid>                  
+                </Grid>
+
               </Grid>
 
-              <Grid item xs={1}>
-                <Email color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="email"
-                  label="Your Email address"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
 
-              <Grid item xs={1}>
-                <Description color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="subject"
-                  label="Subject"
-                  variant="outlined"
-                  fullWidth
-                />
-              </Grid>
-              
-              <Grid item xs={1}>
-                <Message color="primary" fontSize="large"/>
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="message"
-                  label="Message"
-                  variant="outlined"
-                  multiline
-                  fullWidth
-                />
-              </Grid>
-
-              <Grid item xs={1}>
-                <Send color="primary" fontSize="large" />
-              </Grid>
-              <Grid item xs={11}>
-                <Button variant="contained" color="secondary" disabled>
-                  Send message
-                </Button>
-              </Grid>
-              
+            </div>
+          
+          <Grid container justify="center">
+            <Grid item xs={8} md={6}>
+              <Social />
             </Grid>
-            
-            
-          </div>
+          </Grid>
           
-          
-
-          
-
         </Grid>
         
         <Grid item xs={12} id="disclaimer">
@@ -228,7 +367,7 @@ const Contact: React.FunctionComponent = (props) => {
           <p>
             Like any physical sport, martial arts always carry the possibility of injury. The instructors and venue accept no responsibility for 
             any injury incurred in their pursuit. Besides seeking proper “hands-on” instruction, in the event of any doubts concerning possible stress or strain 
-            to the student a physician should be consulted for assurance that no instruction is counter-indicated by the reader’s physical condition.
+            to the student a physician should be consulted for assurance that no instruction is counter-indicated by the student’s physical condition.
           </p>
           ">
           </EditBlock>
@@ -258,7 +397,16 @@ const Contact: React.FunctionComponent = (props) => {
         <Grid item xs={12}>
           <h2>About this website</h2>
 
-          <p>Detailed information for nerds like me - under construction</p>
+          <p>Some information for nerds like me</p>
+          <p>
+            Web technologies
+            <ul>
+              <li>React</li>
+              <li>react-router</li>
+              <li>Netlify</li>
+              <li>Material-UI</li>
+            </ul>
+          </p>
 
         </Grid>
 
