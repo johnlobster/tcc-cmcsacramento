@@ -1,11 +1,8 @@
 import React from 'react';
+import axios from 'axios'
 
-<<<<<<< HEAD
 import QRcode from 'qrcode';
-=======
 import { Link } from 'react-router-dom'
-import axios from "axios";
->>>>>>> releaseWeb
 
 import { Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,6 +16,8 @@ import EditBlock from '../../components/EditBlock/EditBlock'
 import {Draft} from '../../components/Draft/Draft'
 import GMap from '../../components/GMap/GMap'
 import Social from '../../components/Social/Social'
+import Flyer from '../../components/Flyer/Flyer'
+
 import theme from '../../global/theme'
 
 import bigRoom from "../../images/bigRoom.jpeg"
@@ -185,12 +184,7 @@ const Contact: React.FunctionComponent = (props) => {
               <h5>2197 Chase Dr, Rancho Cordova, CA 95670</h5>
               <Phone /> 916 369 9844 (Office)
             </Grid>
-            <Grid item xs={6}>
-              <h4>QR code</h4>
-                <canvas ref={qrCanvas} height="200" width="200">
-                </canvas>
-              
-            </Grid>
+            
           </Grid>
           {/* <p>
             <EditBlock id="classTimes" content="<h4>Class times</h4><h5>Saturdays</h5> Advanced<br>9-10am Class<br>10-10:30am Beginner"></EditBlock>
@@ -255,6 +249,8 @@ const Contact: React.FunctionComponent = (props) => {
               Open in Google maps
             </a>
           </Button>
+
+          <Flyer></Flyer>
 
           {/* <p>The following map, if accessed on a phone, will allow you to navigate to the correct place</p> */}
 
