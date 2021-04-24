@@ -5,6 +5,8 @@ import { Grid } from '@material-ui/core';
 // import VSeparator from '../../components/VSeparator/VSeparator'
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 
+import SanShouList from "../../components/SanShouList/SanShouList"
+
 // add more props 
 // add <MoreProps> to type FunctionComponent (adds typescript generic)
 // interface MoreProps {
@@ -40,6 +42,8 @@ const Advanced: React.FunctionComponent = (props) => {
               </li>
             </ul>
           </Grid>
+
+          <SanShouList />
         </Grid>
       </ResponsiveContainer>
       

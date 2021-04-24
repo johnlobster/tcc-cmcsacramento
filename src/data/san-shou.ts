@@ -1,6 +1,5 @@
 // San Shou list of postures
 
-import Articles from "../pages/Articles/Articles"
 
 // types
 

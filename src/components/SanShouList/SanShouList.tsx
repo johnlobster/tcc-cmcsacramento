@@ -5,12 +5,12 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { sanShouData, CompassDirectionEnum, compassName, SanShouSideEnum} from "../../data/san-shou"
-import {processSimpleMarkdown} from "../../global/processSimpleMarkdown"
+import { processSimpleMarkdown, TxtArr} from "../../global/processSimpleMarkdown"
 
 
 const useStyles = makeStyles({
   name: {
-    fontSize: '2em',
+    fontSize: '1.5em',
   },
 })
 
@@ -18,6 +18,7 @@ const useStyles = makeStyles({
 // add <MoreProps> to type FunctionComponent (adds typescript generic)
 // interface MoreProps {
 // }
+
 
 const SanShouList: React.FunctionComponent = (props) => {
 
@@ -50,7 +51,24 @@ const SanShouList: React.FunctionComponent = (props) => {
                     {/* An indent for the description */}
                   </Grid>
                   <Grid item xs={8}>
-                    {processSimpleMarkdown(item.description)}
+                    {/* {processSimpleMarkdown(item.description)} */}
+                    {processSimpleMarkdown(item.description).map((item) => {
+                      return (
+                        <React.Fragment>
+                          {item.type === "Italic" && (
+                            <React.Fragment>
+                              <i>{item.value}</i>
+                              <span> </span>
+                            </React.Fragment>
+                          )
+                          }
+                          {item.type === "Plain" && (
+                            `${item.value} `
+                          )
+                          }
+                        </React.Fragment>
+                      )
+                    })}
                   </Grid>
                 </Grid>
 
