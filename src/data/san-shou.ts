@@ -5,7 +5,7 @@ import Articles from "../pages/Articles/Articles"
 // types
 
 export enum CompassDirectionEnum {
-  N,
+  N = 0,
   NE,
   E,
   SE,
@@ -13,6 +13,24 @@ export enum CompassDirectionEnum {
   SW,
   W,
   NW
+}
+
+// translate enumerated direction to a string
+export const compassName: (direction: CompassDirectionEnum) => string = (direction) => {
+  const names = [
+    "North",
+    "North East",
+    "East",
+    "South East",
+    "South",
+    "South West",
+    "West",
+    "North West"
+  ]
+  // return (names[1])
+  // return (names[CompassDirectionEnum[direction]])
+  return (names[direction])
+
 }
 
 export enum SanShouSideEnum { // This is a two person form, with half moves performed by side A, half by side B
@@ -50,7 +68,7 @@ export const sanShouData: SSList = [
     bobName: "WARD-OFF AND PUNCH",
     direction: CompassDirectionEnum.E,
     side: SanShouSideEnum.A,
-    description: "WARD-OFF AND PUNCH; punch to heart or solar plexus"
+    description: "punch to heart or solar plexus"
   },
   {
     index: 4,
@@ -166,7 +184,7 @@ export const sanShouData: SSList = [
     bobName: "PARRY AND BAN CHUEI",
     direction: CompassDirectionEnum.NE,
     side: SanShouSideEnum.B,
-    description: "PARRY AND BAN CHUEI"
+    description: "punch to lower abdomen"
   },
   {
     index: 17,
@@ -192,7 +210,7 @@ export const sanShouData: SSList = [
   {
     index: 20,
     bobName: "BIG ROLL-BACK",
-    direction: CompassDirectionEnum.E,
+    direction: CompassDirectionEnum.W,
     side: SanShouSideEnum.B,
     description: "attacking elbow with ward-off"
   },

@@ -13,7 +13,7 @@ import VSeparator from "../../components/VSeparator/VSeparator"
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
 import Social from '../../components/Social/Social'
 
-
+import SanShouList from "../../components/SanShouList/SanShouList"
 
 import map from "../../images/map2.jpg";
 import cmc from "../../images/cmc1_fade.png";
@@ -144,6 +144,9 @@ const Home: React.FunctionComponent = () => {
   return(
     <div>
       <ResponsiveContainer>
+        <Grid container>
+          <SanShouList></SanShouList>
+        </Grid>
       <Grid container spacing={2}>
         <Grid item xs={12}>
             <h1 className={classes.eSpan}><EditSpan id="Home_welcome_title">Welcome to Jīnbǎo (Golden treasure) Tai Chi Chuan</EditSpan></h1>
