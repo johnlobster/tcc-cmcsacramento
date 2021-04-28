@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 
 // import VSeparator from '../../components/VSeparator/VSeparator'
 import ResponsiveContainer from '../../components/ResponsiveContainer/ResponsiveContainer'
+import ExpandingCard from "../../components/ExpandingCard/ExpandingCard"
 
 import SanShouList from "../../components/SanShouList/SanShouList"
 
@@ -12,7 +13,16 @@ import SanShouList from "../../components/SanShouList/SanShouList"
 // interface MoreProps {
 // }
 
+const sanShouCardInfo = (
+  <div >
+    <h6>San shou postures</h6>
+  </div>
+)
+
 const Advanced: React.FunctionComponent = (props) => {
+
+  const [sanShouListOpen, sanShouListOpenUpdate] = React.useState(false);
+
   return(
     <div>
       <ResponsiveContainer>
@@ -43,8 +53,23 @@ const Advanced: React.FunctionComponent = (props) => {
             </ul>
           </Grid>
 
-          <SanShouList />
         </Grid>
+      </ResponsiveContainer>
+
+      <ResponsiveContainer>
+
+        <h2>More information and articles</h2>
+        
+        <ExpandingCard
+          open={sanShouListOpen}
+          openCallback={sanShouListOpenUpdate}
+          cardContent={sanShouCardInfo}
+          id="SanShou_formList"
+          xs={12} sm={6} md={4}
+        >
+          <SanShouList />
+        </ExpandingCard>
+
       </ResponsiveContainer>
       
     </div>

@@ -11,17 +11,17 @@ const useStyles = makeStyles({
       padding: '1.5rem 1.5rem 1.5rem 1.5rem',
 
     },
-    [theme.breakpoints.between('sm', 'md')]: {
+    [theme.breakpoints.between('sm', 'lg')]: {
       width: '100%',
       padding: '0 3rem',
 
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '75%',
       padding: '0 3rem',
 
     },
-    maxWidth: `${theme.breakpoints.values.md}px`,
+    maxWidth: `${theme.breakpoints.values.lg}px`,
     marginLeft: 'auto',
     marginRight: 'auto',
   }
