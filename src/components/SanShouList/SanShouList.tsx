@@ -1,8 +1,10 @@
+// import printJS from 'print-js';
+// import {useReactToPrint} from 'react-to-print'
 import React from 'react';
 
-import { Grid, Popper, Button, ButtonGroup, Paper } from '@material-ui/core';
+import { Grid, Modal, Popper, Button, ButtonGroup, Paper } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import theme from "../../global/theme";
 
 import { sanShouData, CompassDirectionEnum, compassName, SanShouSideEnum} from "../../data/san-shou"
@@ -32,6 +34,20 @@ const useStyles = makeStyles({
     fontSize: '0.25em',
 
   },
+  modalBody: {
+    backgroundColor: 'white',
+    // width: '59vw',
+    // height: '80vw',
+    // width: '100vw',
+    // height: '135vw',
+    width: '8.5in',
+    height: '11.5in',
+    fontSize: '0.7em'
+    
+  },
+  modalContent: {
+    padding: '5rem',
+  },
   
 })
 
@@ -55,7 +71,8 @@ const selectButtonStyles = makeStyles({
     borderStyle: 'hidden',
     padding: '1.05em',
 
-  }
+  },
+  
 })
 
 interface SelectButtonProps {
@@ -82,6 +99,22 @@ const SanShouList: React.FunctionComponent = (props) => {
 
   const ssStyles = useStyles()
 
+  // const printableElementRef = React.useRef()
+  // const handlePrint = () => {
+  //   if (printableElementRef.current) {
+  //     useReactToPrint({
+  //       content: () => printableElementRef.current,
+  //     })
+  //   }
+    
+  // }
+  // const handlePrint = 
+  //     useReactToPrint({
+  //       content: () => printableElementRef.current,
+  //     })
+    
+  const handlePrint = (event: React.MouseEvent<HTMLInputElement>) => {
+  }
   // control formatting of list of postures
   const [showText, updateShowText] = React.useState(false)
   type Side =  "both" | "A" | "B" 
@@ -114,7 +147,7 @@ const SanShouList: React.FunctionComponent = (props) => {
               (
                 
               <Grid item key={item.index} xs={12} sm={6}>
-                <Grid container xs={12}>
+                <Grid container xs={12} spacing={1}>
 
               <Grid item xs={1} className={ssStyles.name}>
                 {item.index}
@@ -225,12 +258,51 @@ const SanShouList: React.FunctionComponent = (props) => {
     popperSetAnchorEl(popperAnchorEl ? null : event.currentTarget);
   };
 
+  // const handlePopperClick = (event: React.MouseEvent<HTMLElement>) => {
+  //   const reactRootElement = document.getElementById("root")
+
+  //   popperSetAnchorEl(popperAnchorEl ? null : event.currentTarget);
+  // };
   const popperOpen = Boolean(popperAnchorEl);
   const popperId = popperOpen ? 'simple-popper' : undefined;
+
+  const [modalOpen, updateModalOpen] = React.useState(false)
+  
+  const handleModalClick = (event: React.MouseEvent<HTMLElement>) => {
+    const reactRootElement = document.getElementById("root")
+    if (reactRootElement) {
+      // reactRootElement.style.visibility = 'hidden'
+      reactRootElement.style.display = 'none'
+
+    }
+    setTimeout( () => {
+      window.print()
+    }, 4000)
+    updateModalOpen(true);
+  };
+  const handleModalClose = (event: React.MouseEvent<HTMLElement>) => {
+    updateModalOpen(false);
+    const reactRootElement = document.getElementById("root")
+    if (reactRootElement) {
+      // reactRootElement.style.visibility = 'visible'
+      reactRootElement.style.display = 'block'
+
+    }
+  };
+  const printSanShouList = (event: React.MouseEvent<HTMLElement>) => {
+    console.log("Print me")
+
+    // const el = document.getElementById('sanShouListElement')
+    // if (el) {
+    //   d.print(el)
+    // }
+    // printJS('sanShouListElement','html')
+  }
 
   return(
     <React.Fragment>
       <h3>San Shou form list of postures</h3>
+      
       <div>
         <ButtonGroup variant="contained">
           <SelectButton
@@ -247,6 +319,8 @@ const SanShouList: React.FunctionComponent = (props) => {
         </SelectButton>
         </ButtonGroup>
       </div>
+      <VSeparator lines={1} />
+
       <div>
         <ButtonGroup variant="contained">
           <SelectButton
@@ -270,18 +344,44 @@ const SanShouList: React.FunctionComponent = (props) => {
         </ButtonGroup>
       </div>
       
-
-      <Grid container spacing={1}>
-        {listBoth}
-      </Grid>
+      <div className="printSSList">
+        <Grid container spacing={1} id="sanShouListElement" >
+          {listBoth}
+        </Grid>
+      </div>
+      
   
       <VSeparator lines={1} />
+      <Button variant="contained" color="secondary" onClick={printSanShouList}>
+        Send list to printer
+      </Button>
+
+      <Button variant="contained" color="secondary" onClick={handleModalClick}>
+        Printable version in a Modal
+      </Button>
+
+      <Modal
+        open={modalOpen}
+        onClose={handleModalClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div className={ssStyles.modalBody}>
+          <div className={ssStyles.modalContent}>
+            <h3>A list of moves</h3>
+            <Grid container spacing={1} >
+              {listBoth}
+            </Grid>
+          </div>
+          
+        </div>
+      </Modal>
       {/* Button for opening the printed version */}
-      <Button variant="contained" color="secondary" onClick={handlePopperClick}>
+      {/* <Button variant="contained" color="secondary" onClick={handlePopperClick}>
         Printable version
       </Button>
 
-      <Popper id={popperId} open={popperOpen} anchorEl={popperAnchorEl}>
+      <Popper id={popperId} open={popperOpen} anchorEl={popperAnchorEl} placement={'top-start'}>
         <Paper elevation={2} variant="outlined" className={ssStyles.popUp}>
           <Button variant="contained" color="secondary" onClick={handlePopperClick}>
             Close printable San Shou list
@@ -297,7 +397,7 @@ const SanShouList: React.FunctionComponent = (props) => {
             Close printable San Shou list
           </Button>
         </Paper>
-      </Popper>
+      </Popper> */}
 
     </React.Fragment>
   );
@@ -306,3 +406,54 @@ const SanShouList: React.FunctionComponent = (props) => {
 export default SanShouList;
 
 //               {/* {item.side === SanShouSideEnum.A && ( */}
+
+// CSS reset copied over for @media print
+/*
+<style>
+  @media print {
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line - height: 1;
+}
+ol, ul {
+    list - style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+	content: none;
+}
+table {
+    border - collapse: collapse;
+	border-spacing: 0;
+}
+      }
+    </style>
+    */
