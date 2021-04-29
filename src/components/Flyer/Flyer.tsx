@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Phone} from '@material-ui/icons';
 
 import VSeparator from "../../components/VSeparator/VSeparator"
+
 import {socialData} from '../../data/social-data'
 
 import tjt from "../../images/Taijitu.svg";
