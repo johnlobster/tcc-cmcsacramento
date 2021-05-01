@@ -225,7 +225,19 @@ const initialTheme: Theme = createMuiTheme({
         '@font-face': {
           fontFamily: `RoofRunnersActive`,
           src: "url(/fonts/roof-runners-active.regular.ttf)"
-        },        
+        }, 
+        // '@page': {
+        //   marginTop: '0.5in',
+        //   marginLeft: '0',
+        //   marginRight: '0',
+        //   marginBottom: '0.5in',
+        //   fontSize: '0.7em',
+        // },
+        // '@media print': {
+        //   noPrint: {
+        //     display: 'none',
+        //   },
+        // },
       },
     },
   }

@@ -320,7 +320,7 @@ const SanShouList: React.FunctionComponent = (props) => {
 
   const popperId = popperOpen ? 'simple-popper' : undefined;
 
-  const handlePopperClick = (event: React.MouseEvent<HTMLElement>) => {
+  const openPopper = (event: React.MouseEvent<HTMLElement>) => {
     const windowOrigin = document.getElementById("originMarker")
     if (windowOrigin) {
       popperSetAnchorEl(windowOrigin)
@@ -328,22 +328,16 @@ const SanShouList: React.FunctionComponent = (props) => {
       // record current position, then scroll to top of page - beginning of popper
       scrollPosition.current = [event.pageX, event.pageY]
       window.scrollTo(0,0)
-      console.log(`SanShouList: target  ${event.clientX} ${event.clientX} ${event.pageX} ${event.pageY}`)
       // hide most of rest of document for printing
-      const headerElement = document.getElementById("headerID")
-      if (headerElement) {
-        headerElement.style.display = 'none'
-      }
-      // const footerElement = document.getElementById("footerID")
-      // if (footerElement) {
-      //   footerElement.style.display = 'none'
-      // }
+      undisplayElement("headerID")
       undisplayElement("footerID")
       undisplayElement("displayList")
-      const advancedElement = document.getElementById("advancedMainSectionID")
-      if (advancedElement) {
-        advancedElement.style.display = 'none'
-      }
+      undisplayElement("advancedMainSectionID")
+      
+      // open print dialog after 2.5 seconds
+      setTimeout( () => {
+        window.print()
+      }, 2500) 
     } else {
       console.log("SanShouList: error opening popper")
     }
@@ -355,102 +349,13 @@ const SanShouList: React.FunctionComponent = (props) => {
     // restore cursor to previous position
     window.scrollTo(scrollPosition.current[0], scrollPosition.current[1])
     // make rest of document visible again
-    const headerElement = document.getElementById("headerID")
-    if (headerElement) {
-      headerElement.style.display = 'block'
-    }
+    redisplayElement("headerID")
     redisplayElement("footerID")
     redisplayElement("displayList")
+    redisplayElement("advancedMainSectionID")
 
-
-    // const footerElement = document.getElementById("footerID")
-    // if (footerElement) {
-    //   footerElement.style.display = 'block'
-    // }
-    const advancedElement = document.getElementById("advancedMainSectionID")
-    if (advancedElement) {
-      advancedElement.style.display = 'block'
-    }
   };
 
-
-  // const handlePopperClick = (event: React.MouseEvent<HTMLElement>) => {
-  //   const reactRootElement = document.getElementById("root")
-
-  //   popperSetAnchorEl(popperAnchorEl ? null : event.currentTarget);
-  // };
-  
-
-  const [modalOpen, updateModalOpen] = React.useState(false)
-  
-  const [myPopperOpen, updateMyPopperOpen] = React.useState(false)
-
-  const handleModalClick = (event: React.MouseEvent<HTMLElement>) => {
-    const reactRootElement = document.getElementById("root")
-    if (reactRootElement) {
-      // reactRootElement.style.visibility = 'hidden'
-      reactRootElement.style.display = 'none'
-
-    }
-    setTimeout( () => {
-      window.print()
-    }, 4000)
-    updateModalOpen(true);
-  };
-  const handleModalClose = (event: React.MouseEvent<HTMLElement>) => {
-    updateModalOpen(false);
-    const reactRootElement = document.getElementById("root")
-    if (reactRootElement) {
-      // reactRootElement.style.visibility = 'visible'
-      reactRootElement.style.display = 'block'
-
-    }
-  };
-  const printSanShouList = (event: React.MouseEvent<HTMLElement>) => {
-    const headerElement = document.getElementById("headerID")
-    if (headerElement) {
-      headerElement.style.display = 'none'
-    }
-    const footerElement = document.getElementById("footerID")
-    if (footerElement) {
-      footerElement.style.display= 'none'
-    }
-    const advancedElement = document.getElementById("advancedMainSectionID")
-    if (advancedElement) {
-      advancedElement.style.display = 'none'
-    }
-  }
-  const openSanShouList = (event: React.MouseEvent<HTMLElement>) => {
-    const headerElement = document.getElementById("headerID")
-    if (headerElement) {
-      headerElement.style.display = 'none'
-    }
-    const footerElement = document.getElementById("footerID")
-    if (footerElement) {
-      footerElement.style.display = 'none'
-    }
-    const advancedElement = document.getElementById("advancedMainSectionID")
-    if (advancedElement) {
-      advancedElement.style.display = 'none'
-    }
-    updateMyPopperOpen(true)
-  }
-  const closeSanShouList = (event: React.MouseEvent<HTMLElement>) => {
-    const headerElement = document.getElementById("headerID")
-    if (headerElement) {
-      headerElement.style.display = 'block'
-    }
-    const footerElement = document.getElementById("footerID")
-    if (footerElement) {
-      footerElement.style.display = 'block'
-    }
-    const advancedElement = document.getElementById("advancedMainSectionID")
-    if (advancedElement) {
-      advancedElement.style.display = 'block'
-    }
-    updateMyPopperOpen(false)
-    
-  }
 
   return(
     <React.Fragment>
@@ -461,7 +366,6 @@ const SanShouList: React.FunctionComponent = (props) => {
         </p>
         <p>This list of movements (postures) is an aid to memorizing the form</p>
       </div>
-      
       
       <div className="noPrint">
         <VSeparator lines={2} />
@@ -513,54 +417,16 @@ const SanShouList: React.FunctionComponent = (props) => {
           <Grid container spacing={1} id="sanShouListElement" >
             {listBoth}
           </Grid>
+
         </div>
       </div>
-      
-  
       <VSeparator lines={1} />
-      <Button variant="contained" color="secondary" onClick={openSanShouList}>
-        Send list to printer
-      </Button>
 
-      { myPopperOpen && (
-        <div className={ssStyles.myPopOverBase}>
-          <div className={ssStyles.myPopOverPaper}>
-            <div className="noPrint">
-              <Button variant="contained" color="secondary" onClick={closeSanShouList} >
-                Close window
-              </Button>
-            </div>
-            <h3>Testing out an idea for printing</h3>
-            <Grid container spacing={1} >
-              {listBoth}
-            </Grid>
-          </div>         
-        </div>
-      )}
-      <Button variant="contained" color="secondary" onClick={handleModalClick}>
-        Printable version in a Modal
-      </Button>
-
-      <Modal
-        open={modalOpen}
-        onClose={handleModalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        className={ssStyles.modalRoot}
-      >
-        <div className={ssStyles.modalBody}>
-          <div className={ssStyles.modalContent}>
-            {ssTitle}
-            <Grid container spacing={1} >
-              {listBoth}
-            </Grid>
-          </div>
-          
-        </div>
-      </Modal>
+  
+      
       {/* Button for opening the printed version */}
-      <Button variant="contained" color="secondary" onClick={handlePopperClick}>
-        Printable version (Popper)
+      <Button variant="contained" color="secondary" onClick={openPopper}>
+        Printable version of list
       </Button>
 
       <Popper open={popperOpen} anchorEl={popperAnchorEl} placement={'top'} >
@@ -591,67 +457,3 @@ const SanShouList: React.FunctionComponent = (props) => {
 }
 
 export default SanShouList;
-
-//               {/* {item.side === SanShouSideEnum.A && ( */}
-
-// CSS reset copied over for @media print
-/*
-<style>
-  @media print {
-
-    html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-    a, abbr, acronym, address, big, cite, code,
-    del, dfn, em, img, ins, kbd, q, s, samp,
-    small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-body {
-    line - height: 1;
-}
-ol, ul {
-    list - style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-	content: none;
-}
-table {
-    border - collapse: collapse;
-	border-spacing: 0;
-}
-      }
-    </style>
-    */
-
-
-// modifiers = {
-//   [
-//     {
-//       name: 'popperOffsets',
-//       enabled: true,
-//       phase: 'main'
-//     }
-//   ]
-//       }
