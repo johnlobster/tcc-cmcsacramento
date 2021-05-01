@@ -3,8 +3,22 @@
   <head>
     <style>
       @page {
-        margin: 0in;
-        size: 8.5in 11in;
+        margin-top: 0.5in;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0.5in;
+
+        /* margin-bottom: 0.5in; */
+        padding:0;
+        /* size: 8.5in 11in; */
+      }
+      @media print {
+        body {
+          font-size: 0.7em;
+        }
+        .noPrint {
+          display: none;
+        }
       }
     </style>
     <meta charset="utf-8" />

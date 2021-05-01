@@ -1,7 +1,7 @@
 import React  from 'react';
 import { Switch, Route,  } from 'react-router-dom';
 
-import * as pageInfo from "../../data/page-info"; // single source of truth, but not sure how to use it here
+import * as pageInfo from "../../data/page-info"; // single source of truth
 
 import Tcc404 from "../../pages/Tcc404/Tcc404";
 

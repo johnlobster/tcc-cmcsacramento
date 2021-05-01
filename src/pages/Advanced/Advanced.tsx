@@ -7,6 +7,7 @@ import ResponsiveContainer from '../../components/ResponsiveContainer/Responsive
 import ExpandingCard from "../../components/ExpandingCard/ExpandingCard"
 
 import SanShouList from "../../components/SanShouList/SanShouList"
+import sanShou from "../../images/sanShou.jpg"
 
 // add more props 
 // add <MoreProps> to type FunctionComponent (adds typescript generic)
@@ -15,7 +16,9 @@ import SanShouList from "../../components/SanShouList/SanShouList"
 
 const sanShouCardInfo = (
   <div >
-    <h6>San shou postures</h6>
+    <img src={sanShou} alt="San Shou opening" height="100" />
+    <h6>San Shou list of movements</h6>
+
   </div>
 )
 
@@ -25,16 +28,17 @@ const Advanced: React.FunctionComponent = (props) => {
 
   return(
     <div>
-      <ResponsiveContainer>
+      <div id="advancedMainSectionID">
+        <ResponsiveContainer >
 
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <h1>Advanced</h1>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <h1>Advanced</h1>
 
-            <p>As an advanced student, you will work on</p>
-            <ul>
-              <li>Relaxation, <em>Sung</em></li>
-              <li>Full curriculum</li>
+              <p>As an advanced student, you will work on</p>
+              <ul>
+                <li>Relaxation, <em>Sung</em></li>
+                <li>Full curriculum</li>
                 <ul>
                   <li>Solo form with applications</li>
                   <li><em>Tui shou</em> (sensing hands), partner work with fixed foot position</li>
@@ -43,23 +47,25 @@ const Advanced: React.FunctionComponent = (props) => {
                   <li><em>San shou</em> - advanced two person form, moving feet with applications</li>
                   <li><em>San shou</em> - free form with partner</li>
                 </ul>
-              <li>
-                Tai chi classics
-              </li>
-              <li>Long form (Yang 108 posture)</li>
-              <li>
-                Sword form, <em>Jian</em>
-              </li>
-            </ul>
-          </Grid>
+                <li>
+                  Tai chi classics
+                </li>
+                <li>Long form (Yang 108 posture)</li>
+                <li>
+                  Sword form, <em>Jian</em>
+                </li>
+              </ul>
+            </Grid>
 
-        </Grid>
-      </ResponsiveContainer>
+          </Grid>
+        </ResponsiveContainer>
+      </div>
+      
 
       <ResponsiveContainer>
 
         <h2>More information and articles</h2>
-        
+
         <ExpandingCard
           open={sanShouListOpen}
           openCallback={sanShouListOpenUpdate}

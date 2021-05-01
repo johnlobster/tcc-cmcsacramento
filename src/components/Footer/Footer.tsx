@@ -51,7 +51,7 @@ const footerStyles = makeStyles((theme: Theme) =>
 const Footer: React.FunctionComponent = (props) => {
   const classes = footerStyles(theme);
   return(
-    <div className={classes.root}>
+    <div className={classes.root} id="footerID">
       <Grid container>
         <Grid item xs={12}>
           <br />

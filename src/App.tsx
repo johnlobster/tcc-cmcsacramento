@@ -51,14 +51,49 @@ const App: React.FunctionComponent = () => {
 
   /* eslint no-empty-function: "off" */
 
+  const printEl: JSX.Element = (
+    <div>
+      <h3> Testing out whether this stuff prints or not</h3>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+      <p>Voluptate magna ullamco aute consequat et commodo dolore aute ullamco nulla exercitation esse dolor. Duis sunt commodo anim mollit incididunt enim do ipsum ex commodo sint proident. Incididunt velit tempor officia aliquip magna dolor ullamco officia officia cillum nulla. Eu sint exercitation voluptate et reprehenderit nostrud labore velit sint. Laboris ullamco est ipsum laborum labore et deserunt aute dolore.</p>
+
+    </div>
+    
+  )
+  const [printing, updatePrinting] = React.useState(false)
+
   // ToDo add left hand menu for desktop
   return (
     <Router>
       <MuiStyleChanges />
+      { printing ? (
+        {printEl}
+      ): (
+        <React.Fragment>
+          <div id="originMarker"></div>
           <Header />
           <Routing />
           <Footer />
-        
+        </React.Fragment>
+      )
+      }
+      
+      
     </Router>
     ); 
 }

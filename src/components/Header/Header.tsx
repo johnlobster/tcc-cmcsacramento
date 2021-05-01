@@ -132,7 +132,7 @@ const Header: React.FunctionComponent = () => {
   
   // anchorEl={anchorEl}
   return(
-    <div >
+    <div id="headerID">
       <AppBar position="static" className={headerClasses.appBar}>
         <Toolbar>
           <IconButton 

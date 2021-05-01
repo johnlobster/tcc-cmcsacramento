@@ -514,16 +514,37 @@ export const sanShouData: SSList = [
   },
   {
     index: 56,
-    bobName: "",
-    direction: CompassDirectionEnum.W,
+    bobName: "BRUSH KNEE (defensive)",
+    direction: CompassDirectionEnum.E,
     side: SanShouSideEnum.B,
-    description: ""
+    description: "*taiji* formed by foot and hand"
   },
   {
     index: 57,
-    bobName: "",
+    bobName: "SEPARATE FOOT (left) ",
     direction: CompassDirectionEnum.W,
     side: SanShouSideEnum.A,
-    description: ""
+    description: "threatens strike to neck"
+  }, 
+  {
+    index: 58,
+    bobName: "BRUSH KNEE (defensive)",
+    direction: CompassDirectionEnum.E,
+    side: SanShouSideEnum.B,
+    description: "*taiji* formed by foot and hand"
+  },
+  {
+    index: 59,
+    bobName: "SHOULDER (right) ",
+    direction: CompassDirectionEnum.W,
+    side: SanShouSideEnum.A,
+    description: "targets back of shoulder joint"
+  },
+  {
+    index: 60,
+    bobName: "SHOULDER (right)",
+    direction: CompassDirectionEnum.E,
+    side: SanShouSideEnum.B,
+    description: "targets back of shoulder joint"
   },
 ]
